@@ -24,6 +24,7 @@ pnpm-debug.log*
 .idea/
 
 # Project-specific files
+.vscode/
 design/
 guide/
 starter-set/
