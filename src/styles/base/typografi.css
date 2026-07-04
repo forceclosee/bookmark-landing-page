@@ -1,0 +1,23 @@
+/* set default font property */
+body {
+  font-family: var(--font-rubik);
+  font-weight: 400;
+}
+
+/* Improve line wrapping */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+p {
+  /* set default font size */
+  font-size: calc(18 / 16 * 1rem);
+
+  /* Improve line wrapping */
+  text-wrap: pretty;
+}

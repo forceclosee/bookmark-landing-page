@@ -1,0 +1,92 @@
+/* Use a more-intuitive box-sizing model */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin */
+*:not(dialog) {
+  margin: 0;
+}
+
+/* Increase line-height */
+* {
+  line-height: calc(1em + 0.5rem);
+}
+
+/* reset line height to normal for spesific element */
+label,
+button,
+input,
+textarea,
+select {
+  line-height: normal;
+}
+
+/* remove vertical white space for some element */
+h1,
+h2,
+h3,
+label,
+li,
+button {
+  text-box: trim-both cap text;
+}
+
+html {
+  /* Reserve scrollbar area */
+  scrollbar-gutter: stable;
+  /* Enable smooth scrolling for anchor links */
+  scroll-behavior: smooth;
+  /* Enable keywords animations */
+  interpolate-size: allow-keywords;
+}
+
+/* Applies styles when Reduced Motion is enabled */
+@media screen and (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  /* Improve text rendering */
+  -webkit-font-smoothing: antialiased;
+  /* hide horizontal overflow */
+  overflow-x: clip;
+}
+
+/* Improve media defaults */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* Inherit fonts for form controls */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Avoid text overflows */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}

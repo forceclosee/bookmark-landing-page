@@ -1,43 +1,80 @@
-# Astro Starter Kit: Minimal
+# Frontend Mentor - Bookmark landing page solution
 
-```sh
-npm create astro@latest -- --template minimal
-```
+This is a solution to the [Bookmark landing page challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/bookmark-landing-page-5d0b588a9edda32581d29158).
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Table of contents
 
-## 🚀 Project Structure
+- [Overview](#overview)
+  - [Features](#features)
+  - [Screenshot](#screenshot)
+  - [Links](#links)
+- [My process](#my-process)
+  - [Built with](#built-with)
+  - [What I learned](#what-i-learned)
+  - [Continued development](#continued-development)
+  - [Useful resources](#useful-resources)
+  - [AI Collaboration](#ai-collaboration)
+- [Author](#author)
 
-Inside of your Astro project, you'll see the following folders and files:
+## Overview
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+### Features
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+### Screenshot
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+<!-- isi screenshot -->
 
-Any static assets, like images, can be placed in the `public/` directory.
+![](./screenshot.jpg)
 
-## 🧞 Commands
+### Links
 
-All commands are run from the root of the project, from a terminal:
+- Solution URL: [solution URL](https://your-solution-url.com) <!-- ganti link -->
+- Live Site URL: [live site URL](https://your-live-site-url.com) <!-- ganti link -->
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## My process
 
-## 👀 Want to learn more?
+### Built with
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- [Astro v7](https://astro.build) - Framework
+- [TypeScript v5](https://www.typescriptlang.org) - Language
+- [Node.js v22](https://nodejs.org) - Runtime
+- Semantic HTML5 markup
+- CSS custom properties
+- Flexbox
+- CSS Grid
+- Mobile-first workflow
+
+### What I learned
+
+In this project, I learned how to configure clean import path mappings in Astro.
+
+- **Modern TypeScript Path Aliases**
+
+  Configuring path aliases (like `@components/*`) helps avoid verbose and fragile relative paths (e.g., `../../`).
+
+  ```json
+  {
+    "compilerOptions": {
+      "paths": {
+        "@components/*": ["./src/components/*"],
+        "@img/*": ["./src/img/*"]
+      }
+    }
+  }
+  ```
+
+### Continued development
+
+### Useful resources
+
+- [TinyPNG](https://tinypng.com/) - Helped me compress and optimize the images in the project without losing quality, making the page load faster.
+- [Cloudinary](https://cloudinary.com/) - Used to host the Open Graph and Twitter card images for social media sharing.
+- [Perfect Pixel](https://chrome.google.com/webstore/detail/perfectpixel-by-welldonec/dkaagdgjlophiddqccjgplachon0304v) - Chrome extension that allowed me to overlay the design mockup directly on my live page for pixel-perfect accuracy.
+
+### AI Collaboration
+
+## Author
+
+- GitHub - [Force Close](https://github.com/forceclosee)
+- Frontend Mentor - [@forceclosee](https://www.frontendmentor.io/profile/forceclosee)
+- X - [@forceclosee](https://x.com/forceclosee)

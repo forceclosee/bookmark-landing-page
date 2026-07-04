@@ -1,0 +1,6 @@
+.page-wrapper {
+  min-block-size: 100svh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  justify-items: center;
+}
