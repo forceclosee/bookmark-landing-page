@@ -1,6 +1,5 @@
 .footer {
   min-block-size: 3rem;
-  inline-size: 100%;
   background-color: var(--neutral-blue950);
   color: var(--neutral-grey50);
 }
@@ -13,7 +12,7 @@
 
 .attribution {
   padding: 0.5rem;
-  font-size: 0.6875rem;
+  font-size: var(--fs-3xs);
 }
 
 .attribution__link {
