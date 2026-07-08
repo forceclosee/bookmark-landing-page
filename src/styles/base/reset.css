@@ -90,3 +90,8 @@ h5,
 h6 {
   overflow-wrap: break-word;
 }
+
+/* improve focus styles */
+:focus-visible {
+  outline-offset: 3px;
+}

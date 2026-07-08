@@ -5,7 +5,6 @@ body {
 }
 
 /* Improve line wrapping */
-h1,
 h2,
 h3,
 h4,
@@ -14,10 +13,30 @@ h6 {
   text-wrap: balance;
 }
 
+h1 {
+  font-size: var(--fs-3xl);
+  font-weight: 500;
+  line-height: 1.3;
+
+  @media (width >= 64rem) {
+    line-height: 1.1;
+  }
+
+  /* Improve line wrapping */
+  text-wrap: balance;
+}
+
 p {
-  /* set default font size */
-  font-size: calc(18 / 16 * 1rem);
+  /* set font property */
+  font-size: var(--fs-m);
+  line-height: 1.65;
+
+  @media (width >= 64rem) {
+    line-height: 1.55;
+  }
 
   /* Improve line wrapping */
   text-wrap: pretty;
 }
+
+/* pindahkan line height ke variable dengan nama leading- */
