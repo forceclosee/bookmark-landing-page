@@ -1,0 +1,24 @@
+.bg-shape {
+  position: absolute;
+  position-anchor: --hero;
+
+  inset-inline-start: calc(anchor(start) + anchor-size(inline) * 0.19);
+  inset-inline-end: 0;
+  inset-block-start: calc(anchor(start) + anchor-size(block) * 0.22);
+  inset-block-end: anchor(end);
+  z-index: -1;
+  background-color: var(--primary-blue-600);
+  border-start-start-radius: 12.5rem;
+  border-end-start-radius: 12.5rem;
+}
+
+.bg-shape--reverse {
+  position-anchor: --features;
+
+  inset-inline-start: 0;
+  /* cek lagi saat dipake di features */
+  inset-inline-end: calc(anchor(end) + anchor-size(inline) * 0.19);
+  border-radius: 0;
+  border-start-end-radius: 12.5rem;
+  border-end-end-radius: 12.5rem;
+}
