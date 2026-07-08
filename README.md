@@ -1,6 +1,6 @@
 # Frontend Mentor - Bookmark landing page solution
 
-This is a solution to the [Bookmark landing page challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/bookmark-landing-page-5d0b588a9edda32581d29158).
+This is a solution to the [Bookmark landing page challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/bookmark-landing-page-5d0b588a9edda32581d29158). This project focuses on demonstrating modern CSS layouts, particularly using the new CSS Anchor Positioning API for complex background decorations.
 
 ## Table of contents
 
@@ -40,13 +40,14 @@ This is a solution to the [Bookmark landing page challenge on Frontend Mentor](h
 - [Node.js v22](https://nodejs.org) - Runtime
 - Semantic HTML5 markup
 - CSS custom properties
+- CSS Anchor Positioning (Modern Layout API)
 - Flexbox
 - CSS Grid
 - Mobile-first workflow
 
 ### What I learned
 
-In this project, I learned how to configure clean import path mappings in Astro.
+In this project, I learned how to configure clean import path mappings in Astro, as well as CSS Anchor Positioning.
 
 - **Modern TypeScript Path Aliases**
 
@@ -63,6 +64,21 @@ In this project, I learned how to configure clean import path mappings in Astro.
   }
   ```
 
+- **Modern CSS Anchor Positioning**
+
+  I learned how to position absolute decorative shapes relative to an anchor without establishing a positioned ancestor context. By using implicit default anchors and locking one coordinate to the viewport boundary, the shape dynamically scales with the illustration wrapper and extends to the screen edge without triggering horizontal layout overflow.
+
+  ```css
+  .bg-shape {
+    position: absolute;
+    position-anchor: --hero; /* Define the default anchor */
+
+    /* Auto-stretch from the anchor's start edge to the viewport's end edge */
+    inset-inline-start: calc(anchor(start) + anchor-size(inline) * 0.19);
+    inset-inline-end: 0;
+  }
+  ```
+
 ### Continued development
 
 ### Useful resources
@@ -70,6 +86,7 @@ In this project, I learned how to configure clean import path mappings in Astro.
 - [TinyPNG](https://tinypng.com/) - Helped me compress and optimize the images in the project without losing quality, making the page load faster.
 - [Cloudinary](https://cloudinary.com/) - Used to host the Open Graph and Twitter card images for social media sharing.
 - [Perfect Pixel](https://chrome.google.com/webstore/detail/perfectpixel-by-welldonec/dkaagdgjlophiddqccjgplachon0304v) - Chrome extension that allowed me to overlay the design mockup directly on my live page for pixel-perfect accuracy.
+- [Utopia](https://utopia.fyi/) - Excellent tool for planning and generating fluid responsive typography scales without relying on manual breakpoint calculations.
 
 ### AI Collaboration
 
