@@ -1,0 +1,14 @@
+# Build and dependency folder
+node_modules/
+dist/
+
+# File already format by Biome
+*.html
+*.astro
+*.js
+*.jsx
+*.ts
+*.tsx
+*.json
+*.jsonc
+*.css
