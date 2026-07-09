@@ -2,13 +2,12 @@
 import "@components/MainContent/BgShape.css";
 
 export interface Props {
-  isReverse?: boolean;
+	isReverse?: boolean;
 }
 
 const { isReverse = false } = Astro.props;
 ---
 
 <div
-  aria-hidden="true"
-  class:list={["bg-shape", { "bg-shape--reverse": isReverse }]}>
-</div>
+	aria-hidden="true"
+	class:list={["bg-shape", { "bg-shape--reverse": isReverse }]}></div>

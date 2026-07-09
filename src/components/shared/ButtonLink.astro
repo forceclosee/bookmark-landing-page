@@ -1,19 +1,22 @@
 ---
+import type { HTMLAttributes } from "astro/types";
+
 import "@components/shared/ButtonLink.css";
 
-export interface Props {
-  href: string;
-  variant?: "primary" | "secondary";
+interface Props extends RequireAttributes<HTMLAttributes<"a">, "href"> {
+	variant?: "secondary";
 }
-const { href, variant = "primary" } = Astro.props;
+
+const { href, variant = "primary", ...attrs } = Astro.props;
 ---
 
 <a
-  href={href}
-  class:list={[
+	href={href}
+	class:list={[
     "button-link",
     { "button-link--primary": variant === "primary" },
     { "button-link--secondary": variant === "secondary" },
-  ]}>
-  <slot />
+  ]}
+	{...attrs}>
+	<slot />
 </a>

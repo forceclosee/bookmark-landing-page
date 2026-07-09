@@ -1,7 +1,6 @@
 ---
-import Footer from "@components/footer/Footer.astro";
-
 import { Font } from "astro:assets";
+import Footer from "@components/footer/Footer.astro";
 
 import "@styles/base.css";
 import "./Layout.css";
@@ -9,44 +8,48 @@ import "./Layout.css";
 
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="theme-color" content="#212529" />
+		<meta name="theme-color" content="#212529">
 
-    <!-- SEO Meta Tags -->
-    <title>Bookmark Landing Page| Force Close</title>
-    <meta name="author" content="Force Close" />
-    <meta name="description" content="" />
-    <meta name="keywords" content="Force Close, " />
+		<!-- SEO Meta Tags -->
+		<title>Bookmark Landing Page| Force Close</title>
+		<meta name="author" content="Force Close">
+		<meta name="description" content="">
+		<meta name="keywords" content="Force Close, ">
 
-    <!-- OG Tags -->
-    <meta property="og:title" content=" | Force Close" />
-    <meta property="og:description" content="" />
-    <meta property="og:image" content="" /><!-- isi image -->
-    <meta property="og:url" content="" /><!-- isi live site url -->
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Force Close Portfolio" />
+		<!-- OG Tags -->
+		<meta property="og:title" content=" | Force Close">
+		<meta property="og:description" content="">
+		<meta property="og:image" content="">
+		<!-- isi image -->
+		<meta property="og:url" content="">
+		<!-- isi live site url -->
+		<meta property="og:type" content="website">
+		<meta property="og:site_name" content="Force Close Portfolio">
 
-    <!-- Twitter Card Tags -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content=" | Force Close" />
-    <meta name="twitter:description" content="" />
-    <meta name="twitter:image" content="" /><!-- isi image -->
-    <meta name="twitter:url" content="" /><!-- isi live site url -->
+		<!-- Twitter Card Tags -->
+		<meta name="twitter:card" content="summary_large_image">
+		<meta name="twitter:title" content=" | Force Close">
+		<meta name="twitter:description" content="">
+		<meta name="twitter:image" content="">
+		<!-- isi image -->
+		<meta name="twitter:url" content="">
+		<!-- isi live site url -->
 
-    <!-- font -->
-    <Font cssVariable="--font-rubik" />
+		<!-- font -->
+		<Font cssVariable="--font-rubik" />
 
-    <!-- favicon -->
-    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
-  </head>
-  <body>
-    <div class="page-wrapper">
-      <header>asd</header>
-      <slot />
-      <Footer />
-    </div>
-  </body>
+		<!-- favicon -->
+		<link rel="icon" href="/icon.svg" type="image/svg+xml">
+	</head>
+	<body>
+		<div class="page-wrapper">
+			<header>asd</header>
+			<slot />
+			<Footer />
+		</div>
+	</body>
 </html>

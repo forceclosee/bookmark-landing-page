@@ -1,29 +1,29 @@
 :root {
-  /* color */
-  --primary-blue-600: hsl(231, 69%, 60%);
-  --primary-red-400: hsl(0, 94%, 66%);
+	/* color */
+	--primary-blue-600: hsl(231, 69%, 60%);
+	--primary-red-400: hsl(0, 94%, 66%);
 
-  --neutral-grey50: hsl(0, 0%, 97%);
-  --neutral-grey100: color-mix(in hsl, var(--neutral-grey50) 99%, black);
-  --neutral-blue950: hsl(229, 31%, 21%);
+	--neutral-grey50: hsl(0, 0%, 97%);
+	--neutral-grey100: color-mix(in hsl, var(--neutral-grey50) 99%, black);
+	--neutral-blue950: hsl(229, 31%, 21%);
 
-  --text: color-mix(in hsl, var(--neutral-blue950) 93%, white);
-  --text-muted: color-mix(in hsl, var(--neutral-blue950) 50%, white);
-  --text-button: color-mix(in hsl, var(--neutral-blue950) 70%, white);
+	--text: color-mix(in hsl, var(--neutral-blue950) 93%, white);
+	--text-muted: color-mix(in hsl, var(--neutral-blue950) 50%, white);
+	--text-button: color-mix(in hsl, var(--neutral-blue950) 70%, white);
 
-  --text-inverse: color-mix(in hsl, var(--neutral-grey50) 95%, black);
+	--text-inverse: color-mix(in hsl, var(--neutral-grey50) 95%, black);
 
-  /* font size */
-  --fs-3xs: 0.6875rem;
-  --fs-s: 0.90625rem;
-  --fs-m: clamp(0.9375rem, 0.8292rem + 0.4622vw, 1.125rem);
-  --fs-3xl: clamp(1.875rem, 1.225rem + 2.7735vw, 3rem);
+	/* font size */
+	--fs-3xs: 0.6875rem;
+	--fs-s: 0.90625rem;
+	--fs-m: clamp(0.9375rem, 0.8292rem + 0.4622vw, 1.125rem);
+	--fs-3xl: clamp(1.875rem, 1.225rem + 2.7735vw, 3rem);
 
-  /* box shadow */
-  --shadow-color: 232deg 59% 36%;
-  --shadow:
-    0.3px 0.5px 0.9px hsl(var(--shadow-color) / 0),
-    1px 1.9px 3.2px hsl(var(--shadow-color) / 0.03),
-    1.9px 3.8px 6.4px hsl(var(--shadow-color) / 0.05),
-    3.8px 7.6px 12.7px hsl(var(--shadow-color) / 0.08);
+	/* box shadow */
+	--shadow-color: 232deg 59% 36%;
+	--shadow:
+		0.3px 0.5px 0.9px hsl(var(--shadow-color) / 0),
+		1px 1.9px 3.2px hsl(var(--shadow-color) / 0.03),
+		1.9px 3.8px 6.4px hsl(var(--shadow-color) / 0.05),
+		3.8px 7.6px 12.7px hsl(var(--shadow-color) / 0.08);
 }

@@ -1,7 +1,7 @@
 /* set default font property */
 body {
-  font-family: var(--font-rubik);
-  font-weight: 400;
+	font-family: var(--font-rubik);
+	font-weight: 400;
 }
 
 /* Improve line wrapping */
@@ -10,33 +10,33 @@ h3,
 h4,
 h5,
 h6 {
-  text-wrap: balance;
+	text-wrap: balance;
 }
 
 h1 {
-  font-size: var(--fs-3xl);
-  font-weight: 500;
-  line-height: 1.3;
+	font-size: var(--fs-3xl);
+	font-weight: 500;
+	line-height: 1.3;
 
-  @media (width >= 64rem) {
-    line-height: 1.1;
-  }
+	@media (width >= 64rem) {
+		line-height: 1.1;
+	}
 
-  /* Improve line wrapping */
-  text-wrap: balance;
+	/* Improve line wrapping */
+	text-wrap: balance;
 }
 
 p {
-  /* set font property */
-  font-size: var(--fs-m);
-  line-height: 1.65;
+	/* set font property */
+	font-size: var(--fs-m);
+	line-height: 1.65;
 
-  @media (width >= 64rem) {
-    line-height: 1.55;
-  }
+	@media (width >= 64rem) {
+		line-height: 1.55;
+	}
 
-  /* Improve line wrapping */
-  text-wrap: pretty;
+	/* Improve line wrapping */
+	text-wrap: pretty;
 }
 
 /* pindahkan line height ke variable dengan nama leading- */

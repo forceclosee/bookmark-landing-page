@@ -1,21 +1,21 @@
 .footer {
-  min-block-size: 3rem;
-  background-color: var(--neutral-blue950);
-  color: var(--neutral-grey50);
+	min-block-size: 3rem;
+	background-color: var(--neutral-blue950);
+	color: var(--neutral-grey50);
 }
 
 .footer__content-wrapper {
-  display: grid;
-  justify-items: center;
-  block-size: 100%;
+	display: grid;
+	justify-items: center;
+	block-size: 100%;
 }
 
 .attribution {
-  padding: 0.5rem;
-  font-size: var(--fs-3xs);
+	padding: 0.5rem;
+	font-size: var(--fs-3xs);
 }
 
 .attribution__link {
-  text-decoration: none;
-  color: var(--primary-red-400);
+	text-decoration: none;
+	color: var(--primary-red-400);
 }
