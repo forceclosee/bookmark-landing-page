@@ -3,9 +3,9 @@ import type { HTMLAttributes } from "astro/types";
 
 import "@components/shared/ButtonLink.css";
 
-interface Props extends RequireAttributes<HTMLAttributes<"a">, "href"> {
+type Props = RequireAttributes<HTMLAttributes<"a">, "href"> & {
 	variant?: "secondary";
-}
+};
 
 const { href, variant = "primary", ...attrs } = Astro.props;
 ---
