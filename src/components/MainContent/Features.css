@@ -1,0 +1,19 @@
+.features {
+	display: grid;
+	justify-items: center;
+	gap: clamp(3.5rem, 3.211rem + 1.2326vw, 4rem);
+	padding-inline: 2rem;
+	max-inline-size: 30rem;
+
+	@media (width >= 48rem) {
+		max-inline-size: 72rem;
+	}
+}
+
+.features__header {
+	text-align: center;
+}
+
+.features__description {
+	max-inline-size: 35rem;
+}

@@ -2,6 +2,9 @@
 import Layout from "@layouts/Layout.astro";
 
 import Hero from "@components/MainContent/Hero.astro";
+import Features from "@components/MainContent/Features";
+import ButtonLink from "@components/shared/ButtonLink.astro";
+import BgShape from "@components/MainContent/BgShape.astro";
 
 import "@styles/pages/index.css";
 ---
@@ -10,6 +13,12 @@ import "@styles/pages/index.css";
 	<main class="content">
 		<div class="content__wrapper">
 			<Hero />
+			<Features client:load>
+				<BgShape isReverse />
+				<ButtonLink href="#" class="feature-content__button-link">
+					More Info
+				</ButtonLink>
+			</Features>
 		</div>
 	</main>
 </Layout>

@@ -1,0 +1,39 @@
+.feature-content {
+	display: grid;
+	row-gap: 3.5rem;
+	column-gap: 7.8rem;
+	justify-items: center;
+	align-items: center;
+
+	@media (width >= 48rem) {
+		max-inline-size: 32rem;
+	}
+
+	@media (width >= 64rem) {
+		grid-template-columns: auto minmax(38%, 1fr);
+		max-inline-size: 72rem;
+	}
+}
+
+.feature-content__image-wrapper {
+	anchor-name: --features;
+	padding-block-end: clamp(2.3rem, 0.451rem + 7.889vw, 5.5rem);
+}
+
+.feature-content__details {
+	text-align: center;
+
+	@media (width >= 64rem) {
+		padding-block-end: 5.5rem;
+		text-align: start;
+	}
+}
+
+.feature-content__button-link {
+	display: none;
+	margin-block-start: 1.5em;
+
+	@media (width >= 64rem) {
+		display: inline-block;
+	}
+}

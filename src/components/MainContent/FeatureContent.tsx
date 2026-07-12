@@ -1,0 +1,28 @@
+import type { ReactNode } from "react";
+
+import "@components/MainContent/FeatureContent.css";
+
+import { features } from "@data/data-features";
+
+type Props = {
+	children: ReactNode;
+};
+
+export default function FeatureContent({ children }: Props) {
+	return (
+		<div className="feature-content">
+			<div className="feature-content__image-wrapper">
+				<img
+					src={features[0].image.src}
+					alt=""
+					className="feature-content__image"
+				/>
+			</div>
+			<div className="feature-content__details flow">
+				<h3 className="feature-content__title">{features[0].title}</h3>
+				<p className="feature-content__text">{features[0].content}</p>
+				{children}
+			</div>
+		</div>
+	);
+}
