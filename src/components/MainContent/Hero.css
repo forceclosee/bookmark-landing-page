@@ -17,38 +17,29 @@
 
 .hero__image-wrapper {
 	anchor-name: --hero;
+	padding-inline: 0.75rem;
 	padding-block-end: clamp(0.625rem, -0.0612rem + 2.9276vw, 1.8125rem);
 
 	@media (width >= 64rem) {
 		order: 1;
+		padding-inline: 0;
 	}
 }
 
 .hero__image {
 	max-block-size: auto;
-	padding-inline: 0.75rem;
-
-	@media (width >= 64rem) {
-		padding-inline: 0;
-	}
 }
 
 .hero__details-wrapper {
 	padding-inline: 2rem;
+
 	text-align: center;
 
 	@media (width >= 64rem) {
-		text-align: start;
+		padding-block-end: 1.8125rem;
 		padding-inline-end: 0;
+		text-align: start;
 	}
-}
-
-.hero__title {
-	color: var(--text);
-}
-
-.hero__detail {
-	color: var(--text-muted);
 }
 
 .hero__button-wrapper {

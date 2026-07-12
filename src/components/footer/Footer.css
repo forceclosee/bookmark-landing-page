@@ -1,7 +1,6 @@
 .footer {
 	min-block-size: 3rem;
 	background-color: var(--neutral-blue950);
-	color: var(--neutral-grey50);
 }
 
 .footer__content-wrapper {
@@ -11,6 +10,7 @@
 }
 
 .attribution {
+	color: var(--neutral-grey50);
 	padding: 0.5rem;
 	font-size: var(--fs-3xs);
 }
