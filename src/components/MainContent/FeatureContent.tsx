@@ -19,7 +19,7 @@ export default function FeatureContent({ children }: Props) {
 				/>
 			</div>
 			<div className="feature-content__details flow">
-				<h3 className="feature-content__title">{features[0].title}</h3>
+				<h2 className="feature-content__title">{features[0].title}</h2>
 				<p className="feature-content__text">{features[0].content}</p>
 				{children}
 			</div>
