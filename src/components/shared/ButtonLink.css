@@ -1,7 +1,5 @@
 .button-link {
-	display: block;
-	padding-inline: 1.1em;
-	padding-inline: 1.65em;
+	display: inline-block;
 	padding-inline: clamp(1.1em, 0.7822em + 1.3559vw, 1.65em);
 	padding-block: 0.9em;
 	font-size: var(--fs-s);

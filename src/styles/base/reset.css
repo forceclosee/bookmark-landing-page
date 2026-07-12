@@ -95,3 +95,9 @@ h6 {
 :focus-visible {
 	outline-offset: 3px;
 }
+
+/* opt in to custom select rendering */
+select,
+::picker(select) {
+	appearance: base-select;
+}

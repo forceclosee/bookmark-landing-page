@@ -2,9 +2,15 @@
 	position: absolute;
 	position-anchor: --hero;
 
-	inset-inline-start: calc(anchor(start) + anchor-size(inline) * 0.19);
+	inset-inline-start: calc(
+		anchor(start) +
+		clamp(4.5rem, 0.1086rem + 18.7365vw, 12.1rem)
+	);
 	inset-inline-end: 0;
-	inset-block-start: calc(anchor(start) + anchor-size(block) * 0.22);
+	inset-block-start: calc(
+		anchor(start) +
+		clamp(3.5rem, 0.322rem + 13.5593vw, 9rem)
+	);
 	inset-block-end: anchor(end);
 	z-index: -1;
 	background-color: var(--primary-blue-600);
@@ -16,8 +22,11 @@
 	position-anchor: --features;
 
 	inset-inline-start: 0;
-	/* cek lagi saat dipake di features */
-	inset-inline-end: calc(anchor(end) + anchor-size(inline) * 0.19);
+	inset-inline-end: calc(anchor(end) + anchor-size(inline) * 0.12);
+	inset-block-start: calc(
+		anchor(start) +
+		clamp(2.2rem, 0.4665rem + 7.3959vw, 5.2rem)
+	);
 	border-radius: 0;
 	border-start-end-radius: 12.5rem;
 	border-end-end-radius: 12.5rem;

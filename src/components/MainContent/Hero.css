@@ -17,6 +17,7 @@
 
 .hero__image-wrapper {
 	anchor-name: --hero;
+	padding-block-end: clamp(0.625rem, -0.0612rem + 2.9276vw, 1.8125rem);
 
 	@media (width >= 64rem) {
 		order: 1;
@@ -26,7 +27,6 @@
 .hero__image {
 	max-block-size: auto;
 	padding-inline: 0.75rem;
-	padding-block-end: clamp(0.625rem, -0.0612rem + 2.9276vw, 1.8125rem);
 
 	@media (width >= 64rem) {
 		padding-inline: 0;
@@ -34,8 +34,8 @@
 }
 
 .hero__details-wrapper {
-	text-align: center;
 	padding-inline: 2rem;
+	text-align: center;
 
 	@media (width >= 64rem) {
 		text-align: start;
