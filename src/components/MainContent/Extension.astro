@@ -1,0 +1,29 @@
+---
+import ButtonLink from "@components/shared/ButtonLink.astro";
+import { extension } from "@data/data-extension";
+
+import bgDots from "@img/bg-dots.svg";
+
+import "@components/MainContent/Extension.css";
+---
+
+<section class="extension">
+	<header class="extension__header flow">
+		<h2 class="extension__title">Download the extension</h2>
+		<p class="extension__description">
+			We’ve got more browsers in the pipeline. Please do let us know if you’ve
+			got a favourite you’d like us to prioritize.
+		</p>
+	</header>
+	<div class="extension__card-wrapper">
+		{extension.map((card) => (
+			<div class="card">
+				<img src={card.image.src} alt="" class="card__image" width={card.width} height={card.height}/>
+				<h3 class="card__title">{card.title}</h3>
+				<p class="card__min-version">{card.minVersion}</p>
+				<img src={bgDots.src} alt="" class="card__bg-pattern" width={280} height={4} />
+				<ButtonLink href="#" variant="extension" class="card__link">Add & Install Extension</ButtonLink>
+			</div>
+		))}
+	</div>
+</section>
