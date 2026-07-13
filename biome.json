@@ -50,6 +50,9 @@
 				"rules": {
 					"a11y": {
 						"useAnchorContent": "off"
+					},
+					"correctness": {
+						"useJsxKeyInIterable": "off"
 					}
 				}
 			}
