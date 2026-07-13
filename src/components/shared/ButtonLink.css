@@ -57,3 +57,7 @@
 			0 0 0px 2px var(--text-button);
 	}
 }
+
+.button-link__extension {
+	padding-inline: 2.4em;
+}

@@ -11,7 +11,7 @@ type Props = {
 
 export default function Features({ children }: Props) {
 	return (
-		<div className="features">
+		<section className="features">
 			<header className="features__header flow">
 				<h2 className="features__title">Features</h2>
 				<p className="features__description">
@@ -22,6 +22,6 @@ export default function Features({ children }: Props) {
 			</header>
 			<FeatureTabButton />
 			<FeatureContent>{children}</FeatureContent>
-		</div>
+		</section>
 	);
 }
