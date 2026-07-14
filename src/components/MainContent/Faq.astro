@@ -1,0 +1,25 @@
+---
+import ButtonLink from "@components/shared/ButtonLink.astro";
+import { faq } from "@data/data-faq";
+
+import "@components/MainContent/Faq.css";
+---
+
+<section class="faq">
+	<header class="faq__header flow">
+		<h2 class="faq__title">Frequently Asked Questions</h2>
+		<p class="faq__description">
+			Here are some of our FAQs. If you have any other questions you’d like
+			answered please feel free to email us.
+		</p>
+	</header>
+	<div class="faq__details-wrapper">
+		{faq.map((data) =>(
+      <details name="faq" class="faq__details">
+        <summary class="faq__summary">{data.title}</summary>
+	      <p class="faq__content">{data.content}</p>
+      </details>
+    ))}
+	</div>
+	<ButtonLink href="#">More Info</ButtonLink>
+</section>
