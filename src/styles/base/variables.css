@@ -11,6 +11,8 @@
 	--text-muted: color-mix(in hsl, var(--neutral-blue950) 50%, white);
 	--text-button: color-mix(in hsl, var(--neutral-blue950) 70%, white);
 
+	--border: color-mix(in hsl, var(--neutral-blue950) 15%, white);
+
 	--text-inverse: color-mix(in hsl, var(--neutral-grey50) 95%, black);
 
 	/* font size */

@@ -1,5 +1,4 @@
 .content__wrapper {
 	display: grid;
 	justify-items: center;
-	gap: clamp(6rem, 12.3112rem + -9.8613vw, 10rem);
 }

@@ -2,6 +2,7 @@
 	display: grid;
 	justify-items: center;
 	gap: clamp(3.5rem, 3.211rem + 1.2326vw, 4rem);
+	margin-block-start: clamp(6rem, 11.9167rem + -9.2449vw, 9.75rem);
 	padding-inline: 2rem;
 	max-inline-size: 30rem;
 
