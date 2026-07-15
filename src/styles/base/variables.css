@@ -10,13 +10,24 @@
 	--text: color-mix(in hsl, var(--neutral-blue950) 93%, white);
 	--text-muted: color-mix(in hsl, var(--neutral-blue950) 50%, white);
 	--text-button: color-mix(in hsl, var(--neutral-blue950) 70%, white);
+	--text-placeholder: color-mix(in hsl, var(--neutral-blue950) 30%, white);
+
+	--text-inverse: color-mix(in hsl, var(--neutral-grey50) 95%, black);
+	--text-inverse-muted: color-mix(in hsl, var(--neutral-grey50) 87%, black);
 
 	--border: color-mix(in hsl, var(--neutral-blue950) 15%, white);
 
-	--text-inverse: color-mix(in hsl, var(--neutral-grey50) 95%, black);
+	--input-border: oklch(76.9% 0.188 70.08);
+
+	--input-bg-invalid: oklch(93.6% 0.032 17.717);
+	--input-border-invalid: oklch(63.7% 0.237 25.331);
+
+	--input-bg-valid: oklch(96.2% 0.044 156.743);
+	--input-border-valid: oklch(72.3% 0.219 149.579);
 
 	/* font size */
 	--fs-3xs: 0.6875rem;
+	--fs-xs: 0.8125rem;
 	--fs-s: 0.90625rem;
 	--fs-md: 0.9375rem;
 	--fs-m: clamp(0.9375rem, 0.8292rem + 0.4622vw, 1.125rem);

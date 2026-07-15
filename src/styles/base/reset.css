@@ -15,34 +15,6 @@
 	line-height: calc(1em + 0.5rem);
 }
 
-/* reset line height to normal for spesific element */
-label,
-button,
-input,
-textarea,
-select {
-	line-height: normal;
-}
-
-/* remove vertical white space for some element */
-h1,
-h2,
-h3,
-label,
-li,
-button {
-	text-box: trim-both cap text;
-}
-
-html {
-	/* Reserve scrollbar area */
-	scrollbar-gutter: stable;
-	/* Enable smooth scrolling for anchor links */
-	scroll-behavior: smooth;
-	/* Enable keywords animations */
-	interpolate-size: allow-keywords;
-}
-
 /* Applies styles when Reduced Motion is enabled */
 @media screen and (prefers-reduced-motion: reduce) {
 	*,
@@ -55,11 +27,45 @@ html {
 	}
 }
 
+html {
+	/* Reserve scrollbar area */
+	scrollbar-gutter: stable;
+	/* Enable smooth scrolling for anchor links */
+	scroll-behavior: smooth;
+	/* Enable keywords animations */
+	interpolate-size: allow-keywords;
+}
+
 body {
 	/* Improve text rendering */
 	-webkit-font-smoothing: antialiased;
 	/* hide horizontal overflow */
-	overflow-x: clip;
+	overflow-x: hidden;
+
+	@supports (overflow-x: clip) {
+		overflow-x: clip;
+	}
+}
+
+/* reset line height to normal caused by line height with * selector for spesific element */
+label,
+button,
+input,
+textarea,
+select {
+	line-height: normal;
+}
+
+/* remove vertical white space for some element */
+@supports (text-box: trim-both cap text) {
+	h1,
+	h2,
+	h3,
+	label,
+	li,
+	button {
+		text-box: trim-both cap text;
+	}
 }
 
 /* Improve media defaults */
@@ -72,11 +78,14 @@ svg {
 	max-width: 100%;
 }
 
-/* Inherit fonts for form controls */
+/* reset default appearence for form controls */
 input,
 button,
 textarea,
 select {
+	min-inline-size: 0;
+	background-color: transparent;
+	border: none;
 	font: inherit;
 }
 
