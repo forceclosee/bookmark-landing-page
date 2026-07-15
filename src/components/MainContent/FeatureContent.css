@@ -4,10 +4,7 @@
 	column-gap: 7.8rem;
 	justify-items: center;
 	align-items: center;
-
-	@media (width >= 48rem) {
-		max-inline-size: 32rem;
-	}
+	max-inline-size: 32rem;
 
 	@media (width >= 64rem) {
 		grid-template-columns: auto minmax(38%, 1fr);
@@ -17,6 +14,7 @@
 
 .feature-content__image-wrapper {
 	anchor-name: --features;
+	max-inline-size: 27rem;
 	padding-block-end: clamp(2.3rem, 0.451rem + 7.889vw, 5.5rem);
 }
 

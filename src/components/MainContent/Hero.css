@@ -27,7 +27,8 @@
 }
 
 .hero__image {
-	max-block-size: auto;
+	inline-size: 100%;
+	block-size: auto;
 }
 
 .hero__details-wrapper {
