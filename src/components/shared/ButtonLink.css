@@ -1,13 +1,26 @@
 .button-link {
 	display: inline-block;
 	padding-inline: clamp(1.1em, 0.7822em + 1.3559vw, 1.65em);
-	padding-block: 0.9em;
+	padding-block: 0.9em; /* fallback for browser that didn't support text-box */
 	font-size: var(--fs-s);
 	font-weight: 500;
 	text-decoration: none;
-	border-radius: 0.25rem;
+	border-radius: 0.5em;
+	corner-shape: squircle;
 	box-shadow: var(--shadow);
-	transition: all 0.3s;
+
+	@supports (text-box: trim-both cap alphabetic) {
+		padding-block: 1.3em;
+		text-box: trim-both cap alphabetic;
+	}
+
+	transition:
+		all 0.3s,
+		scale 0.15s ease;
+
+	&:active {
+		scale: 0.9;
+	}
 }
 
 .button-link--primary {
