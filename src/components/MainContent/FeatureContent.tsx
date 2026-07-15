@@ -1,8 +1,8 @@
 import type { ReactNode } from "react";
 
-import "@components/MainContent/FeatureContent.css";
-
 import { features } from "@data/data-features";
+
+import "@components/MainContent/FeatureContent.css";
 
 type Props = {
 	children: ReactNode;
@@ -16,6 +16,7 @@ export default function FeatureContent({ children }: Props) {
 					src={features[0].image.src}
 					alt=""
 					className="feature-content__image"
+					loading="lazy"
 				/>
 			</div>
 			<div className="feature-content__details flow">

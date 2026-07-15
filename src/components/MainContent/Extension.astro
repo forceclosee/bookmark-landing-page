@@ -18,10 +18,10 @@ import "@components/MainContent/Extension.css";
 	<div class="extension__card-wrapper">
 		{extension.map((card) => (
 			<div class="card">
-				<img src={card.image.src} alt="" class="card__image" width={card.width} height={card.height}/>
+				<img src={card.image.src} alt="" class="card__image" loading="lazy" />
 				<h3 class="card__title">{card.title}</h3>
 				<p class="card__min-version">{card.minVersion}</p>
-				<img src={bgDots.src} alt="" class="card__bg-pattern" width={280} height={4} />
+				<img src={bgDots.src} alt="" class="card__bg-pattern" loading="lazy" />
 				<ButtonLink href="#" variant="extension" class="card__link">Add & Install Extension</ButtonLink>
 			</div>
 		))}
