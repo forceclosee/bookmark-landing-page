@@ -1,0 +1,28 @@
+.contact-us {
+	display: grid;
+	justify-items: center;
+	inline-size: 100%;
+	background-color: var(--primary-blue-600);
+	margin-block-start: clamp(5.6rem, 4.5599rem + 4.4375vw, 7.4rem);
+	padding-inline: 2rem;
+	padding-block-start: 4rem;
+	padding-block-end: clamp(3.75rem, 3.3166rem + 1.8489vw, 4.5rem);
+}
+
+.contact-us__details-wrapper {
+	container: details-wrapper / inline-size;
+	inline-size: 100%;
+	max-inline-size: 27.75rem;
+	text-align: center;
+}
+
+.contact-us__title {
+	color: var(--text-inverse);
+}
+
+.contact-us__text {
+	color: var(--text-inverse-muted);
+	font-size: var(--fs-xs);
+	text-transform: uppercase;
+	letter-spacing: clamp(0.32em, 0.2737em + 0.1972vw, 0.4em);
+}
