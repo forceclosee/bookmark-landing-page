@@ -1,6 +1,6 @@
 # Frontend Mentor - Bookmark landing page solution
 
-This is a solution to the [Bookmark landing page challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/bookmark-landing-page-5d0b588a9edda32581d29158). This project focuses on demonstrating modern CSS layouts, particularly using the new CSS Anchor Positioning API for complex background decorations.
+This is a solution to the [Bookmark landing page challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/bookmark-landing-page-5d0b588a9edda32581d29158). This project focuses on demonstrating modern CSS layouts, implementing fully accessible tabbed navigation using WAI-ARIA authoring practices, and using the new CSS Anchor Positioning API for complex background decorations.
 
 ## Table of contents
 
@@ -35,19 +35,14 @@ This is a solution to the [Bookmark landing page challenge on Frontend Mentor](h
 
 ### Built with
 
-- [Astro v7](https://astro.build) - Framework
-- [TypeScript v5](https://www.typescriptlang.org) - Language
-- [Node.js v22](https://nodejs.org) - Runtime
-- Semantic HTML5 markup
-- CSS custom properties
-- CSS Anchor Positioning (Modern Layout API)
-- Flexbox
-- CSS Grid
-- Mobile-first workflow
+- [Astro v7](https://astro.build)
+- [React v19](https://react.dev/)
+- [TypeScript](https://www.typescriptlang.org)
+- [Node.js v22](https://nodejs.org)
 
 ### What I learned
 
-In this project, I learned how to configure clean import path mappings in Astro, as well as CSS Anchor Positioning.
+In this project, I learned how to configure clean import path mappings in Astro, implement fully accessible tabbed navigation, and use CSS Anchor Positioning.
 
 - **Modern TypeScript Path Aliases**
 
@@ -62,6 +57,39 @@ In this project, I learned how to configure clean import path mappings in Astro,
       }
     }
   }
+  ```
+
+- **Accessible Tablist Navigation (Roving tabindex)**
+
+  Implementing keyboard-friendly tablist navigation following WAI-ARIA guidelines. By utilizing the _roving tabindex_ pattern (selected tab have tabindex="0", while unselected tab have tabindex="-1"), keyboard users can navigate tab buttons using the arrow keys, and `Enter` or `Space` to display the corresponding tabpanel.
+
+  ```typescript
+  const handleKeydown = (e: KeyboardEvent<HTMLDivElement>) => {
+    const tabs = Array.from(
+      e.currentTarget.querySelectorAll<HTMLElement>('[role="tab"]'),
+    );
+    const currentIndex = tabs.indexOf(e.target as HTMLElement);
+
+    if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") {
+      return;
+    }
+
+    let newIndex = currentIndex;
+    if (e.key === "ArrowRight") {
+      newIndex = currentIndex + 1;
+    }
+    if (e.key === "ArrowLeft") {
+      newIndex = currentIndex - 1;
+    }
+
+    if (newIndex >= tabs.length) {
+      newIndex = 0;
+    } else if (newIndex < 0) {
+      newIndex = tabs.length - 1;
+    }
+
+    tabs[newIndex].focus();
+  };
   ```
 
 - **Modern CSS Anchor Positioning**
@@ -83,6 +111,7 @@ In this project, I learned how to configure clean import path mappings in Astro,
 
 ### Useful resources
 
+- [MDN ARIA: tab role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/tab_role) - This resource helped me understand the correct semantics, keyboard interactions, and accessibility requirements for implementing a proper tabbed navigation interface.
 - [TinyPNG](https://tinypng.com/) - Helped me compress and optimize the images in the project without losing quality, making the page load faster.
 - [Cloudinary](https://cloudinary.com/) - Used to host the Open Graph and Twitter card images for social media sharing.
 - [Perfect Pixel](https://chrome.google.com/webstore/detail/perfectpixel-by-welldonec/dkaagdgjlophiddqccjgplachon0304v) - Chrome extension that allowed me to overlay the design mockup directly on my live page for pixel-perfect accuracy.
