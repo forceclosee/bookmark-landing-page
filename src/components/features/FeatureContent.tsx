@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-import "@components/MainContent/FeatureContent.css";
+import "@components/features/FeatureContent.css";
 
 type Props = {
 	children: ReactNode;

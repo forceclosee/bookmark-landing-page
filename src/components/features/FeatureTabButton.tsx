@@ -1,5 +1,6 @@
-import "@components/MainContent/FeatureTabButton.css";
 import type { KeyboardEvent } from "react";
+
+import "@components/features/FeatureTabButton.css";
 
 type TabName = "simpleBookmarking" | "speedySearching" | "easySharing";
 

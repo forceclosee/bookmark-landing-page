@@ -9,7 +9,6 @@
 
 .tab-desktop__button {
 	flex-shrink: 0;
-	background-color: transparent;
 	color: var(--text-button);
 	padding-inline: clamp(1rem, 0.1332rem + 3.6979vw, 2.5rem);
 	padding-block: 1.5rem;

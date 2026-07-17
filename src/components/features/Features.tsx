@@ -1,11 +1,11 @@
 import { useState, type ReactNode } from "react";
 
-import FeatureContent from "./FeatureContent";
-import FeatureTabButton from "./FeatureTabButton";
+import FeatureContent from "@components/features/FeatureContent";
+import FeatureTabButton from "@components/features/FeatureTabButton";
 
 import { features } from "@data/data-features";
 
-import "@components/MainContent/Features.css";
+import "@components/features/Features.css";
 
 type Props = {
 	children: ReactNode;
