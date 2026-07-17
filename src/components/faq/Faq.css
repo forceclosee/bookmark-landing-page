@@ -58,21 +58,19 @@ details[open]::details-content {
 	&::-webkit-details-marker {
 		display: none;
 	}
-
-	&::after {
-		content: "";
-		flex-shrink: 0;
-		inline-size: 1em;
-		block-size: 1em;
-		background-image: url("../../img/icon-arrow.svg");
-		background-size: contain;
-		background-repeat: no-repeat;
-		background-position: center;
-
-		transition: all 0.2s ease;
-	}
+}
+.faq__summary-icon {
+	flex-shrink: 0;
 }
 
-.faq__details[open] .faq__summary::after {
+.faq__summary-icon svg {
+	inline-size: 1em;
+	block-size: auto;
+	color: var(--primary-blue-600);
+	transition: all 0.2s ease;
+}
+
+.faq__details[open] svg {
+	color: var(--primary-red-400);
 	rotate: 180deg;
 }
