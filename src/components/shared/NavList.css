@@ -1,0 +1,18 @@
+.nav-list {
+	list-style: none;
+}
+
+.nav-list__link {
+	display: block;
+	padding-inline: 1rem;
+	padding-block: 0.8rem;
+	font-size: var(--fs-xs-reverse);
+	font-weight: 400;
+	text-decoration: none;
+	text-transform: uppercase;
+	letter-spacing: 0.057em;
+}
+
+.nav-list__link--light {
+	color: var(--neutral-grey50);
+}

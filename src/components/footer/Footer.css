@@ -1,15 +1,71 @@
 .footer {
 	min-block-size: 3rem;
 	background-color: var(--neutral-blue950);
+	padding-inline: 2rem;
+	padding-block-start: 1.25rem;
 }
 
-.footer__content-wrapper {
+.footer__wrapper {
+	display: grid;
+	gap: 1.25rem;
+	max-inline-size: 69rem;
+	margin-inline: auto;
+}
+
+.footer__content {
 	display: grid;
 	justify-items: center;
-	block-size: 100%;
+	align-items: center;
+	row-gap: 1.5rem;
+	column-gap: 3rem;
+
+	@media (width >= 46rem) {
+		grid-template-columns: auto 1fr auto;
+		justify-items: start;
+	}
+}
+
+.footer__lists {
+	display: grid;
+	justify-items: center;
+
+	@media (width >= 32rem) {
+		grid-template-columns: repeat(3, auto);
+	}
+}
+
+.footer__bookmark-logo {
+	color: var(--neutral-grey50);
+}
+
+.footer__social-media-icon {
+	display: flex;
+	gap: 2rem;
+	cursor: pointer;
+}
+
+.footer__social-media-icon svg {
+	inline-size: 1.5rem;
+	block-size: auto;
+	color: var(--neutral-grey50);
+	transition: all 0.2s ease;
+
+	&:hover {
+		@media (hover: hover) {
+			color: var(--primary-red-400);
+			scale: 0.95;
+		}
+	}
 }
 
 .attribution {
+	display: grid;
+	justify-items: center;
+	block-size: 100%;
+	border-block-start: solid 2px var(--border-inverse);
+}
+
+.attribution__text {
 	color: var(--neutral-grey50);
 	padding: 0.5rem;
 	font-size: var(--fs-3xs);
