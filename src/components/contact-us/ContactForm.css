@@ -140,4 +140,21 @@
 	font-size: var(--fs-s);
 	font-weight: 500;
 	text-box: trim-both cap alphabetic;
+	transition:
+		all 0.3s,
+		scale 0.15s ease;
+
+	&:active {
+		scale: 0.9;
+	}
+
+	&:hover {
+		@media (hover: hover) {
+			background-color: var(--neutral-grey50);
+			color: var(--primary-red-400);
+			box-shadow:
+				var(--shadow),
+				0 0 0px 2px var(--primary-red-400);
+		}
+	}
 }
