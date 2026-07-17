@@ -16,6 +16,7 @@
 	--text-inverse-muted: color-mix(in hsl, var(--neutral-grey50) 87%, black);
 
 	--border: color-mix(in hsl, var(--neutral-blue950) 15%, white);
+	--border-inverse: color-mix(in hsl, var(--neutral-grey50) 50%, black);
 
 	--input-border: oklch(76.9% 0.188 70.08);
 
@@ -26,14 +27,15 @@
 	--input-border-valid: oklch(72.3% 0.219 149.579);
 
 	/* font size */
-	--fs-3xs: 0.6875rem;
-	--fs-xs: 0.8125rem;
-	--fs-s: 0.90625rem;
-	--fs-md: 0.9375rem;
-	--fs-m: clamp(0.9375rem, 0.8292rem + 0.4622vw, 1.125rem);
-	--fs-l: 1.0625rem;
-	--fs-2xl: clamp(1.5rem, 1.2111rem + 1.2327vw, 2rem);
-	--fs-3xl: clamp(1.875rem, 1.225rem + 2.7735vw, 3rem);
+	--fs-3xs: 0.6875rem; /* 11px */
+	--fs-xs: 0.8125rem; /* 13px */
+	--fs-xs-reverse: clamp(0.875rem, 1.0722rem + -0.3081vw, 1rem); /* 16 - 14px */
+	--fs-s: 0.90625rem; /* 14.5px */
+	--fs-md: 0.9375rem; /* 15px */
+	--fs-m: clamp(0.9375rem, 0.8292rem + 0.4622vw, 1.125rem); /* 15px - 18px */
+	--fs-l: 1.0625rem; /* 17px */
+	--fs-2xl: clamp(1.5rem, 1.2111rem + 1.2327vw, 2rem); /* 24px - 32px */
+	--fs-3xl: clamp(1.875rem, 1.225rem + 2.7735vw, 3rem); /* 30px - 48px */
 
 	/* box shadow */
 	--shadow-color: 232deg 59% 36%;

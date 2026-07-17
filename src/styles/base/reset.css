@@ -89,6 +89,12 @@ select {
 	font: inherit;
 }
 
+/* reset default padding for list element */
+ol,
+ul {
+	padding: 0;
+}
+
 /* Avoid text overflows */
 p,
 h1,
