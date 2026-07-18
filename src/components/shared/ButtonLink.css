@@ -48,7 +48,7 @@
 }
 
 .button-link--secondary {
-	background-color: var(--neutral-grey50);
+	background-color: var(--neutral-grey-50);
 	color: var(--text-button);
 
 	&:hover {

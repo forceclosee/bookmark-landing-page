@@ -47,7 +47,7 @@
 .contact-form__email-input {
 	inline-size: 100%;
 	min-block-size: 3rem;
-	background-color: var(--neutral-grey50);
+	background-color: var(--neutral-grey-50);
 	color: var(--text);
 	padding-inline: 1em;
 	border-radius: 0.5em;
@@ -150,7 +150,7 @@
 
 	&:hover {
 		@media (hover: hover) {
-			background-color: var(--neutral-grey50);
+			background-color: var(--neutral-grey-50);
 			color: var(--primary-red-400);
 			box-shadow:
 				var(--shadow),

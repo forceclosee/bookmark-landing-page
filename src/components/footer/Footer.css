@@ -1,6 +1,6 @@
 .footer {
 	min-block-size: 3rem;
-	background-color: var(--neutral-blue950);
+	background-color: var(--neutral-blue-950);
 	padding-inline: 2rem;
 	padding-block-start: 1.25rem;
 }
@@ -35,7 +35,7 @@
 }
 
 .footer__bookmark-logo {
-	color: var(--neutral-grey50);
+	color: var(--neutral-grey-50);
 }
 
 .footer__social-media-icon {
@@ -47,7 +47,7 @@
 .footer__social-media-icon svg {
 	inline-size: 1.5rem;
 	block-size: auto;
-	color: var(--neutral-grey50);
+	color: var(--neutral-grey-50);
 	transition: all 0.2s ease;
 
 	&:hover {
@@ -66,7 +66,7 @@
 }
 
 .attribution__text {
-	color: var(--neutral-grey50);
+	color: var(--neutral-grey-50);
 	padding: 0.5rem;
 	font-size: var(--fs-3xs);
 }
