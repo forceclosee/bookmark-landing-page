@@ -1,30 +1,30 @@
 :root {
 	/* color */
-	--primary-blue-600: hsl(231, 69%, 60%);
-	--primary-red-400: hsl(0, 94%, 66%);
+	--primary-blue-600: oklch(0.565 0.182 271.76);
+	--primary-red-400: oklch(0.676 0.199 24.15);
 
-	--neutral-grey50: hsl(0, 0%, 97%);
-	--neutral-grey100: color-mix(in hsl, var(--neutral-grey50) 99%, black);
-	--neutral-blue950: hsl(229, 31%, 21%);
+	--neutral-grey-50: oklch(0.977 0 0);
+	--neutral-grey-100: color-mix(in oklch, var(--neutral-grey-50) 99%, black);
+	--neutral-blue-950: oklch(0.297 0.05 273.36);
 
-	--text: color-mix(in hsl, var(--neutral-blue950) 93%, white);
-	--text-muted: color-mix(in hsl, var(--neutral-blue950) 50%, white);
-	--text-button: color-mix(in hsl, var(--neutral-blue950) 70%, white);
-	--text-placeholder: color-mix(in hsl, var(--neutral-blue950) 30%, white);
+	--text: color-mix(in oklch, var(--neutral-blue-950) 93%, white);
+	--text-muted: color-mix(in oklch, var(--neutral-blue-950) 50%, white);
+	--text-button: color-mix(in oklch, var(--neutral-blue-950) 70%, white);
+	--text-placeholder: color-mix(in oklch, var(--neutral-blue-950) 30%, white);
 
-	--text-inverse: color-mix(in hsl, var(--neutral-grey50) 95%, black);
-	--text-inverse-muted: color-mix(in hsl, var(--neutral-grey50) 87%, black);
+	--text-inverse: color-mix(in oklch, var(--neutral-grey-50) 95%, black);
+	--text-inverse-muted: color-mix(in oklch, var(--neutral-grey-50) 87%, black);
 
-	--border: color-mix(in hsl, var(--neutral-blue950) 15%, white);
-	--border-inverse: color-mix(in hsl, var(--neutral-grey50) 50%, black);
+	--border: color-mix(in oklch, var(--neutral-blue-950) 15%, white);
+	--border-inverse: color-mix(in oklch, var(--neutral-grey-50) 50%, black);
 
-	--input-border: oklch(76.9% 0.188 70.08);
+	--input-border: oklch(0.769 0.188 70.08);
 
-	--input-bg-invalid: oklch(93.6% 0.032 17.717);
+	--input-bg-invalid: oklch(0.936 0.032 17.717);
 	--input-border-invalid: oklch(63.7% 0.237 25.331);
 
-	--input-bg-valid: oklch(96.2% 0.044 156.743);
-	--input-border-valid: oklch(72.3% 0.219 149.579);
+	--input-bg-valid: oklch(0.962 0.044 156.743);
+	--input-border-valid: oklch(0.723 0.219 149.579);
 
 	/* font size */
 	--fs-3xs: 0.6875rem; /* 11px */
