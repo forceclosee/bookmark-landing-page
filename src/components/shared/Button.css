@@ -1,0 +1,29 @@
+.button {
+	min-block-size: 2.5rem;
+	color: var(--neutral-grey-50);
+	border-radius: 0.5em;
+	corner-shape: squircle;
+	cursor: pointer;
+	text-transform: uppercase;
+	text-box: trim-both cap alphabetic;
+}
+
+.button--primary {
+	background-color: var(--primary-red-400);
+	padding-inline: 2rem;
+	font-size: var(--fs-xs);
+	letter-spacing: 0.13em;
+}
+
+.button--secondary {
+	inline-size: 100%;
+	min-block-size: 3rem;
+	padding-inline: 1rem;
+	border: 2px solid var(--neutral-grey-50);
+	font-size: var(--fs-xl);
+	letter-spacing: 0.15em;
+}
+
+.button--hamburger {
+	padding-inline: 0.5rem;
+}
