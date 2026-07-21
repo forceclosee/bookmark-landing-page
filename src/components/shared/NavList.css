@@ -3,9 +3,10 @@
 }
 
 .nav-list__link {
-	display: block;
+	display: flex;
+	align-items: center;
+	min-block-size: 2.5rem;
 	padding-inline: 1rem;
-	padding-block: 0.8rem;
 	font-size: var(--fs-xs-reverse);
 	font-weight: 400;
 	text-decoration: none;
@@ -15,4 +16,16 @@
 
 .nav-list__link--light {
 	color: var(--neutral-grey-50);
+}
+
+.nav-list__link--dark {
+	color: var(--text);
+	padding-inline: 1.42rem;
+}
+
+.nav-list__link--mobile {
+	min-block-size: 3rem;
+	color: var(--neutral-grey-50);
+	font-size: var(--fs-xl);
+	letter-spacing: 0.12em;
 }

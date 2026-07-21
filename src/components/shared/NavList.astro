@@ -4,7 +4,7 @@ import "@components/shared/NavList.css";
 const navLists = ["Features", "Pricing", "Contact"];
 
 type Props = {
-	variant: "light" | "dark";
+	variant: "light" | "dark" | "mobile";
 };
 
 const { variant } = Astro.props;
@@ -17,7 +17,8 @@ const { variant } = Astro.props;
     class:list={[
     "nav-list__link",
     {"nav-list__link--light": variant === "light"},
-    {"nav-list__link--dark": variant === "dark"}
+    {"nav-list__link--dark": variant === "dark"},
+    {"nav-list__link--mobile": variant === "mobile"}
     ]}>
     {list}
   </a>
