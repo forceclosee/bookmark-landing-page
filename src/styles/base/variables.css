@@ -15,6 +15,12 @@
 	--text-inverse: color-mix(in oklch, var(--neutral-grey-50) 95%, black);
 	--text-inverse-muted: color-mix(in oklch, var(--neutral-grey-50) 87%, black);
 
+	--mobile-menu-bg: color-mix(
+		in oklch,
+		var(--neutral-blue-950) 92%,
+		transparent
+	);
+
 	--border: color-mix(in oklch, var(--neutral-blue-950) 15%, white);
 	--border-inverse: color-mix(in oklch, var(--neutral-grey-50) 50%, black);
 
@@ -34,6 +40,7 @@
 	--fs-md: 0.9375rem; /* 15px */
 	--fs-m: clamp(0.9375rem, 0.8292rem + 0.4622vw, 1.125rem); /* 15px - 18px */
 	--fs-l: 1.0625rem; /* 17px */
+	--fs-xl: 1.25rem; /* 20px */
 	--fs-2xl: clamp(1.5rem, 1.2111rem + 1.2327vw, 2rem); /* 24px - 32px */
 	--fs-3xl: clamp(1.875rem, 1.225rem + 2.7735vw, 3rem); /* 30px - 48px */
 
@@ -44,4 +51,10 @@
 		1px 1.9px 3.2px hsl(var(--shadow-color) / 0.03),
 		1.9px 3.8px 6.4px hsl(var(--shadow-color) / 0.05),
 		3.8px 7.6px 12.7px hsl(var(--shadow-color) / 0.08);
+
+	/* z-index */
+	--z-base: 0;
+	--z-toast: 100;
+	--z-popup: 200;
+	--z-overlay: 300;
 }
