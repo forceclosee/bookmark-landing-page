@@ -1,10 +1,11 @@
 ---
-import NavLink from "@components/shared/NavList.astro";
+import NavList from "@components/shared/NavList.astro";
+import SocialMediaIcon from "@components/shared/SocialMediaIcon.astro";
 
 import "@components/footer/Footer.css";
 ---
 
-<footer class="footer">
+<footer id="footer" class="footer">
 	<div class="footer__wrapper">
 		<div class="footer__content">
 			<a href="/" class="footer__bookmark-link">
@@ -30,28 +31,11 @@ import "@components/footer/Footer.css";
 				</svg>
 			</a>
 			<nav class="footer__nav">
-				<ol class="footer__lists">
-					<NavLink variant="light" />
-				</ol>
+				<ul class="footer__lists">
+					<NavList variant="light" />
+				</ul>
 			</nav>
-			<div class="footer__social-media-icon">
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					viewBox="0 0 640 640"
-					aria-hidden="true">
-					<path
-						fill="currentColor"
-						d="M240 363.3L240 576L356 576L356 363.3L442.5 363.3L460.5 265.5L356 265.5L356 230.9C356 179.2 376.3 159.4 428.7 159.4C445 159.4 458.1 159.8 465.7 160.6L465.7 71.9C451.4 68 416.4 64 396.2 64C289.3 64 240 114.5 240 223.4L240 265.5L174 265.5L174 363.3L240 363.3z" />
-				</svg>
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					viewBox="0 0 640 640"
-					aria-hidden="true">
-					<path
-						fill="currentColor"
-						d="M453.2 112L523.8 112L369.6 288.2L551 528L409 528L297.7 382.6L170.5 528L99.8 528L264.7 339.5L90.8 112L236.4 112L336.9 244.9L453.2 112zM428.4 485.8L467.5 485.8L215.1 152L173.1 152L428.4 485.8z" />
-				</svg>
-			</div>
+			<SocialMediaIcon />
 		</div>
 
 		<div class="attribution">

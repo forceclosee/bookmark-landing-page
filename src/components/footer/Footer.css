@@ -38,26 +38,6 @@
 	color: var(--neutral-grey-50);
 }
 
-.footer__social-media-icon {
-	display: flex;
-	gap: 2rem;
-	cursor: pointer;
-}
-
-.footer__social-media-icon svg {
-	inline-size: 1.5rem;
-	block-size: auto;
-	color: var(--neutral-grey-50);
-	transition: all 0.2s ease;
-
-	&:hover {
-		@media (hover: hover) {
-			color: var(--primary-red-400);
-			scale: 0.95;
-		}
-	}
-}
-
 .attribution {
 	display: grid;
 	justify-items: center;
