@@ -1,7 +1,15 @@
+html {
+	container: root-scroll / scroll-state;
+}
+
 .page-wrapper {
 	position: relative;
 	display: grid;
 	grid-template-rows: auto 1fr auto;
 	min-block-size: 100svh;
-	padding-block-start: clamp(1rem, 0.4221rem + 2.4653vw, 2rem);
+	background-color: var(--neutral-grey-50);
+
+	@media (width >= 44rem) {
+		padding-block-start: 2rem;
+	}
 }
