@@ -20,6 +20,20 @@ This is a solution to the [Bookmark landing page challenge on Frontend Mentor](h
 
 ### Features
 
+#### Core Features
+- **Responsive Layout**: Optimal design and grid layout rendered seamlessly across mobile, tablet, and desktop viewports.
+- **Interactive Hover States**: Clean micro-animations and transition states on all links, buttons, and input elements.
+
+#### Accessibility & UX
+- **WAI-ARIA Compliant Tabbed Navigation**: The Features section utilizes a client-side tablist with full keyboard navigation (roving `tabindex` for Arrow keys, `Space`, and `Enter` activation).
+- **Accessible Mobile Navigation Menu**: A custom mobile menu drawer that prevents page scrolling when open and traps keyboard focus using the native HTML `inert` attribute.
+- **Exclusive Accordion (FAQ)**: Built using native HTML `<details>` elements with the `name` attribute, ensuring only one FAQ panel stays open at a time without requiring JavaScript.
+
+#### Modern CSS & Layout Techniques
+- **Scroll-State Sticky Header**: The navigation header automatically hides when scrolling down and reappears when scrolling up, using experimental CSS Container Queries (`scroll-state(scrolled: ...)`).
+- **Dynamic Stuck Box-Shadow**: The header applies a subtle box-shadow only when it is stuck to the top of the page, using stuck state container queries (`scroll-state(stuck: block-start)`).
+- **CSS Anchor Positioning**: Fluid background shapes are anchored directly to illustrations using the CSS Anchor Positioning API (`position-anchor`), keeping layouts intact without overflow.
+
 ### Screenshot
 
 <!-- isi screenshot -->
