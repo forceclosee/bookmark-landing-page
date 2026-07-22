@@ -1,3 +1,43 @@
+.header {
+	position: sticky;
+	container: header / scroll-state;
+	inset-block-start: 0;
+	z-index: calc(var(--z-overlay) + 1);
+	background-color: var(--neutral-grey-50);
+	padding-inline: 1rem;
+	transition:
+		translate 0.3s, /* header hide / appear transition */
+		background-color 0.4s 1.5s ease; /* mobile menu close transition */
+
+	/* hide header on scroll down and appear on scroll up for supported browser */
+	/* header will stay sticky for unsupported browser */
+	@supports (container-type: scroll-state) {
+		/* Hide on scroll down */
+		@container root-scroll scroll-state(scrolled: block-end) {
+			translate: 0 -100%;
+		}
+
+		/* Appear on scroll back up */
+		@container root-scroll scroll-state(scrolled: block-start) {
+			translate: 0 0;
+		}
+
+		/* add box shadow when header stuck */
+		&::before {
+			content: "";
+			position: absolute;
+			inset: 0;
+			z-index: -1;
+			pointer-events: none;
+			transition: box-shadow 0.3s ease;
+
+			@container header scroll-state(stuck: block-start) {
+				box-shadow: var(--shadow);
+			}
+		}
+	}
+}
+
 .header__wrapper {
 	display: flex;
 	justify-content: end;
@@ -58,7 +98,6 @@
 
 	/* close transition */
 	transition:
-		color 0.4s 1.5s ease,
 		background-color 0.4s 1.5s ease,
 		rotate 0.4s ease;
 }
@@ -73,7 +112,7 @@
 	align-items: end;
 	gap: 2.2rem;
 	overflow-y: hidden; /* fallback for browser that didn't support overflow clip */
-	block-size: clamp(5.5rem, 4.9221rem + 2.4653vw, 6.5rem);
+	block-size: clamp(4.5rem, 3.9221rem + 2.4653vw, 5.5rem);
 	padding-inline: 2rem;
 	padding-block-end: 3rem;
 	opacity: 0;
@@ -103,6 +142,11 @@
 }
 
 .header:has(.header__hamburger-menu[aria-expanded="true"]) {
+	background-color: transparent;
+
+	/* open transition */
+	transition: all 0.4s ease;
+
 	.header__bookmark-logo {
 		color: var(--neutral-grey-50);
 
@@ -144,7 +188,7 @@
 
 		@starting-style {
 			opacity: 0;
-			block-size: clamp(5.5rem, 4.9221rem + 2.4653vw, 6.5rem);
+			block-size: clamp(4.5rem, 3.9221rem + 2.4653vw, 5.5rem);
 		}
 
 		@media (width >= 44rem) {
