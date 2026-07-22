@@ -1,6 +1,6 @@
 # Frontend Mentor - Bookmark landing page solution
 
-This is a solution to the [Bookmark landing page challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/bookmark-landing-page-5d0b588a9edda32581d29158). This project focuses on demonstrating modern CSS layouts, implementing fully accessible tabbed navigation using WAI-ARIA authoring practices, and using the new CSS Anchor Positioning API for complex background decorations.
+This is a solution to the [Bookmark landing page challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/bookmark-landing-page-5d0b588a9edda32581d29158). This project focuses on demonstrating modern CSS layouts, implementing fully accessible tabbed navigation using WAI-ARIA authoring practices, utilizing the experimental CSS scroll-state Container Queries API for scroll-driven animations, and using the new CSS Anchor Positioning API for complex background decorations.
 
 ## Table of contents
 
@@ -42,7 +42,7 @@ This is a solution to the [Bookmark landing page challenge on Frontend Mentor](h
 
 ### What I learned
 
-In this project, I learned how to configure clean import path mappings in Astro, implement fully accessible tabbed navigation, and use CSS Anchor Positioning.
+In this project, I learned how to configure clean import path mappings in Astro, implement fully accessible tabbed navigation, use CSS Anchor Positioning, and leverage experimental CSS scroll-state Container Queries.
 
 - **Modern TypeScript Path Aliases**
 
@@ -107,10 +107,60 @@ In this project, I learned how to configure clean import path mappings in Astro,
   }
   ```
 
+- **Modern CSS scroll-state Container Queries**
+
+  I learned how to use the experimental CSS Container Queries `scroll-state()` feature to build a performant sticky header. By setting up a scroll container query on the root `html` element to detect scroll direction and another on the `.header` itself to detect stuck state, I was able to implement a "hide on scroll down, show on scroll up" header with a box-shadow that only appears when stuck, entirely without JavaScript!
+
+  `Layout.css`
+
+  ```css
+  html {
+    container: root-scroll / scroll-state;
+  }
+  ```
+
+  `Header.css`
+
+  ```css
+  .header {
+    position: sticky;
+    container: header / scroll-state;
+    inset-block-start: 0;
+    ... /* other propeeties */ ...
+    transition:
+      translate 0.3s,
+      background-color 0.4s 1.5s ease;
+
+    @supports (container-type: scroll-state) {
+      /* Hide on scroll down */
+      @container root-scroll scroll-state(scrolled: block-end) {
+        translate: 0 -100%;
+      }
+
+      /* Appear on scroll back up */
+      @container root-scroll scroll-state(scrolled: block-start) {
+        translate: 0 0;
+      }
+
+      /* add box shadow when header stuck */
+      &::before {
+        ... /* other propeeties */ ...
+        transition: box-shadow 0.3s ease;
+
+        @container header scroll-state(stuck: block-start) {
+          box-shadow: var(--shadow);
+        }
+      }
+    }
+  }
+  ```
+
 ### Continued development
 
 ### Useful resources
 
+- [Chrome Developer: CSS scroll-state queries](https://developer.chrome.com/blog/css-scroll-state-queries#progressive_enhancement) - This article was key in understanding how to set up container queries for scroll direction and stuck states, as well as handling progressive enhancement fallbacks for unsupported browsers.
+- [Una Kravets: Directional CSS with scroll-state(scrolled)](https://una.im/scroll-state-scrolled) - Great breakdown and interactive demo explaining how the `scrolled` state queries behave, which helped clarify the direction detection implementation.
 - [MDN ARIA: tab role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/tab_role) - This resource helped me understand the correct semantics, keyboard interactions, and accessibility requirements for implementing a proper tabbed navigation interface.
 - [TinyPNG](https://tinypng.com/) - Helped me compress and optimize the images in the project without losing quality, making the page load faster.
 - [Cloudinary](https://cloudinary.com/) - Used to host the Open Graph and Twitter card images for social media sharing.
