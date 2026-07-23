@@ -13,6 +13,23 @@
 	padding-inline: 2rem;
 	font-size: var(--fs-xs);
 	letter-spacing: 0.13em;
+	transition:
+		all 0.3s,
+		scale 0.15s ease;
+
+	&:active {
+		scale: 0.9;
+	}
+
+	&:hover {
+		@media (hover: hover) {
+			background-color: var(--neutral-grey-50);
+			color: var(--primary-red-400);
+			box-shadow:
+				var(--shadow),
+				inset 0 0 0px 2px var(--primary-red-400);
+		}
+	}
 }
 
 .button--secondary {
