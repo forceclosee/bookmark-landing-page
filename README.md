@@ -1,6 +1,6 @@
 # Frontend Mentor - Bookmark landing page solution
 
-This is a solution to the [Bookmark landing page challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/bookmark-landing-page-5d0b588a9edda32581d29158). This project focuses on demonstrating modern CSS layouts, implementing fully accessible tabbed navigation using WAI-ARIA authoring practices, utilizing the experimental CSS scroll-state Container Queries API for scroll-driven animations, and using the new CSS Anchor Positioning API for complex background decorations.
+This is a solution to the [Bookmark landing page challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/bookmark-landing-page-5d0b588a9edda32581d29158). This project focuses on demonstrating modern CSS layouts, implementing fully accessible tabbed navigation using WAI-ARIA authoring practices, utilizing the experimental CSS scroll-state Container Queries API for scroll-driven animations, using the new CSS Anchor Positioning API for complex background decorations, and building a hybrid client-side form validation system using TanStack Form and Zod synchronized with the browser's native Constraint Validation API.
 
 ## Table of contents
 
@@ -21,15 +21,18 @@ This is a solution to the [Bookmark landing page challenge on Frontend Mentor](h
 ### Features
 
 #### Core Features
+
 - **Responsive Layout**: Optimal design and grid layout rendered seamlessly across mobile, tablet, and desktop viewports.
 - **Interactive Hover States**: Clean micro-animations and transition states on all links, buttons, and input elements.
 
 #### Accessibility & UX
+
 - **WAI-ARIA Compliant Tabbed Navigation**: The Features section utilizes a client-side tablist with full keyboard navigation (roving `tabindex` for Arrow keys, `Space`, and `Enter` activation).
 - **Accessible Mobile Navigation Menu**: A custom mobile menu drawer that prevents page scrolling when open and traps keyboard focus using the native HTML `inert` attribute.
 - **Exclusive Accordion (FAQ)**: Built using native HTML `<details>` elements with the `name` attribute, ensuring only one FAQ panel stays open at a time without requiring JavaScript.
 
 #### Modern CSS & Layout Techniques
+
 - **Scroll-State Sticky Header**: The navigation header automatically hides when scrolling down and reappears when scrolling up, using experimental CSS Container Queries (`scroll-state(scrolled: ...)`).
 - **Dynamic Stuck Box-Shadow**: The header applies a subtle box-shadow only when it is stuck to the top of the page, using stuck state container queries (`scroll-state(stuck: block-start)`).
 - **CSS Anchor Positioning**: Fluid background shapes are anchored directly to illustrations using the CSS Anchor Positioning API (`position-anchor`), keeping layouts intact without overflow.
@@ -49,14 +52,16 @@ This is a solution to the [Bookmark landing page challenge on Frontend Mentor](h
 
 ### Built with
 
-- [Astro v7](https://astro.build)
-- [React v19](https://react.dev/)
-- [TypeScript](https://www.typescriptlang.org)
 - [Node.js v22](https://nodejs.org)
+- [TypeScript](https://www.typescriptlang.org) (built-in from astro)
+- [Astro v7](https://astro.build) - Fullstack Framework
+- [React v19](https://react.dev/) - Frontend Library
+- [TanStack Form](https://tanstack.com/form/latest) - Form Library
+- [Zod v4](https://zod.dev) (via `astro/zod`) - Validation Schema
 
 ### What I learned
 
-In this project, I learned how to configure clean import path mappings in Astro, implement fully accessible tabbed navigation, use CSS Anchor Positioning, and leverage experimental CSS scroll-state Container Queries.
+In this project, I learned how to configure clean import path mappings in Astro, implement fully accessible tabbed navigation, use CSS Anchor Positioning, leverage experimental CSS scroll-state Container Queries, and build a hybrid validation form that integrates React state-driven schemas with native browser constraint APIs.
 
 - **Modern TypeScript Path Aliases**
 
@@ -167,6 +172,32 @@ In this project, I learned how to configure clean import path mappings in Astro,
       }
     }
   }
+  ```
+
+- **Hybrid Form Validation (Zod + TanStack Form + Native Constraints API)**
+
+  I learned how to build a hybrid validation user experience that combines Zod schema validation and TanStack Form events with the browser's native `setCustomValidity()` API. By using a React `useEffect` hook to synchronize JavaScript state changes with the DOM element's constraint state, I achieve a highly polished UX where error boundaries are lazy (they only show after the first blur via `:user-invalid`) while success boundaries are eager (they validate and turn green immediately on keystroke via `:valid`).
+
+  `contactUsSchema.ts`
+
+  ```typescript
+  import { z } from "astro/zod";
+
+  export const contactUsSchema = z.object({
+    email: z.email("Whoops, make sure it's an email"),
+  });
+  ```
+
+  `FormInput.tsx`
+
+  ```tsx
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.setCustomValidity(errorMessage);
+    }
+  }, [errorMessage]);
   ```
 
 ### Continued development
