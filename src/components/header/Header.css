@@ -110,7 +110,7 @@
 	grid-template-rows: auto auto 1fr;
 	justify-items: center;
 	align-items: end;
-	gap: 2.2rem;
+	gap: 1.65rem;
 	overflow-y: hidden; /* fallback for browser that didn't support overflow clip */
 	block-size: clamp(4.5rem, 3.9221rem + 2.4653vw, 5.5rem);
 	padding-inline: 2rem;
@@ -132,9 +132,8 @@
 
 .mobile-menu__lists {
 	display: grid;
-	justify-items: center;
-	gap: 1.1rem;
-	margin-block-start: 7.1rem;
+	inline-size: 100%;
+	margin-block-start: 5.6rem;
 }
 
 .mobile-menu__social-media-icon {
