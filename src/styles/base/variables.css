@@ -22,6 +22,7 @@
 	);
 
 	--border: color-mix(in oklch, var(--neutral-blue-950) 15%, white);
+	--border-muted: color-mix(in oklch, var(--neutral-blue-950) 75%, white);
 	--border-inverse: color-mix(in oklch, var(--neutral-grey-50) 50%, black);
 
 	--input-border: oklch(0.769 0.188 70.08);
