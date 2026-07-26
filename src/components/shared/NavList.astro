@@ -11,7 +11,10 @@ const { variant } = Astro.props;
 ---
 
 {navLists.map((list) =>
-<li class="nav-list">
+<li class:list={[
+  "nav-list",
+  {"nav-list--mobile": variant === "mobile"}
+  ]}>
   <a
     href="/"
     class:list={[
