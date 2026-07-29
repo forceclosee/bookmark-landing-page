@@ -1,6 +1,6 @@
 {
 	"extends": "astro/tsconfigs/strict",
-	"include": [".astro/types.d.ts", "**/*"],
+	"include": [".astro/types.d.ts", "**/*", "./worker-configuration.d.ts"],
 	"exclude": ["dist"],
 	"compilerOptions": {
 		"paths": {
@@ -10,7 +10,9 @@
 			"@pages/*": ["./src/pages/*"],
 			"@styles/*": ["./src/styles/*"],
 			"@data/*": ["./src/data/*"],
-			"@lib/*": ["./src/lib/*"]
+			"@lib/*": ["./src/lib/*"],
+			"@actions/*": ["./src/actions/*"],
+			"@db/*": ["./src/db/*"]
 		},
 		"jsx": "react-jsx",
 		"jsxImportSource": "react"
