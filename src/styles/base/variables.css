@@ -15,6 +15,10 @@
 	--text-inverse: color-mix(in oklch, var(--neutral-grey-50) 95%, black);
 	--text-inverse-muted: color-mix(in oklch, var(--neutral-grey-50) 87%, black);
 
+	--disabled-bg: color-mix(in oklch, var(--neutral-grey-50) 70%, black);
+
+	--loader: color-mix(in oklch, var(--primary-red-400) 80%, white);
+
 	--mobile-menu-bg: color-mix(
 		in oklch,
 		var(--neutral-blue-950) 92%,
