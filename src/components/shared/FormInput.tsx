@@ -1,8 +1,8 @@
-import { useRef, useEffect, type InputHTMLAttributes } from "react";
+import { useRef, useEffect, type ComponentProps } from "react";
 
 import "@components/shared/FormInput.css";
 
-type Props = InputHTMLAttributes<HTMLInputElement> & {
+type Props = ComponentProps<"input"> & {
 	errorMessage?: string;
 	fieldName: string;
 	onFieldChange?: (value: string) => void;
