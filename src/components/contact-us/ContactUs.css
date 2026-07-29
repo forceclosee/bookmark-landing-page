@@ -12,7 +12,7 @@
 .contact-us__details-wrapper {
 	container: details-wrapper / inline-size;
 	inline-size: 100%;
-	max-inline-size: 27.75rem;
+	max-inline-size: 30rem;
 	text-align: center;
 }
 

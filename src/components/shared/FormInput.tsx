@@ -4,17 +4,19 @@ import "@components/shared/FormInput.css";
 
 type Props = InputHTMLAttributes<HTMLInputElement> & {
 	errorMessage?: string;
+	fieldName: string;
 	onFieldChange?: (value: string) => void;
 };
 
 export default function FormInput({
 	errorMessage = "",
+	fieldName,
 	onFieldChange,
 	...props
 }: Props) {
 	const inputRef = useRef<HTMLInputElement>(null);
 
-	// synchronize error state to browser navite constraint validation api
+	// synchronize error state to browser native constraint validation api
 	useEffect(() => {
 		if (inputRef.current) {
 			inputRef.current.setCustomValidity(errorMessage);
@@ -23,8 +25,13 @@ export default function FormInput({
 
 	return (
 		<div className="input-group">
+			<label htmlFor={fieldName} className="sr-only">
+				Email
+			</label>
 			<input
 				ref={inputRef}
+				id={fieldName}
+				name={fieldName}
 				{...props}
 				className="input-group__input"
 				onChange={(e) => {

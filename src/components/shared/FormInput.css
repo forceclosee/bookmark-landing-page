@@ -80,7 +80,7 @@
 	}
 
 	/* Validation: Valid State */
-	&:valid {
+	&:valid:not(:placeholder-shown) {
 		background-color: var(--input-bg-valid);
 		box-shadow: inset 0 0 0 1px var(--input-border-valid);
 
