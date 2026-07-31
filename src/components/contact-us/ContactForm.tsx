@@ -10,6 +10,9 @@ import FormInput from "@components/shared/FormInput";
 import "@components/contact-us/ContactForm.css";
 
 export default function ContactForm() {
+	// track hidration status for testing
+	const [isHydrated, setIsHydrated] = useState<boolean>(false);
+
 	// error message from server
 	const [serverError, setServerError] = useState<string | null>(null);
 
@@ -18,6 +21,10 @@ export default function ContactForm() {
 
 	// toast message visibility
 	const [showToast, setShowToast] = useState<boolean>(false);
+
+	useEffect(() => {
+		setIsHydrated(true);
+	}, []);
 
 	useEffect(() => {
 		if (succesMessage !== null) {
@@ -65,6 +72,7 @@ export default function ContactForm() {
 		<>
 			<form
 				noValidate
+				data-hydrated={isHydrated}
 				onSubmit={(e) => {
 					e.preventDefault();
 					handleSubmit();
@@ -77,6 +85,7 @@ export default function ContactForm() {
 						return (
 							<FormInput
 								type="email"
+								label="Newsletter Email"
 								fieldName={field.name}
 								autoComplete="email"
 								placeholder="Enter your email address"

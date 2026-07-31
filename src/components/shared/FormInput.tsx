@@ -3,12 +3,14 @@ import { useRef, useEffect, type ComponentProps } from "react";
 import "@components/shared/FormInput.css";
 
 type Props = ComponentProps<"input"> & {
+	label: string;
 	errorMessage?: string;
 	fieldName: string;
 	onFieldChange?: (value: string) => void;
 };
 
 export default function FormInput({
+	label,
 	errorMessage = "",
 	fieldName,
 	onFieldChange,
@@ -26,7 +28,7 @@ export default function FormInput({
 	return (
 		<div className="input-group">
 			<label htmlFor={fieldName} className="sr-only">
-				Email
+				{label}
 			</label>
 			<input
 				ref={inputRef}
