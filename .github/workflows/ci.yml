@@ -21,6 +21,10 @@ jobs:
         run: npm run test
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
+      - name: Build project
+        run: npm run build
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
       - name: Run Playwright tests
         run: npm run e2e
         env:
