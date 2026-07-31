@@ -1,9 +1,9 @@
 import { defineAction, ActionError } from "astro:actions";
+import { eq } from "drizzle-orm";
 
 import { contactUsSchema } from "@lib/schema/contactUsSchema";
 import { db } from "@db/index";
 import { subscribers } from "@db/schema/subscribers";
-import { eq } from "drizzle-orm";
 
 export const contactUs = defineAction({
 	input: contactUsSchema,
@@ -29,7 +29,7 @@ export const contactUs = defineAction({
 
 		return {
 			success: true,
-			message: "Thank you, You have been subscribed",
+			message: "You have been succesfully subscribed",
 		};
 	},
 });
