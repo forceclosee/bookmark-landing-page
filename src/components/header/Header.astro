@@ -64,6 +64,8 @@ const hamburgerMenu = document.querySelector("#hamburger-menu");
 const main = document.querySelector("#main");
 const footer = document.querySelector("#footer");
 
+const tabletScreen = window.matchMedia("(width >= 44rem)");
+
 if (hamburgerMenu && main && footer) {
 	hamburgerMenu.addEventListener("click", () => {
 		const expanded = hamburgerMenu.getAttribute("aria-expanded") === "true";
@@ -77,6 +79,17 @@ if (hamburgerMenu && main && footer) {
 		document.body.classList.toggle("no-scroll", isOpening);
 		main.toggleAttribute("inert", isOpening);
 		footer.toggleAttribute("inert", isOpening);
+	});
+
+	// Cleanup on tablet screen resize
+	tabletScreen.addEventListener("change", (e) => {
+		if (e.matches && hamburgerMenu.getAttribute("aria-expanded") === "true") {
+			hamburgerMenu.setAttribute("aria-expanded", "false");
+			hamburgerMenu.setAttribute("aria-label", "Open menu");
+			document.body.classList.remove("no-scroll");
+			main.removeAttribute("inert");
+			footer.removeAttribute("inert");
+		}
 	});
 }
 </script>
