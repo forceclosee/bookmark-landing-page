@@ -61,7 +61,7 @@ This is a solution to the [Bookmark landing page challenge on Frontend Mentor](h
 
 ### What I learned
 
-In this project, I learned how to configure clean import path mappings in Astro, implement fully accessible tabbed navigation, use CSS Anchor Positioning, leverage experimental CSS scroll-state Container Queries, and build a hybrid validation form that integrates React state-driven schemas with native browser constraint APIs.
+In this project, I learned how to configure clean import path mappings in Astro, implement fully accessible tabbed navigation, use CSS Anchor Positioning, leverage experimental CSS scroll-state Container Queries, build a hybrid validation form that integrates React state-driven schemas with native browser constraint APIs, and set up a serverless PostgreSQL database with Drizzle ORM and Neon.
 
 - **Modern TypeScript Path Aliases**
 
@@ -200,6 +200,32 @@ In this project, I learned how to configure clean import path mappings in Astro,
   }, [errorMessage]);
   ```
 
+- **Serverless PostgreSQL Database Setup (Drizzle ORM + Neon Database)**
+
+  I learned how to set up and query a serverless PostgreSQL database using Drizzle ORM and Neon serverless HTTP driver. By defining schemas with Postgres-specific types like UUID generation and automatic timestamp defaults, Drizzle ORM handles schema migrations and provides type-safe query interfaces.
+
+  `db/index.ts`
+
+  ```typescript
+  import { neon } from "@neondatabase/serverless";
+  import { drizzle } from "drizzle-orm/neon-http";
+
+  const sql = neon(import.meta.env.DATABASE_URL as string);
+  export const db = drizzle({ client: sql });
+  ```
+
+  `db/subscribers.ts`
+
+  ```typescript
+  import { pgTable, uuid, text, timestamp } from "drizzle-orm/pg-core";
+
+  export const subscribers = pgTable("subscribers", {
+    id: uuid("id").primaryKey().defaultRandom(),
+    email: text("email").notNull().unique(),
+    createdAt: timestamp("created_at").notNull().defaultNow(),
+  });
+  ```
+
 ### Continued development
 
 ### Useful resources
@@ -213,6 +239,18 @@ In this project, I learned how to configure clean import path mappings in Astro,
 - [Utopia](https://utopia.fyi/) - Excellent tool for planning and generating fluid responsive typography scales without relying on manual breakpoint calculations.
 
 ### AI Collaboration
+
+I collaborated with **Antigravity AI (Google DeepMind)** to build a robust automated testing foundation for the newsletter subscription feature, covering unit, integration, and end-to-end (E2E) testing.
+
+**How I used it:**
+
+- **Vitest Environment & Path Aliases Setup**: Configured Vitest and resolved TypeScript path aliases from `tsconfig.json` natively using the built-in `resolve.tsconfigPaths` feature in Vite 8.
+- **Zod Schema Unit Testing**: Wrote unit tests to validate email format inputs (valid, invalid, empty, and missing properties) on the Zod schema.
+- **Astro Actions & Database Mocking**: Designed backend action unit tests with mock modules for `astro:actions` and method-chaining queries for Drizzle ORM to test successful registration and duplicate conflict errors.
+- **Playwright E2E Testing & Hydration Sync**: Designed cross-browser (Chromium, Firefox, WebKit) E2E testing scenarios and resolved lazy hydration (`client:visible`) race conditions dynamically using a `data-hydrated` state attribute.
+- **GitHub Actions CI/CD Pipeline**: Configured a Continuous Integration pipeline `ci.yml` to run fast code checks (Biome check and Vitest) first, and run Playwright E2E tests securely using encrypted environment secrets.
+
+This collaboration yielded a comprehensive test suite that guarantees future codebase refactors will not break the newsletter subscription feature.
 
 ## Author
 
