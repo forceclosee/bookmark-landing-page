@@ -1,0 +1,14 @@
+---
+import Layout from "@layouts/Layout.astro";
+
+import Signup from "@components/signup/Signup";
+---
+
+<Layout title="Sign Up - Bookmark Landing Page | Force Close">
+	<main class="signup-page">
+		<div class="signup-page__wrapper">
+			<h1>Create Account</h1>
+			<Signup client:load />
+		</div>
+	</main>
+</Layout>
