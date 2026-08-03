@@ -44,3 +44,42 @@
 .button--hamburger {
 	padding-inline: 0.5rem;
 }
+
+.button--submit {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 0.75rem;
+	min-inline-size: 11.5rem;
+	min-block-size: 3rem;
+	background-color: var(--primary-red-400);
+	color: var(--text-inverse);
+	padding-inline: 1.6em;
+	font-size: var(--fs-s);
+	font-weight: 500;
+
+	transition:
+		all 0.3s,
+		scale 0.15s ease;
+
+	&:active {
+		scale: 0.95;
+	}
+
+	&:hover {
+		@media (hover: hover) {
+			background-color: var(--neutral-grey-50);
+			color: var(--primary-red-400);
+			box-shadow:
+				var(--shadow),
+				0 0 0px 2px var(--primary-red-400);
+		}
+	}
+
+	&:disabled {
+		background-color: var(--disabled-bg);
+		color: var(--text-inverse);
+		box-shadow: none;
+		cursor: not-allowed;
+	}
+}
