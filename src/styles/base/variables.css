@@ -37,9 +37,11 @@
 
 	--input-bg-invalid: oklch(0.936 0.032 17.717);
 	--input-border-invalid: oklch(63.7% 0.237 25.331);
+	--text-invalid: oklch(57.7% 0.245 27.325);
 
 	--input-bg-valid: oklch(0.962 0.044 156.743);
 	--input-border-valid: oklch(0.723 0.219 149.579);
+	--text-valid: oklch(62.7% 0.194 149.214);
 
 	/* font size */
 	--fs-3xs: 0.6875rem; /* 11px */
