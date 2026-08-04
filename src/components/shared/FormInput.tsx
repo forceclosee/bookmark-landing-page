@@ -7,6 +7,7 @@ type Props = ComponentProps<"input"> & {
 	errorMessage?: string;
 	fieldName: string;
 	onFieldChange?: (value: string) => void;
+	variant: "subscribe" | "auth";
 };
 
 export default function FormInput({
@@ -14,6 +15,7 @@ export default function FormInput({
 	errorMessage = "",
 	fieldName,
 	onFieldChange,
+	variant,
 	...props
 }: Props) {
 	const inputRef = useRef<HTMLInputElement>(null);
@@ -26,23 +28,53 @@ export default function FormInput({
 	}, [errorMessage]);
 
 	return (
-		<div className="input-group">
-			<label htmlFor={fieldName} className="sr-only">
+		<div className="field">
+			<label
+				htmlFor={fieldName}
+				className={[
+					variant === "subscribe" ? "sr-only" : null,
+					variant === "auth" ? "field__label" : null,
+				]
+					.filter(Boolean)
+					.join(" ")}>
 				{label}
 			</label>
-			<input
-				ref={inputRef}
-				id={fieldName}
-				name={fieldName}
-				{...props}
-				className="input-group__input"
-				onChange={(e) => {
-					const newValue = e.target.value;
+			<div className="field__input-group">
+				<input
+					ref={inputRef}
+					id={fieldName}
+					name={fieldName}
+					{...props}
+					className={[
+						"field__input",
+						variant === "auth" ? "field__input--auth" : null,
+					]
+						.filter(Boolean)
+						.join(" ")}
+					onChange={(e) => {
+						const newValue = e.target.value;
 
-					onFieldChange?.(newValue);
-				}}
-			/>
-			<span className="input-group__error-message">{errorMessage}</span>
+						onFieldChange?.(newValue);
+					}}
+				/>
+				{/* error icon */}
+				<svg
+					className="field__error-icon"
+					aria-hidden="true"
+					xmlns="http://www.w3.org/2000/svg"
+					width="20"
+					height="20"
+					viewBox="0 0 20 20">
+					<g fill="none" fillRule="evenodd">
+						<circle cx="10" cy="10" r="10" fill="#FA5959" />
+						<g fill="#FFF" transform="translate(9 5)">
+							<rect width="2" height="7" rx="1" />
+							<rect width="2" height="2" y="8" rx="1" />
+						</g>
+					</g>
+				</svg>
+				<span className="field__error-message">{errorMessage}</span>
+			</div>
 		</div>
 	);
 }
