@@ -85,6 +85,7 @@ export default function ContactForm() {
 
 						return (
 							<FormInput
+								variant="subscribe"
 								type="email"
 								label="Newsletter Email"
 								fieldName={field.name}
