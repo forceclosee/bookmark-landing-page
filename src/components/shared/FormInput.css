@@ -169,3 +169,14 @@
 		}
 	}
 }
+
+/* hide error message for password field on signup form */
+.field:has(.field__input[name="signupPassword"]) {
+	.field__error-message {
+		display: none;
+	}
+
+	.field__input {
+		border-radius: 0.5em;
+	}
+}

@@ -16,6 +16,7 @@ export default function FormInput({
 	fieldName,
 	onFieldChange,
 	variant,
+	children,
 	...props
 }: Props) {
 	const inputRef = useRef<HTMLInputElement>(null);
@@ -74,6 +75,7 @@ export default function FormInput({
 					</g>
 				</svg>
 				<span className="field__error-message">{errorMessage}</span>
+				{children}
 			</div>
 		</div>
 	);
