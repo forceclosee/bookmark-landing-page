@@ -6,7 +6,7 @@ import { contactUsSchema } from "@lib/schema/contactUsSchema";
 
 import ToastMessage from "@components/shared/ToastMessage";
 import FormInput from "@components/shared/FormInput";
-import SubmitButton from "@components/shared/SubmitButton";
+import ButtonClient from "@components/shared/ButtonClient";
 
 import "@components/contact-us/ContactForm.css";
 
@@ -114,12 +114,15 @@ export default function ContactForm() {
 
 				<Subscribe selector={(state) => [state.isSubmitting]}>
 					{([isSubmitting]) => (
-						<SubmitButton disabled={isSubmitting}>
+						<ButtonClient
+							variant="primary"
+							type="submit"
+							disabled={isSubmitting}>
 							<span
 								className="contact-form__loader-icon"
 								aria-hidden="true"></span>
 							<span>{isSubmitting ? "Submitting..." : "Contact Us"}</span>
-						</SubmitButton>
+						</ButtonClient>
 					)}
 				</Subscribe>
 			</form>

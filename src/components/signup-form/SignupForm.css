@@ -17,16 +17,15 @@
 }
 
 /* show password rules only when user already interact with the input field  */
-.field__input-group:has(.field__input:not(:placeholder-shown)) {
-	.password__rules {
-		display: block;
-		opacity: 1;
-		block-size: auto;
+.field__input-group:has(.field__input:not(:placeholder-shown))
+.password__rules {
+	display: block;
+	opacity: 1;
+	block-size: auto;
 
-		@starting-style {
-			opacity: 0;
-			block-size: 0;
-		}
+	@starting-style {
+		opacity: 0;
+		block-size: 0;
 	}
 }
 
@@ -42,10 +41,22 @@
 
 .password-rules__rule {
 	display: flex;
+	align-items: start;
 	gap: 0.5rem;
+	margin-block-start: 0.2em;
+}
+
+.password-rules__icon-wrapper {
+	position: relative;
+	flex-shrink: 0;
+	inline-size: 1rem;
+	block-size: 1.2rem;
 }
 
 .password-rules__icon {
+	position: absolute;
+	inset: 0;
+	inset-block-start: 0.2rem;
 	inline-size: 1em;
 	block-size: auto;
 }
@@ -55,7 +66,7 @@
 	opacity: 0;
 	color: var(--text-valid);
 
-	/* transition: all 2s ease allow-discrete; */
+	transition: all 0.2s ease allow-discrete;
 }
 
 .password-rules__xmark-icon {
@@ -63,35 +74,37 @@
 	opacity: 1;
 	color: var(--text-invalid);
 
-	/* transition: all 2s ease allow-discrete;
+	transition: all 0.2s 0.1s ease allow-discrete;
 
 	@starting-style {
 		opacity: 0;
-	} */
+	}
 }
 
 .password-rules__label {
 	color: var(--text-muted);
 
-	transition: all 2s ease allow-discrete;
+	transition: all 0.2s ease;
 }
 
-/* change color and hide xmark icon when the rule is passed */
+/* change label color and hide xmark icon when the rule is passed */
 .password-rules__rule[data-passed="true"] {
 	.password-rules__check-icon {
 		display: block;
 		opacity: 1;
 
-		/* transition: all 2s 2.5s ease allow-discrete;
+		transition: all 0.2s 0.1s ease allow-discrete;
 
 		@starting-style {
 			opacity: 0;
-		} */
+		}
 	}
 
 	.password-rules__xmark-icon {
 		display: none;
 		opacity: 0;
+
+		transition: all 0.2s ease allow-discrete;
 	}
 
 	.password-rules__label {
