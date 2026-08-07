@@ -1,0 +1,140 @@
+.signup-form {
+	display: grid;
+	gap: 1.25rem;
+}
+
+.password__rules {
+	display: none;
+	opacity: 0;
+	block-size: 0;
+	overflow-y: hidden;
+
+	@supports (overflow-y: clip) {
+		overflow-y: clip;
+	}
+
+	transition: all 0.3s ease allow-discrete;
+}
+
+/* show password rules only when user already interact with the input field  */
+.field__input-group:has(.field__input:not(:placeholder-shown))
+.password__rules {
+	display: block;
+	opacity: 1;
+	block-size: auto;
+
+	@starting-style {
+		opacity: 0;
+		block-size: 0;
+	}
+}
+
+.password__rules-title {
+	display: inline-block;
+	color: var(--text);
+	margin-block-start: 0.5rem;
+}
+
+.password-rules__list {
+	list-style: none;
+}
+
+.password-rules__rule {
+	display: flex;
+	align-items: start;
+	gap: 0.5rem;
+	margin-block-start: 0.2em;
+}
+
+.password-rules__icon-wrapper {
+	position: relative;
+	flex-shrink: 0;
+	inline-size: 1rem;
+	block-size: 1.2rem;
+}
+
+.password-rules__icon {
+	position: absolute;
+	inset: 0;
+	inset-block-start: 0.2rem;
+	inline-size: 1em;
+	block-size: auto;
+}
+
+.password-rules__check-icon {
+	display: none;
+	opacity: 0;
+	color: var(--text-valid);
+
+	transition: all 0.2s ease allow-discrete;
+}
+
+.password-rules__xmark-icon {
+	display: block;
+	opacity: 1;
+	color: var(--text-invalid);
+
+	transition: all 0.2s 0.1s ease allow-discrete;
+
+	@starting-style {
+		opacity: 0;
+	}
+}
+
+.password-rules__label {
+	color: var(--text-muted);
+
+	transition: all 0.2s ease;
+}
+
+/* change label color and hide xmark icon when the rule is passed */
+.password-rules__rule[data-passed="true"] {
+	.password-rules__check-icon {
+		display: block;
+		opacity: 1;
+
+		transition: all 0.2s 0.1s ease allow-discrete;
+
+		@starting-style {
+			opacity: 0;
+		}
+	}
+
+	.password-rules__xmark-icon {
+		display: none;
+		opacity: 0;
+
+		transition: all 0.2s ease allow-discrete;
+	}
+
+	.password-rules__label {
+		color: var(--text-valid);
+	}
+}
+
+.signup-form__loader-icon {
+	display: none;
+	inline-size: 1.5rem;
+	block-size: 1.5rem;
+	aspect-ratio: 1;
+	border-radius: 50%;
+	background:
+		radial-gradient(farthest-side, var(--loader) 94%, #0000) top / 6px 6px
+		no-repeat,
+		conic-gradient(#0000 30%, var(--loader));
+	-webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 6px), #000 0);
+	animation: loader 1s infinite linear;
+}
+
+@keyframes loader {
+	to {
+		transform: rotate(1turn);
+	}
+}
+
+.signup-form:has(button:disabled) {
+	/* show loader spinner when button disabled */
+	.contact-form__loader-icon {
+		display: inline;
+	}
+}

@@ -1,0 +1,21 @@
+---
+import Layout from "@layouts/Layout.astro";
+
+import SignupForm from "@components/signup-form/SignupForm";
+
+import "@styles/pages/signup.css";
+---
+
+<Layout title="Sign Up - Bookmark Landing Page | Force Close">
+	<main class="signup-page">
+		<div class="signup-page__wrapper">
+			<h1 class="signup-page__title">Sign up</h1>
+			<SignupForm client:load />
+			<p class="signup-page__text">
+				Already have an account?{' '}
+				{null /* Link to homepage and open signin modal */}
+				<a class="signup-page__login-link" href="/?login=true">Sign in</a>
+			</p>
+		</div>
+	</main>
+</Layout>
