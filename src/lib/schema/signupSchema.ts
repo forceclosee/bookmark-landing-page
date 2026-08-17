@@ -39,6 +39,7 @@ for (const rule of passwordRules) {
 
 export const signupSchema = z
 	.object({
+		signupName: z.string().min(2, "Name must be at least 2 characters"),
 		signupEmail: z.email("Please enter a valid email address"),
 		signupPassword: passwordSchema,
 		signupConfirmPassword: z.string(),

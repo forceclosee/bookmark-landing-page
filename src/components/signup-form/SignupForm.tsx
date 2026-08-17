@@ -7,6 +7,7 @@ import ButtonClient from "@components/shared/ButtonClient";
 import { passwordRules, signupSchema } from "@lib/schema/signupSchema";
 
 import "@components/signup-form/SignupForm.css";
+import Loader from "@components/shared/Loader";
 
 export default function Signup() {
 	//  password input type
@@ -25,8 +26,7 @@ export default function Signup() {
 			setPasswordInputType((prev) =>
 				prev === "password" ? "text" : "password",
 			);
-		}
-		if (target === "confirm") {
+		} else if (target === "confirm") {
 			setConfirmInputType((prev) =>
 				prev === "password" ? "text" : "password",
 			);
@@ -35,6 +35,7 @@ export default function Signup() {
 
 	const { Field, handleSubmit, Subscribe } = useForm({
 		defaultValues: {
+			signupName: "",
 			signupEmail: "",
 			signupPassword: "",
 			signupConfirmPassword: "",
@@ -63,6 +64,27 @@ export default function Signup() {
 				e.preventDefault();
 				handleSubmit();
 			}}>
+			<Field name="signupName">
+				{(field) => {
+					const { errors } = field.state.meta;
+
+					return (
+						<FormInput
+							variant="auth"
+							type="text"
+							label="Name"
+							fieldName={field.name}
+							placeholder="Enter your name"
+							value={field.state.value}
+							onFieldChange={(value) => {
+								field.handleChange(value);
+							}}
+							errorMessage={errors[0]?.message}
+						/>
+					);
+				}}
+			</Field>
+
 			<Field name="signupEmail">
 				{(field) => {
 					const { errors } = field.state.meta;
@@ -190,9 +212,7 @@ export default function Signup() {
 			<Subscribe selector={(state) => [state.isSubmitting]}>
 				{([isSubmitting]) => (
 					<ButtonClient variant="primary" type="submit" disabled={isSubmitting}>
-						<span
-							className="signup-form__loader-icon"
-							aria-hidden="true"></span>
+						<Loader className="signup-form__loader-icon" />
 						<span>{isSubmitting ? "Signing up..." : "Sign up"}</span>
 					</ButtonClient>
 				)}
