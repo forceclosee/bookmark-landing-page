@@ -13,7 +13,7 @@ import Loader from "@components/shared/Loader";
 
 export default function ContactForm() {
 	// track hidration status for testing
-	const [isHydrated, setIsHydrated] = useState<boolean>(false);
+	const [isHydrated, setIsHydrated] = useState<string>("form-not-hidrated");
 
 	// error message from server
 	const [serverError, setServerError] = useState<string | null>(null);
@@ -25,7 +25,7 @@ export default function ContactForm() {
 	const [showToast, setShowToast] = useState<boolean>(false);
 
 	useEffect(() => {
-		setIsHydrated(true);
+		setIsHydrated("form-hidrated");
 	}, []);
 
 	useEffect(() => {
@@ -74,7 +74,7 @@ export default function ContactForm() {
 		<>
 			<form
 				noValidate
-				data-hydrated={isHydrated}
+				data-testid={isHydrated}
 				onSubmit={(e) => {
 					e.preventDefault();
 					handleSubmit();

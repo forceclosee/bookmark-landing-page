@@ -71,7 +71,10 @@ export default function FormInput({
 					}}
 				/>
 
-				<span className="field__error-message" aria-live="polite">
+				<span
+					className="field__error-message"
+					aria-live="polite"
+					data-testid="input-error-message">
 					{errorMessage}
 				</span>
 
