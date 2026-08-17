@@ -9,6 +9,7 @@ import FormInput from "@components/shared/FormInput";
 import ButtonClient from "@components/shared/ButtonClient";
 
 import "@components/contact-us/ContactForm.css";
+import Loader from "@components/shared/Loader";
 
 export default function ContactForm() {
 	// track hidration status for testing
@@ -118,9 +119,7 @@ export default function ContactForm() {
 							variant="primary"
 							type="submit"
 							disabled={isSubmitting}>
-							<span
-								className="contact-form__loader-icon"
-								aria-hidden="true"></span>
+							<Loader className="contact-form__loader-icon" />
 							<span>{isSubmitting ? "Submitting..." : "Contact Us"}</span>
 						</ButtonClient>
 					)}
