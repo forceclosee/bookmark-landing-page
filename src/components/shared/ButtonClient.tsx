@@ -3,10 +3,10 @@ import type { ComponentProps } from "react";
 import "@components/shared/Button.css";
 
 type Props = RequireAttributes<ComponentProps<"button">, "type"> & {
-	variant: "primary" | "reveal";
+	variant: "primary" | "reveal" | "icon";
 };
 
-export default function SubmitButton({
+export default function ButtonClient({
 	children,
 	className,
 	variant,
@@ -19,6 +19,7 @@ export default function SubmitButton({
 				"button",
 				variant === "primary" && "button--client-primary",
 				variant === "reveal" && "button--client-reveal",
+				variant === "icon" && "button--client-icon",
 			]
 				.filter(Boolean)
 				.join(" ")}
