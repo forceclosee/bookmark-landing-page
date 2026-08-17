@@ -27,6 +27,7 @@
 		var(--neutral-blue-950) 92%,
 		transparent
 	);
+	--backdrop: color-mix(in oklch, var(--neutral-blue-950) 80%, transparent);
 
 	--border: color-mix(in oklch, var(--neutral-blue-950) 15%, white);
 	--border-input: color-mix(in oklch, var(--neutral-blue-950) 40%, white);
