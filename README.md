@@ -1,6 +1,6 @@
 # Frontend Mentor - Bookmark landing page solution
 
-This is a solution to the [Bookmark landing page challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/bookmark-landing-page-5d0b588a9edda32581d29158). This project focuses on demonstrating modern CSS layouts, implementing fully accessible tabbed navigation using WAI-ARIA authoring practices, utilizing the experimental CSS scroll-state Container Queries API for scroll-driven animations, using the new CSS Anchor Positioning API for complex background decorations, and building a hybrid client-side form validation system using TanStack Form and Zod synchronized with the browser's native Constraint Validation API.
+This is a solution to the [Bookmark landing page challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/bookmark-landing-page-5d0b588a9edda32581d29158). A full-stack application built using Astro and React, it features secure user authentication (Better Auth), serverless database integration (Neon Postgres + Drizzle ORM), accessible UI interactions (WAI-ARIA tabs and mobile drawer), and advanced styling techniques (CSS Anchor Positioning and scroll-state container queries).
 
 ## Table of contents
 
@@ -31,6 +31,17 @@ This is a solution to the [Bookmark landing page challenge on Frontend Mentor](h
 - **Accessible Mobile Navigation Menu**: A custom mobile menu drawer that prevents page scrolling when open and traps keyboard focus using the native HTML `inert` attribute.
 - **Exclusive Accordion (FAQ)**: Built using native HTML `<details>` elements with the `name` attribute, ensuring only one FAQ panel stays open at a time without requiring JavaScript.
 
+#### Authentication & Session Management
+
+- **Credential-Based Sign Up**: A dedicated Signup page to register new user accounts securely using Better Auth.
+- **Modal-Based Login**: An inline login dialog modal that opens from the header on any page for a smooth user sign-in experience.
+- **Reactive Session Control**: Instantly toggles the header button state between Login and Log Out when user session changes, leveraging React 19 `useTransition` to display active loading states during authentication actions.
+
+#### Newsletter Subscription
+
+- **Serverless Email Subscription**: A newsletter signup form powered by Astro Actions to register subscribers securely in the database.
+- **Dynamic Feedback & Toast Notifications**: Interactive loading indicators and a reusable toast component to provide accessible success/error feedback.
+
 #### Modern CSS & Layout Techniques
 
 - **Scroll-State Sticky Header**: The navigation header automatically hides when scrolling down and reappears when scrolling up, using experimental CSS Container Queries (`scroll-state(scrolled: ...)`).
@@ -58,16 +69,19 @@ This is a solution to the [Bookmark landing page challenge on Frontend Mentor](h
 - [React v19](https://react.dev/) - Frontend Library
 - [TanStack Form](https://tanstack.com/form/latest) - Form Library
 - [Zod v4](https://zod.dev) (via `astro/zod`) - Validation Schema
+- [Better Auth](https://better-auth.com/) - Authentication Library
 
 ### What I learned
 
-In this project, I learned how to configure clean import path mappings in Astro, implement fully accessible tabbed navigation, use CSS Anchor Positioning, leverage experimental CSS scroll-state Container Queries, build a hybrid validation form that integrates React state-driven schemas with native browser constraint APIs, and set up a serverless PostgreSQL database with Drizzle ORM and Neon.
+In this project, I learned how to configure clean import path mappings in Astro, implement fully accessible tabbed navigation, use CSS Anchor Positioning, leverage experimental CSS scroll-state Container Queries, build a hybrid validation form that integrates React state-driven schemas with native browser constraint APIs, set up a serverless PostgreSQL database with Drizzle ORM and Neon, and integrate secure user authentication (Sign Up and Login) using Better Auth.
 
 - **Modern TypeScript Path Aliases**
 
   Configuring path aliases (like `@components/*`) helps avoid verbose and fragile relative paths (e.g., `../../`).
 
   ```json
+  // tsconfig.json
+
   {
     "compilerOptions": {
       "paths": {
@@ -82,7 +96,9 @@ In this project, I learned how to configure clean import path mappings in Astro,
 
   Implementing keyboard-friendly tablist navigation following WAI-ARIA guidelines. By utilizing the _roving tabindex_ pattern (selected tab have tabindex="0", while unselected tab have tabindex="-1"), keyboard users can navigate tab buttons using the arrow keys, and `Enter` or `Space` to display the corresponding tabpanel.
 
-  ```typescript
+  ```ts
+  // FeatureTabButton.tsx
+
   const handleKeydown = (e: KeyboardEvent<HTMLDivElement>) => {
     const tabs = Array.from(
       e.currentTarget.querySelectorAll<HTMLElement>('[role="tab"]'),
@@ -116,6 +132,8 @@ In this project, I learned how to configure clean import path mappings in Astro,
   I learned how to position absolute decorative shapes relative to an anchor without establishing a positioned ancestor context. By using implicit default anchors and locking one coordinate to the viewport boundary, the shape dynamically scales with the illustration wrapper and extends to the screen edge without triggering horizontal layout overflow.
 
   ```css
+  /* BgShape.css */
+
   .bg-shape {
     position: absolute;
     position-anchor: --hero; /* Define the default anchor */
@@ -130,17 +148,17 @@ In this project, I learned how to configure clean import path mappings in Astro,
 
   I learned how to use the experimental CSS Container Queries `scroll-state()` feature to build a performant sticky header. By setting up a scroll container query on the root `html` element to detect scroll direction and another on the `.header` itself to detect stuck state, I was able to implement a "hide on scroll down, show on scroll up" header with a box-shadow that only appears when stuck, entirely without JavaScript!
 
-  `Layout.css`
-
   ```css
+  /* Layout.css */
+
   html {
     container: root-scroll / scroll-state;
   }
   ```
 
-  `Header.css`
-
   ```css
+  /* Header.css */
+
   .header {
     position: sticky;
     container: header / scroll-state;
@@ -178,9 +196,9 @@ In this project, I learned how to configure clean import path mappings in Astro,
 
   I learned how to build a hybrid validation user experience that combines Zod schema validation and TanStack Form events with the browser's native `setCustomValidity()` API. By using a React `useEffect` hook to synchronize JavaScript state changes with the DOM element's constraint state, I achieve a highly polished UX where error boundaries are lazy (they only show after the first blur via `:user-invalid`) while success boundaries are eager (they validate and turn green immediately on keystroke via `:valid`).
 
-  `contactUsSchema.ts`
+  ```ts
+  // contactUsSchema.ts
 
-  ```typescript
   import { z } from "astro/zod";
 
   export const contactUsSchema = z.object({
@@ -188,9 +206,9 @@ In this project, I learned how to configure clean import path mappings in Astro,
   });
   ```
 
-  `FormInput.tsx`
-
   ```tsx
+  // FormInput.tsx
+
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -204,9 +222,9 @@ In this project, I learned how to configure clean import path mappings in Astro,
 
   I learned how to set up and query a serverless PostgreSQL database using Drizzle ORM and Neon serverless HTTP driver. By defining schemas with Postgres-specific types like UUID generation and automatic timestamp defaults, Drizzle ORM handles schema migrations and provides type-safe query interfaces.
 
-  `db/index.ts`
+  ```ts
+  // db/index.ts
 
-  ```typescript
   import { neon } from "@neondatabase/serverless";
   import { drizzle } from "drizzle-orm/neon-http";
 
@@ -214,9 +232,9 @@ In this project, I learned how to configure clean import path mappings in Astro,
   export const db = drizzle({ client: sql });
   ```
 
-  `db/subscribers.ts`
+  ```ts
+  // db/subscribers.ts
 
-  ```typescript
   import { pgTable, uuid, text, timestamp } from "drizzle-orm/pg-core";
 
   export const subscribers = pgTable("subscribers", {
@@ -226,7 +244,50 @@ In this project, I learned how to configure clean import path mappings in Astro,
   });
   ```
 
+- **User Authentication & Session Management (Better Auth + React 19)**
+
+  I learned how to integrate secure user authentication in an Astro project using Better Auth, implementing login via modal and signup on a dedicated page. Furthermore, I leveraged React 19's `useTransition` to seamlessly manage and display loading states during authentication actions like signing out.
+
+  ```ts
+  // LoginButton.tsx
+
+  const { data: session } = authClient.useSession();
+  const [isLoggingOut, startTransition] = useTransition();
+
+  const handleClick = () => {
+    if (session) {
+      startTransition(async () => {
+        await authClient.signOut();
+      });
+    }
+  };
+  ```
+
+- **Server-Side Route Protection (Astro SSR + Better Auth)**
+
+  I learned how to secure dynamic routes in Astro by opting out of static prerendering (`export const prerender = false`) for Signup page. By checking the user's session status server-side using the Better Auth backend API, we can securely redirect logged-in users back to the homepage (`Astro.redirect("/")`).
+
+  ```ts
+  // signup.astro
+
+  ---
+  export const prerender = false;
+
+  import { auth } from "@lib/auth";
+
+  const session = await auth.api.getSession({
+    headers: Astro.request.headers,
+  });
+
+  if (session) {
+    return Astro.redirect("/");
+  }
+  ---
+  ```
+
 ### Continued development
+
+- **Email OTP Verification during Sign Up**: Integrate One-Time Password (OTP) verification during the registration process using Better Auth to confirm user email authenticity and prevent spam registrations.
 
 ### Useful resources
 
