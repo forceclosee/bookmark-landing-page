@@ -1,9 +1,23 @@
 ---
+export const prerender = false;
+
+import { auth } from "@lib/auth";
+
 import Layout from "@layouts/Layout.astro";
 
 import SignupForm from "@components/signup-form/SignupForm";
 
 import "@styles/pages/signup.css";
+
+// check user session
+const session = await auth.api.getSession({
+	headers: Astro.request.headers,
+});
+
+// auto rediret to homepage if the user already have session
+if (session) {
+	return Astro.redirect("/");
+}
 ---
 
 <Layout title="Sign Up - Bookmark Landing Page | Force Close">

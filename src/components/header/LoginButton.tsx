@@ -17,19 +17,20 @@ export default function LoginButton({ isMobile }: Props) {
 	const [isLoggingOut, startTransition] = useTransition();
 
 	const Buttontext = () => {
-		if (session) {
-			if (isLoggingOut) {
-				return (
-					<>
-						<Loader className="login-button__loader" />
-						<span>Logging out...</span>
-					</>
-				);
-			}
-			return "Log out";
-		} else {
-			return "Login";
+		if (!session) {
+			return <>Login</>;
 		}
+
+		if (!isLoggingOut) {
+			return <>Log out</>;
+		}
+
+		return (
+			<>
+				<Loader className="login-button__loader" />
+				<span>Logging out...</span>
+			</>
+		);
 	};
 
 	const handleClick = () => {

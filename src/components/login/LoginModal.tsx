@@ -14,6 +14,7 @@ import "@components/login/LoginModal.css";
 export default function Login() {
 	const dialogRef = useRef<HTMLDialogElement>(null);
 
+	// URL PARAMS
 	useEffect(() => {
 		const params = new URLSearchParams(window.location.search);
 		const isLoginParam = params.get("login") === "true";
@@ -44,6 +45,7 @@ export default function Login() {
 		"password" | "text"
 	>("password");
 
+	// handle toast message visibility
 	useEffect(() => {
 		if (successMessage !== null) {
 			setShowToast(true);
@@ -90,6 +92,9 @@ export default function Login() {
 					`Welcome back ${data.user.name}`,
 				); /* set success message */
 				formApi.reset();
+				setTimeout(() => {
+					window.location.href = "/";
+				}, 1500); /* redirect to homepage */
 			}
 		},
 		onSubmitInvalid() {
@@ -101,6 +106,15 @@ export default function Login() {
 		},
 	});
 
+	// check user session
+	const { data: session, isPending } = authClient.useSession();
+
+	// return nothing and auto rediret to homepage if the user already have session
+	if (session || isPending) {
+		return null;
+	}
+
+	// if user didn't have session return login modal
 	return (
 		<dialog ref={dialogRef} id="login-modal" className="login__dialog">
 			<ButtonClient

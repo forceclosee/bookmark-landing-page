@@ -90,6 +90,9 @@ export default function Signup() {
 					`Thanks for Signing up ${data.user.name}`,
 				); /* set success message */
 				formApi.reset();
+				setTimeout(() => {
+					window.location.href = "/";
+				}, 1500); /* redirect to homepage */
 			}
 		},
 		onSubmitInvalid() {

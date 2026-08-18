@@ -24,10 +24,12 @@ export default function ContactForm() {
 	// toast message visibility
 	const [showToast, setShowToast] = useState<boolean>(false);
 
+	// set data attribute value for testing purpose
 	useEffect(() => {
 		setIsHydrated("form-hidrated");
 	}, []);
 
+	// handle toast message visibility
 	useEffect(() => {
 		if (succesMessage !== null) {
 			setShowToast(true);
