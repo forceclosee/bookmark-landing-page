@@ -80,7 +80,6 @@ if (hamburgerMenu && main && footer) {
 			"aria-label",
 			isOpening ? "Close menu" : "Open menu",
 		);
-		document.body.classList.toggle("no-scroll", isOpening);
 		main.toggleAttribute("inert", isOpening);
 		footer.toggleAttribute("inert", isOpening);
 	});
@@ -90,7 +89,6 @@ if (hamburgerMenu && main && footer) {
 		if (e.matches && hamburgerMenu.getAttribute("aria-expanded") === "true") {
 			hamburgerMenu.setAttribute("aria-expanded", "false");
 			hamburgerMenu.setAttribute("aria-label", "Open menu");
-			document.body.classList.remove("no-scroll");
 			main.removeAttribute("inert");
 			footer.removeAttribute("inert");
 		}
