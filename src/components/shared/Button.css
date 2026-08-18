@@ -9,6 +9,10 @@
 }
 
 .button--primary {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 0.75rem;
 	background-color: var(--primary-red-400);
 	padding-inline: 2rem;
 	font-size: var(--fs-xs);
@@ -30,15 +34,38 @@
 				inset 0 0 0px 2px var(--primary-red-400);
 		}
 	}
+
+	&:disabled {
+		background-color: var(--disabled-bg);
+		color: var(--text-inverse);
+		box-shadow: none;
+		cursor: not-allowed;
+	}
 }
 
 .button--secondary {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 0.75rem;
 	inline-size: 100%;
 	min-block-size: 3rem;
 	padding-inline: 1rem;
 	border: 2px solid var(--neutral-grey-50);
 	font-size: var(--fs-xl);
 	letter-spacing: 0.15em;
+
+	&:active {
+		scale: 0.95;
+	}
+
+	&:disabled {
+		background-color: var(--disabled-bg);
+		color: var(--text-inverse);
+		border: 2px solid var(--disabled-bg);
+		box-shadow: none;
+		cursor: not-allowed;
+	}
 }
 
 .button--hamburger {

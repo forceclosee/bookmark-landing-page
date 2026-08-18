@@ -1,5 +1,7 @@
 import type { ComponentProps } from "react";
 
+import "@components/shared/Loader.css";
+
 type Props = ComponentProps<"span">;
 
 export default function Loader({ className }: Props) {
