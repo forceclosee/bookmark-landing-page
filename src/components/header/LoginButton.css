@@ -1,0 +1,4 @@
+/* show loader spinner when button disabled */
+.login-button:disabled .login-button__loader {
+	display: inline;
+}

@@ -1,10 +1,11 @@
 ---
 import NavList from "@components/shared/NavList.astro";
+import SocialMediaIcon from "@components/shared/SocialMediaIcon.astro";
+import Button from "@components/shared/Button.astro";
+import LoginButton from "@components/header/LoginButton";
+import LoginModal from "@components/login/LoginModal";
 
 import "@components/header/Header.css";
-import Button from "@components/shared/Button.astro";
-import SocialMediaIcon from "@components/shared/SocialMediaIcon.astro";
-import Login from "@components/login/Login";
 ---
 
 <header id="header" class="header">
@@ -35,12 +36,7 @@ import Login from "@components/login/Login";
 			<ul class="header__lists">
 				<NavList variant="dark" />
 			</ul>
-			<Button
-				commandfor="login-modal"
-				command="show-modal"
-				class="header__login-button"
-				>Login</Button
-			>
+			<LoginButton client:load />
 		</nav>
 		<Button
 			variant="hamburger"
@@ -56,20 +52,14 @@ import Login from "@components/login/Login";
 	</div>
 </header>
 
-<Login client:load />
+<LoginModal client:load />
 
 <!-- mobile menu -->
 <nav id="mobile-menu" class="mobile-menu" aria-labelledby="hamburger-menu">
 	<ul class="mobile-menu__lists">
 		<NavList variant="mobile" />
 	</ul>
-	<Button
-		commandfor="login-modal"
-		command="show-modal"
-		variant="secondary"
-		class="mobile-menu__login-button"
-		>Login</Button
-	>
+	<LoginButton client:load isMobile />
 	<SocialMediaIcon class="mobile-menu__social-media-icon" />
 </nav>
 
