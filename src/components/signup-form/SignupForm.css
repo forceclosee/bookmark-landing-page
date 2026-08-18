@@ -112,9 +112,7 @@
 	}
 }
 
-.signup-form:has(button:disabled) {
-	/* show loader spinner when button disabled */
-	.signup-form__loader-icon {
-		display: inline;
-	}
+/* show loader spinner when button disabled */
+.signup-form:has(button:disabled) .signup-form__loader {
+	display: inline;
 }

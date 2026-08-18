@@ -1,13 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import { useForm } from "@tanstack/react-form";
 
+import { loginSchema } from "@lib/schema/loginSchema";
+import { authClient } from "@lib/auth-client";
+
 import FormInput from "@components/shared/FormInput";
 import ButtonClient from "@components/shared/ButtonClient";
 import Loader from "@components/shared/Loader";
+import ToastMessage from "@components/shared/ToastMessage";
 
-import { loginSchema } from "@lib/schema/loginSchema";
-
-import "@components/login/Login.css";
+import "@components/login/LoginModal.css";
 
 export default function Login() {
 	const dialogRef = useRef<HTMLDialogElement>(null);
@@ -16,7 +18,7 @@ export default function Login() {
 		const params = new URLSearchParams(window.location.search);
 		const isLoginParam = params.get("login") === "true";
 
-		// Opem modal if url has login=true params, and remove the url params
+		// Open modal if url has login=true params, and remove the url params
 		if (isLoginParam) {
 			dialogRef.current?.showModal();
 
@@ -26,10 +28,36 @@ export default function Login() {
 		}
 	}, []);
 
+	// error message from server
+	const [serverErrorMessage, setServerErrorMessage] = useState<string | null>(
+		null,
+	);
+
+	// toast message visibility
+	const [showToast, setShowToast] = useState<boolean>(false);
+
+	// succes message
+	const [successMessage, setSuccessMessage] = useState<string | null>(null);
+
 	//  password input type
 	const [passwordInputType, setPasswordInputType] = useState<
 		"password" | "text"
 	>("password");
+
+	useEffect(() => {
+		if (successMessage !== null) {
+			setShowToast(true);
+
+			const toastTimer = setTimeout(() => {
+				setShowToast(false);
+				setSuccessMessage(null);
+			}, 4000);
+
+			return () => clearTimeout(toastTimer);
+		} else {
+			setShowToast(false);
+		}
+	}, [successMessage]);
 
 	// change input type on click
 	const handleClick = () => {
@@ -45,8 +73,24 @@ export default function Login() {
 			onChange: loginSchema,
 			onSubmit: loginSchema,
 		},
-		onSubmit: async () => {
-			// lempar ke better auth
+		onSubmit: async ({ value, formApi }) => {
+			const { data, error } = await authClient.signIn.email({
+				email: value.loginEmail,
+				password: value.loginPassword,
+			});
+
+			if (error) {
+				setSuccessMessage(null); /* clear success message */
+				setServerErrorMessage(
+					error.message || "Something went wrong",
+				); /* set server error message */
+			} else {
+				setServerErrorMessage(null); /* clear server error message */
+				setSuccessMessage(
+					`Welcome back ${data.user.name}`,
+				); /* set success message */
+				formApi.reset();
+			}
 		},
 		onSubmitInvalid() {
 			const InvalidInput = document.querySelector(
@@ -98,6 +142,10 @@ export default function Login() {
 								value={field.state.value}
 								onFieldChange={(value) => {
 									field.handleChange(value);
+
+									// clear server error message and success message on change
+									setServerErrorMessage(null);
+									setSuccessMessage(null);
 								}}
 								errorMessage={errors[0]?.message}
 							/>
@@ -115,7 +163,7 @@ export default function Login() {
 								type={passwordInputType}
 								label="Password"
 								fieldName={field.name}
-								placeholder="Create a password"
+								placeholder="Enter your password"
 								haveRevealButton
 								revealButtonAriaLabel={
 									passwordInputType === "password"
@@ -129,12 +177,20 @@ export default function Login() {
 								handleClick={handleClick}
 								onFieldChange={(value) => {
 									field.handleChange(value);
+
+									// clear server error message and success message on change
+									setServerErrorMessage(null);
+									setSuccessMessage(null);
 								}}
 								errorMessage={errors[0]?.message}
 							/>
 						);
 					}}
 				</Field>
+
+				{serverErrorMessage && (
+					<span className="login__server-error">{serverErrorMessage}</span>
+				)}
 
 				<Subscribe selector={(state) => [state.isSubmitting]}>
 					{([isSubmitting]) => (
@@ -149,9 +205,18 @@ export default function Login() {
 				</Subscribe>
 			</form>
 
-			<p className="login__signup-link">
-				don't have an account? <a href="/signup">Sign up</a>
+			<p className="login__signup-text">
+				don't have an account?{" "}
+				<a href="/signup" className="login__signup-link">
+					Sign up
+				</a>
 			</p>
+
+			<ToastMessage
+				header="Login succesfully"
+				message={successMessage}
+				aria-hidden={showToast ? "false" : "true"}
+			/>
 		</dialog>
 	);
 }
