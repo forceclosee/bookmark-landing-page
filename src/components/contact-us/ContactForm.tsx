@@ -7,9 +7,9 @@ import { contactUsSchema } from "@lib/schema/contactUsSchema";
 import ToastMessage from "@components/shared/ToastMessage";
 import FormInput from "@components/shared/FormInput";
 import ButtonClient from "@components/shared/ButtonClient";
+import Loader from "@components/shared/Loader";
 
 import "@components/contact-us/ContactForm.css";
-import Loader from "@components/shared/Loader";
 
 export default function ContactForm() {
 	// track hidration status for testing
@@ -127,6 +127,7 @@ export default function ContactForm() {
 			</form>
 
 			<ToastMessage
+				header="Subscribe Succesfully"
 				message={succesMessage}
 				aria-hidden={showToast ? "false" : "true"}
 			/>
