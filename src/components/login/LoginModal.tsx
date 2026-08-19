@@ -12,10 +12,15 @@ import ToastMessage from "@components/shared/ToastMessage";
 import "@components/login/LoginModal.css";
 
 export default function Login() {
+	// check user session
+	const { data: session, isPending } = authClient.useSession();
+
 	const dialogRef = useRef<HTMLDialogElement>(null);
 
 	// URL PARAMS
 	useEffect(() => {
+		if (isPending) return;
+
 		const params = new URLSearchParams(window.location.search);
 		const isLoginParam = params.get("login") === "true";
 
@@ -27,7 +32,7 @@ export default function Login() {
 			url.searchParams.delete("login");
 			window.history.replaceState({}, "", url.pathname + url.search);
 		}
-	}, []);
+	}, [isPending]);
 
 	// error message from server
 	const [serverErrorMessage, setServerErrorMessage] = useState<string | null>(
@@ -106,17 +111,18 @@ export default function Login() {
 		},
 	});
 
-	// check user session
-	const { data: session, isPending } = authClient.useSession();
-
 	// return nothing and auto rediret to homepage if the user already have session
-	if (session || isPending) {
+	if ((session || isPending) && !successMessage) {
 		return null;
 	}
 
 	// if user didn't have session return login modal
 	return (
-		<dialog ref={dialogRef} id="login-modal" className="login__dialog">
+		<dialog
+			ref={dialogRef}
+			id="login-modal"
+			className="login__dialog"
+			data-testid="login-modal">
 			<ButtonClient
 				type="button"
 				variant="icon"
@@ -150,6 +156,7 @@ export default function Login() {
 								variant="auth"
 								type="email"
 								label="Email"
+								inputDataTestid="login-email"
 								fieldName={field.name}
 								autoComplete="email"
 								placeholder="Enter your email address"
@@ -176,6 +183,7 @@ export default function Login() {
 								variant="auth"
 								type={passwordInputType}
 								label="Password"
+								inputDataTestid="login-password"
 								fieldName={field.name}
 								placeholder="Enter your password"
 								haveRevealButton
@@ -211,6 +219,7 @@ export default function Login() {
 						<ButtonClient
 							variant="primary"
 							type="submit"
+							data-testid="login-submit-button"
 							disabled={isSubmitting}>
 							<Loader className="login-form__loader-icon" />
 							<span>{isSubmitting ? "Logging in..." : "Login"}</span>

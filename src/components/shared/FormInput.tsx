@@ -8,6 +8,7 @@ type Props = ComponentProps<"input"> & {
 	label: string;
 	errorMessage?: string;
 	fieldName: string;
+	inputDataTestid?: string;
 	variant: "subscribe" | "auth";
 	haveRevealButton?: boolean;
 	revealButtonAriaLabel?: "Show password" | "Hide Password";
@@ -20,6 +21,7 @@ export default function FormInput({
 	label,
 	errorMessage = "",
 	fieldName,
+	inputDataTestid,
 	variant,
 	haveRevealButton,
 	revealButtonAriaLabel,
@@ -41,6 +43,7 @@ export default function FormInput({
 	return (
 		<div
 			className="field"
+			data-testid="form-field"
 			data-have-reveal-button={haveRevealButton ? "true" : "false"}>
 			<label
 				htmlFor={fieldName}
@@ -57,6 +60,7 @@ export default function FormInput({
 					ref={inputRef}
 					id={fieldName}
 					name={fieldName}
+					data-testid={inputDataTestid}
 					{...props}
 					className={[
 						"field__input",

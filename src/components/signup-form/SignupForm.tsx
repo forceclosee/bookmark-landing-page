@@ -122,6 +122,7 @@ export default function Signup() {
 								variant="auth"
 								type="text"
 								label="Name"
+								inputDataTestid="signup-name"
 								fieldName={field.name}
 								placeholder="Enter your name"
 								value={field.state.value}
@@ -147,6 +148,7 @@ export default function Signup() {
 								variant="auth"
 								type="email"
 								label="Email"
+								inputDataTestid="signup-email"
 								fieldName={field.name}
 								autoComplete="email"
 								placeholder="Enter your email address"
@@ -173,6 +175,7 @@ export default function Signup() {
 								variant="auth"
 								type={passwordInputType}
 								label="Password"
+								inputDataTestid="signup-password"
 								fieldName={field.name}
 								placeholder="Create a password"
 								haveRevealButton
@@ -248,6 +251,7 @@ export default function Signup() {
 								variant="auth"
 								type={confirmInputType}
 								label="Confirm Password"
+								inputDataTestid="signup-confirm-password"
 								fieldName={field.name}
 								placeholder="Enter your password again"
 								haveRevealButton

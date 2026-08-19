@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 
 test.describe("Newsletter Subscription Flow", () => {
 	test.beforeEach(async ({ page }) => {
-		// 1. Go to root page
+		// Go to root page
 		await page.goto("/");
 
 		// Scroll to the form element
@@ -67,9 +67,9 @@ test.describe("Newsletter Subscription Flow", () => {
 		await expect(emailInput).toHaveValue("");
 
 		// Verify toast message show correct message from server
-		const successToast = page.getByTestId("toast-message-text");
-		await expect(successToast).toHaveText(
-			"You have been succesfully subscribed",
-		);
+		const successToast = page
+			.getByTestId("contact-us")
+			.getByTestId("toast-message-text");
+		await expect(successToast).toHaveText("Thanks for subscribing");
 	});
 });
