@@ -1,0 +1,20 @@
+---
+import Layout from "@layouts/Layout.astro";
+import ButtonLink from "@components/shared/ButtonLink.astro";
+
+import "@styles/pages/not-found.css";
+---
+
+<Layout title="Page Not Found">
+	<main id="main" class="not-found-page">
+		<header class="not-found-page__header">404</header>
+		<h1 class="not-found-page__title">Page Not Found</h1>
+		<p class="not-found-page__text">
+			The page you are looking for doesn't exist. Click button below to go to
+			the homepage
+		</p>
+		<ButtonLink href="/" class="not-found-page__link">
+			Back To Homepage
+		</ButtonLink>
+	</main>
+</Layout>
