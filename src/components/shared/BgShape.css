@@ -12,7 +12,7 @@
 		clamp(3.5rem, 0.322rem + 13.5593vw, 9rem)
 	);
 	inset-block-end: anchor(end);
-	z-index: -1;
+	z-index: var(--z-base);
 	background-color: var(--primary-blue-600);
 	border-start-start-radius: 12.5rem;
 	border-end-start-radius: 12.5rem;

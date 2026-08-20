@@ -28,6 +28,7 @@
 }
 
 .hero__image {
+	position: relative;
 	inline-size: 100%;
 	block-size: auto;
 }

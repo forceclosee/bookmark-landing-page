@@ -16,6 +16,7 @@
 	anchor-name: --features;
 	max-inline-size: 27rem;
 	padding-block-end: clamp(2.3rem, 0.451rem + 7.889vw, 5.5rem);
+	z-index: calc(var(--z-base) + 1);
 }
 
 .feature-content__details {
