@@ -109,6 +109,8 @@ h6 {
 /* improve focus styles */
 :focus-visible {
 	outline-offset: 3px;
+	outline-style: dotted;
+	outline-width: 3px;
 }
 
 /* opt in to custom select rendering */

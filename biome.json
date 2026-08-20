@@ -7,7 +7,7 @@
 	},
 	"files": {
 		"ignoreUnknown": false,
-		"includes": ["**", "!**/*.svg", "!**/*.test.*", "!tests", "!drizzle"]
+		"includes": ["**", "!**/*.svg", "!drizzle"]
 	},
 	"formatter": {
 		"enabled": true,

@@ -57,7 +57,7 @@ describe("contactUs Action", () => {
 
 		expect(result).toEqual({
 			success: true,
-			message: "You have been succesfully subscribed",
+			message: "Thanks for subscribing",
 		});
 
 		expect(mockInsertValues).toHaveBeenCalledWith({

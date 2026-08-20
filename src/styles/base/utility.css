@@ -2,14 +2,6 @@
 	margin-block-start: 1.5em;
 }
 
-.no-scroll {
-	overflow: hidden;
-
-	@supports (overflow: clip) {
-		overflow: clip;
-	}
-}
-
 .sr-only {
 	position: absolute;
 	inline-size: 1px;

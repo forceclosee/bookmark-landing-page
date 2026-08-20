@@ -29,7 +29,7 @@ export const contactUs = defineAction({
 
 		return {
 			success: true,
-			message: "You have been succesfully subscribed",
+			message: "Thanks for subscribing",
 		};
 	},
 });

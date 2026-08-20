@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 
 import { contactUsSchema } from "./contactUsSchema";
 
-describe("contactUsSchema", () => {
+describe("contact Us Schema Validation", () => {
 	it("should pass validation with a valid email address", () => {
 		const result = contactUsSchema.safeParse({
 			contactUsEmail: "user@example.com",

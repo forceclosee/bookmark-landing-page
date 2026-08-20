@@ -6,12 +6,14 @@ import { contactUsSchema } from "@lib/schema/contactUsSchema";
 
 import ToastMessage from "@components/shared/ToastMessage";
 import FormInput from "@components/shared/FormInput";
+import ButtonClient from "@components/shared/ButtonClient";
+import Loader from "@components/shared/Loader";
 
 import "@components/contact-us/ContactForm.css";
 
 export default function ContactForm() {
 	// track hidration status for testing
-	const [isHydrated, setIsHydrated] = useState<boolean>(false);
+	const [isHydrated, setIsHydrated] = useState<string>("form-not-hidrated");
 
 	// error message from server
 	const [serverError, setServerError] = useState<string | null>(null);
@@ -22,10 +24,12 @@ export default function ContactForm() {
 	// toast message visibility
 	const [showToast, setShowToast] = useState<boolean>(false);
 
+	// set data attribute value for testing purpose
 	useEffect(() => {
-		setIsHydrated(true);
+		setIsHydrated("form-hidrated");
 	}, []);
 
+	// handle toast message visibility
 	useEffect(() => {
 		if (succesMessage !== null) {
 			setShowToast(true);
@@ -72,7 +76,7 @@ export default function ContactForm() {
 		<>
 			<form
 				noValidate
-				data-hydrated={isHydrated}
+				data-testid={isHydrated}
 				onSubmit={(e) => {
 					e.preventDefault();
 					handleSubmit();
@@ -84,6 +88,7 @@ export default function ContactForm() {
 
 						return (
 							<FormInput
+								variant="subscribe"
 								type="email"
 								label="Newsletter Email"
 								fieldName={field.name}
@@ -112,20 +117,19 @@ export default function ContactForm() {
 
 				<Subscribe selector={(state) => [state.isSubmitting]}>
 					{([isSubmitting]) => (
-						<button
+						<ButtonClient
+							variant="primary"
 							type="submit"
-							disabled={isSubmitting}
-							className="contact-form__submit-button">
-							<span
-								className="contact-form__loader-icon"
-								aria-hidden="true"></span>
+							disabled={isSubmitting}>
+							<Loader className="contact-form__loader-icon" />
 							<span>{isSubmitting ? "Submitting..." : "Contact Us"}</span>
-						</button>
+						</ButtonClient>
 					)}
 				</Subscribe>
 			</form>
 
 			<ToastMessage
+				header="Subscribe Succesfully"
 				message={succesMessage}
 				aria-hidden={showToast ? "false" : "true"}
 			/>

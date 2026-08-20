@@ -1,0 +1,65 @@
+.login__dialog {
+	inline-size: 100%;
+	max-inline-size: 28rem;
+	padding-inline: 2rem;
+	padding-block: 3rem;
+	border: none;
+	border-radius: 1rem;
+	corner-shape: squircle;
+
+	&::backdrop {
+		background-color: var(--backdrop);
+		backdrop-filter: blur(15px);
+	}
+}
+
+.login__close-button {
+	position: absolute;
+	inset-block-start: 1rem;
+	inset-inline-end: 1rem;
+}
+
+.login__title {
+	margin-block-end: 3rem;
+	text-align: center;
+}
+
+.login-form {
+	display: grid;
+	gap: 1.25rem;
+}
+
+.login__server-error {
+	color: var(--primary-red-400);
+}
+
+.login-form:has(button:disabled) {
+	/* show loader spinner when button disabled */
+	.login-form__loader-icon {
+		display: inline;
+	}
+}
+
+.login__signup-text {
+	margin-block-start: 1rem;
+}
+
+.login__signup-link {
+	background:
+		linear-gradient(currentColor 0 0) var(--p, 0) 100% / var(--d, 0) 3px
+		no-repeat;
+	color: var(--primary-blue-600);
+	padding-block-end: 0.2em;
+	text-decoration: none;
+
+	transition:
+		0.3s,
+		background-position 0s 0.3s;
+
+	&:hover {
+		@media (hover: hover) {
+			--d: 100%;
+			--p: 100%;
+		}
+	}
+}

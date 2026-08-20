@@ -6,6 +6,11 @@ import Header from "@components/header/Header.astro";
 
 import "@styles/base.css";
 import "@layouts/Layout.css";
+
+type Props = {
+	title: string;
+};
+const { title } = Astro.props;
 ---
 
 <!doctype html>
@@ -17,13 +22,13 @@ import "@layouts/Layout.css";
 		<meta name="theme-color" content="#212529">
 
 		<!-- SEO Meta Tags -->
-		<title>Bookmark Landing Page| Force Close</title>
+		<title>{title}</title>
 		<meta name="author" content="Force Close">
 		<meta name="description" content="">
 		<meta name="keywords" content="Force Close, ">
 
 		<!-- OG Tags -->
-		<meta property="og:title" content=" | Force Close">
+		<meta property="og:title" content={title}>
 		<meta property="og:description" content="">
 		<meta property="og:image" content="">
 		<!-- isi image -->
@@ -31,15 +36,6 @@ import "@layouts/Layout.css";
 		<!-- isi live site url -->
 		<meta property="og:type" content="website">
 		<meta property="og:site_name" content="Force Close Portfolio">
-
-		<!-- Twitter Card Tags -->
-		<meta name="twitter:card" content="summary_large_image">
-		<meta name="twitter:title" content=" | Force Close">
-		<meta name="twitter:description" content="">
-		<meta name="twitter:image" content="">
-		<!-- isi image -->
-		<meta name="twitter:url" content="">
-		<!-- isi live site url -->
 
 		<!-- font -->
 		<Font cssVariable="--font-rubik" />

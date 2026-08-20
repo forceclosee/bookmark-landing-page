@@ -2,6 +2,14 @@ html {
 	container: root-scroll / scroll-state;
 }
 
+body:has(dialog[open], .header__hamburger-menu[aria-expanded="true"]) {
+	overflow: hidden;
+
+	@supports (overflow: clip) {
+		overflow: clip;
+	}
+}
+
 .page-wrapper {
 	position: relative;
 	display: grid;
