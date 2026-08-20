@@ -91,8 +91,8 @@ export default function Signup() {
 				); /* set success message */
 				formApi.reset();
 				setTimeout(() => {
-					window.location.href = "/";
-				}, 1500); /* redirect to homepage */
+					window.location.replace("/"); /* redirect to homepage */
+				}, 2000);
 			}
 		},
 		onSubmitInvalid() {

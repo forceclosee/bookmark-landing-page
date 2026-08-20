@@ -98,8 +98,14 @@ export default function Login() {
 				); /* set success message */
 				formApi.reset();
 				setTimeout(() => {
-					window.location.href = "/";
-				}, 1500); /* redirect to homepage */
+					dialogRef.current?.close(); /* close modal */
+
+					/* redirect to homepage if user at signup page */
+					const currentPath = window.location.pathname.replace(/\/$/, "");
+					if (currentPath === "/signup") {
+						window.location.replace("/");
+					}
+				}, 2000);
 			}
 		},
 		onSubmitInvalid() {
@@ -128,7 +134,8 @@ export default function Login() {
 				variant="icon"
 				className="login__close-button"
 				title="Close modal"
-				onClick={() => dialogRef.current?.close()}>
+				commandfor="login-modal"
+				command="close">
 				<svg
 					aria-hidden="true"
 					xmlns="http://www.w3.org/2000/svg"
