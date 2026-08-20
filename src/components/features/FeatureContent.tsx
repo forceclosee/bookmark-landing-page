@@ -8,7 +8,7 @@ type Props = {
 	ariaLabelledby: string;
 	image: string;
 	title: string;
-	text: string;
+	href: string;
 };
 
 export default function FeatureContent({
@@ -17,7 +17,7 @@ export default function FeatureContent({
 	ariaLabelledby,
 	image,
 	title,
-	text,
+	href,
 }: Props) {
 	return (
 		<section
@@ -35,8 +35,10 @@ export default function FeatureContent({
 			</div>
 			<div className="feature-content__details flow">
 				<h2 className="feature-content__title">{title}</h2>
-				<p className="feature-content__text">{text}</p>
-				{children}
+				<p className="feature-content__text">{children}</p>
+				<a href={href} className="feature-content__button-link">
+					More Info
+				</a>
 			</div>
 		</section>
 	);

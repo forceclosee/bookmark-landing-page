@@ -22,7 +22,7 @@ import "@components/extension/Extension.css";
 				<h3 class="card__title">{card.title}</h3>
 				<p class="card__min-version">{card.minVersion}</p>
 				<BgDots class="card__bg-pattern" aria-hidden="true" />
-				<ButtonLink href="#" variant="extension" class="card__link">Add & Install Extension</ButtonLink>
+				<ButtonLink href={card.href} variant="extension" class="card__link">Add & Install Extension</ButtonLink>
 			</div>
 		))}
 	</div>

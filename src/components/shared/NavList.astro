@@ -1,7 +1,20 @@
 ---
 import "@components/shared/NavList.css";
 
-const navLists = ["Features", "Pricing", "Contact"];
+const navLists = [
+	{
+		href: "/features",
+		label: "Features",
+	},
+	{
+		href: "/pricing",
+		label: "Pricing",
+	},
+	{
+		href: "/contact",
+		label: "Contact",
+	},
+];
 
 type Props = {
 	variant: "light" | "dark" | "mobile";
@@ -16,14 +29,14 @@ const { variant } = Astro.props;
   {"nav-list--mobile": variant === "mobile"}
   ]}>
   <a
-    href="/"
+    href={list.href}
     class:list={[
     "nav-list__link",
     {"nav-list__link--light": variant === "light"},
     {"nav-list__link--dark": variant === "dark"},
     {"nav-list__link--mobile": variant === "mobile"}
     ]}>
-    {list}
+    {list.label}
   </a>
 </li>
 )}

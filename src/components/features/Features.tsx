@@ -35,8 +35,8 @@ export default function Features({ children }: Props) {
 				ariaLabelledby={features[selectedTab].ariaLabelledby}
 				image={features[selectedTab].image.src}
 				title={features[selectedTab].title}
-				text={features[selectedTab].content}>
-				{children}
+				href={features[selectedTab].href}>
+				{features[selectedTab].content}
 			</FeatureContent>
 		</section>
 	);
