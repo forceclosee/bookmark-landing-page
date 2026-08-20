@@ -66,6 +66,7 @@
 
 	/* z-index */
 	--z-base: 0;
+	--z-sticky: 50;
 	--z-toast: 100;
 	--z-popup: 200;
 	--z-overlay: 300;
