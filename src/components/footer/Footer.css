@@ -39,19 +39,19 @@
 }
 
 .attribution {
-	display: grid;
-	justify-items: center;
 	block-size: 100%;
 	border-block-start: solid 2px var(--border-inverse);
+	padding-block: 0.5rem;
 }
 
 .attribution__text {
 	color: var(--neutral-grey-50);
 	padding: 0.5rem;
 	font-size: var(--fs-3xs);
+	text-align: center;
 }
 
 .attribution__link {
-	text-decoration: none;
+	padding-block-end: 0.2em;
 	color: var(--primary-red-400);
 }

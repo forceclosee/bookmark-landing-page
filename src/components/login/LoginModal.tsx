@@ -237,7 +237,7 @@ export default function Login() {
 
 			<p className="login__signup-text">
 				don't have an account?{" "}
-				<a href="/signup" className="login__signup-link">
+				<a href="/signup" className="hover-underline login__signup-link">
 					Sign up
 				</a>
 			</p>
