@@ -1,19 +1,22 @@
 .social-media-icon {
 	display: flex;
-	gap: 2rem;
-	cursor: pointer;
+	align-items: center;
+	gap: 1.5rem;
 }
 
-.social-media-icon svg {
-	inline-size: 1.5rem;
-	block-size: auto;
+.social-media-icon__icon {
+	inline-size: auto;
+	block-size: 1.5rem;
 	color: var(--neutral-grey-50);
 	transition: all 0.2s ease;
 
 	&:hover {
 		@media (hover: hover) {
 			color: var(--primary-red-400);
-			scale: 0.95;
 		}
 	}
+}
+
+.social-media-icon__facebook-logo {
+	block-size: 1.7rem;
 }

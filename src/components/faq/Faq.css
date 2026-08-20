@@ -59,11 +59,9 @@ details[open]::details-content {
 		display: none;
 	}
 }
+
 .faq__summary-icon {
 	flex-shrink: 0;
-}
-
-.faq__summary-icon svg {
 	inline-size: 1em;
 	block-size: auto;
 	color: var(--primary-blue-600);

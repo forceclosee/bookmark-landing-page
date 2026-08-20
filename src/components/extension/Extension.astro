@@ -1,6 +1,6 @@
 ---
 import ButtonLink from "@components/shared/ButtonLink.astro";
-import bgDots from "@img/bg-dots.svg";
+import BgDots from "@img/bg-dots.svg";
 
 import { extension } from "@data/data-extension";
 
@@ -18,10 +18,10 @@ import "@components/extension/Extension.css";
 	<div class="extension__card-wrapper">
 		{extension.map((card) => (
 			<div class="card">
-				<img src={card.image.src} alt="" class="card__image" loading="lazy" />
+				<card.image class="card__image" aria-hidden="true"/>
 				<h3 class="card__title">{card.title}</h3>
 				<p class="card__min-version">{card.minVersion}</p>
-				<img src={bgDots.src} alt="" class="card__bg-pattern" loading="lazy" />
+				<BgDots class="card__bg-pattern" aria-hidden="true" />
 				<ButtonLink href="#" variant="extension" class="card__link">Add & Install Extension</ButtonLink>
 			</div>
 		))}

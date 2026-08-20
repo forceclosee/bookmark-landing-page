@@ -2,7 +2,7 @@
 import BgShape from "@components/shared/BgShape.astro";
 import ButtonLink from "@components/shared/ButtonLink.astro";
 
-import heroImage from "@img/illustration-hero.svg";
+import HeroImage from "@img/illustration-hero.svg";
 
 import "@components/hero/Hero.css";
 ---
@@ -10,7 +10,7 @@ import "@components/hero/Hero.css";
 <section class="hero">
 	<div class="hero__image-wrapper">
 		<BgShape />
-		<img aria-hidden="true" class="hero__image" src={heroImage.src} alt="">
+		<HeroImage class="hero__image" aria-hidden="true" />
 	</div>
 	<div class="hero__details-wrapper flow">
 		<h1 class="hero__title">A Simple Bookmark Manager</h1>
