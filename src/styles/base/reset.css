@@ -118,3 +118,8 @@ select,
 ::picker(select) {
 	appearance: base-select;
 }
+
+/* remove default underline from anchor element */
+a {
+	text-decoration: none;
+}
