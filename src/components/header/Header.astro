@@ -8,9 +8,15 @@ import LoginModal from "@components/login/LoginModal";
 import BookmarkLogo from "@img/logo-bookmark.svg";
 
 import "@components/header/Header.css";
+import { auth } from "@lib/auth";
+
+// check user session
+const session = await auth.api.getSession({
+	headers: Astro.request.headers,
+});
 ---
 
-<header id="header" class="header">
+<header id="header" class="header" transition:animate="none">
 	<div class="header__wrapper">
 		<a href="/" class="header__bookmark-link" aria-label="Home page">
 			<BookmarkLogo class="header__bookmark-logo" aria-hidden="true" />
@@ -19,7 +25,7 @@ import "@components/header/Header.css";
 			<ul class="header__lists">
 				<NavList variant="dark" />
 			</ul>
-			<LoginButton client:load />
+			<LoginButton client:load session={session} />
 		</nav>
 		<Button
 			variant="hamburger"
@@ -42,39 +48,41 @@ import "@components/header/Header.css";
 	<ul class="mobile-menu__lists">
 		<NavList variant="mobile" />
 	</ul>
-	<LoginButton client:load isMobile />
+	<LoginButton client:load session={session} isMobile />
 	<SocialMediaIcon class="mobile-menu__social-media-icon" />
 </nav>
 
 <script>
-const hamburgerMenu = document.querySelector("#hamburger-menu");
-const main = document.querySelector("#main");
-const footer = document.querySelector("#footer");
+document.addEventListener("astro:page-load", () => {
+	const hamburgerMenu = document.querySelector("#hamburger-menu");
+	const main = document.querySelector("#main");
+	const footer = document.querySelector("#footer");
 
-const tabletScreen = window.matchMedia("(width >= 44rem)");
+	const tabletScreen = window.matchMedia("(width >= 44rem)");
 
-if (hamburgerMenu && main && footer) {
-	hamburgerMenu.addEventListener("click", () => {
-		const expanded = hamburgerMenu.getAttribute("aria-expanded") === "true";
-		const isOpening = !expanded;
+	if (hamburgerMenu && main && footer) {
+		hamburgerMenu.addEventListener("click", () => {
+			const expanded = hamburgerMenu.getAttribute("aria-expanded") === "true";
+			const isOpening = !expanded;
 
-		hamburgerMenu.setAttribute("aria-expanded", String(isOpening));
-		hamburgerMenu.setAttribute(
-			"aria-label",
-			isOpening ? "Close menu" : "Open menu",
-		);
-		main.toggleAttribute("inert", isOpening);
-		footer.toggleAttribute("inert", isOpening);
-	});
+			hamburgerMenu.setAttribute("aria-expanded", String(isOpening));
+			hamburgerMenu.setAttribute(
+				"aria-label",
+				isOpening ? "Close menu" : "Open menu",
+			);
+			main.toggleAttribute("inert", isOpening);
+			footer.toggleAttribute("inert", isOpening);
+		});
 
-	// Cleanup on tablet screen resize
-	tabletScreen.addEventListener("change", (e) => {
-		if (e.matches && hamburgerMenu.getAttribute("aria-expanded") === "true") {
-			hamburgerMenu.setAttribute("aria-expanded", "false");
-			hamburgerMenu.setAttribute("aria-label", "Open menu");
-			main.removeAttribute("inert");
-			footer.removeAttribute("inert");
-		}
-	});
-}
+		// Cleanup on tablet screen resize
+		tabletScreen.addEventListener("change", (e) => {
+			if (e.matches && hamburgerMenu.getAttribute("aria-expanded") === "true") {
+				hamburgerMenu.setAttribute("aria-expanded", "false");
+				hamburgerMenu.setAttribute("aria-label", "Open menu");
+				main.removeAttribute("inert");
+				footer.removeAttribute("inert");
+			}
+		});
+	}
+});
 </script>
