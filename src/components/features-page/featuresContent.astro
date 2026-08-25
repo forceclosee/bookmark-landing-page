@@ -1,0 +1,16 @@
+---
+import { featuresPage } from "@data/data-features";
+
+import "@components/features-page/featuresContent.css";
+---
+
+<div class="features-content__wrapper">
+	{featuresPage.map((data)=>
+    <article class="features-content__article flow">
+      <h2 id={data.id} class="feature-content__title">{data.title}</h2>
+      <data.image class="features-content__image"/>
+      <p>{data.content.paragraph1}</p>
+      <p>{data.content.paragraph2}</p>
+    </article>
+  )}
+</div>

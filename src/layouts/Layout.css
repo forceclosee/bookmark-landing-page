@@ -16,8 +16,4 @@ body:has(dialog[open], .header__hamburger-menu[aria-expanded="true"]) {
 	grid-template-rows: auto 1fr auto;
 	min-block-size: 100svh;
 	background-color: var(--neutral-grey-50);
-
-	@media (width >= 44rem) {
-		padding-block-start: 2rem;
-	}
 }

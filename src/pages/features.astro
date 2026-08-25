@@ -1,0 +1,32 @@
+---
+export const prerender = false;
+
+// import { auth } from "@lib/auth";
+
+import Layout from "@layouts/Layout.astro";
+import Features from "@components/features-page/featuresContent.astro";
+import FeaturesTableOfContent from "@components/features-page/featuresTableOfContent.astro";
+
+import "@styles/pages/features.css";
+
+// check user session
+// const session = await auth.api.getSession({
+// 	headers: Astro.request.headers,
+// });
+
+// if (session) {
+// 	return Astro.redirect("/");
+// }
+---
+
+<Layout title="Features - Bookmark Landing Page | Force Close">
+	<main id="main">
+		<div class="features-page__wrapper">
+			<div class="features-page__features-group">
+				<h1 class="features-page__title">Features</h1>
+				<Features />
+			</div>
+			<FeaturesTableOfContent />
+		</div>
+	</main>
+</Layout>

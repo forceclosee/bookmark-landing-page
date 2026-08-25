@@ -27,11 +27,11 @@ export default function Features() {
 				setSelectedTab={setSelectedTab}
 			/>
 			<FeatureContent
-				id={features[selectedTab].id}
-				ariaLabelledby={features[selectedTab].ariaLabelledby}
+				id={`panel-${features[selectedTab].id}`}
+				ariaLabelledby={`tab-${features[selectedTab].id}`}
 				image={features[selectedTab].image.src}
 				title={features[selectedTab].title}
-				href={features[selectedTab].href}>
+				href={`/features#${features[selectedTab].id}`}>
 				{features[selectedTab].content}
 			</FeatureContent>
 		</section>

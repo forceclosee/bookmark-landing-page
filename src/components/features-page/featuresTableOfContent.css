@@ -1,0 +1,37 @@
+.features-toc__wrapper {
+	scroll-target-group: auto;
+
+	position: sticky;
+	display: none;
+	inset-block-start: 7rem;
+	max-block-size: max-content;
+	padding-inline-start: 1rem;
+
+	@media (width >= 64rem) {
+		display: block;
+	}
+}
+
+.features-toc__list {
+	display: block;
+	margin-inline-start: 2rem;
+	list-style: none;
+}
+
+.features-toc__link {
+	display: block;
+	padding-block: 0.2rem;
+	color: var(--text-muted);
+
+	transition: all 0.2s ease;
+
+	&:target-current {
+		color: var(--primary-blue-600);
+	}
+
+	&:hover {
+		@media (hover: hover) {
+			color: var(--text);
+		}
+	}
+}

@@ -1,0 +1,16 @@
+---
+import { featuresPage } from "@data/data-features";
+
+import "@components/features-page/featuresTableOfContent.css";
+---
+
+<div class="features-toc__wrapper flow">
+	<h2>On this page</h2>
+	<ul class="features-toc__list">
+		{featuresPage.map((data)=>
+      <li class="features-toc__list-item">
+        <a href={`#${data.id}`} class="features-toc__link">{data.title}</a>
+      </li>
+    )}
+	</ul>
+</div>

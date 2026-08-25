@@ -1,0 +1,29 @@
+.features-page__wrapper {
+	display: grid;
+	justify-content: center;
+	max-inline-size: 76.5rem;
+	margin-inline: auto;
+	padding-inline: 1.5rem;
+	padding-block-start: 2.5rem;
+
+	@media (width >= 64rem) {
+		grid-template-columns: 1fr auto;
+	}
+}
+
+.features-page__features-group {
+	max-inline-size: 45rem;
+	padding-block-end: 2.5rem;
+
+	@media (width >= 64rem) {
+		justify-self: end;
+
+		padding-inline-end: 2rem;
+		border-inline-end: solid 1px var(--border-muted);
+	}
+}
+
+.features-page__title {
+	text-align: center;
+	margin-block-end: 1em;
+}
