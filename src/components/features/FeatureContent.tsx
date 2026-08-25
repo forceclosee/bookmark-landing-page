@@ -36,7 +36,7 @@ export default function FeatureContent({
 			<div className="feature-content__details flow">
 				<h2 className="feature-content__title">{title}</h2>
 				<p className="feature-content__text">{children}</p>
-				<a href={href} className="feature-content__button-link">
+				<a href={href} className="button-link button-link--primary">
 					More Info
 				</a>
 			</div>

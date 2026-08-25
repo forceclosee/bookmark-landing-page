@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from "react";
+import { useState } from "react";
 
 import FeatureContent from "@components/features/FeatureContent";
 import FeatureTabButton from "@components/features/FeatureTabButton";
@@ -7,11 +7,7 @@ import { features } from "@data/data-features";
 
 import "@components/features/Features.css";
 
-type Props = {
-	children: ReactNode;
-};
-
-export default function Features({ children }: Props) {
+export default function Features() {
 	const [selectedTab, setSelectedTab] = useState<keyof typeof features>(
 		Object.keys(features)[0] as keyof typeof features,
 	);
