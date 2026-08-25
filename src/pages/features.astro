@@ -1,32 +1,34 @@
 ---
 export const prerender = false;
 
-// import { auth } from "@lib/auth";
+import { auth } from "@lib/auth";
 
 import Layout from "@layouts/Layout.astro";
-import Features from "@components/features-page/featuresContent.astro";
-import FeaturesTableOfContent from "@components/features-page/featuresTableOfContent.astro";
+
+import FeaturesContent from "@components/features-page/FeaturesContent.astro";
+import FeaturesTableOfContent from "@components/features-page/FeaturesToc.astro";
+import Forbidden from "@components/features-page/Forbidden.astro";
 
 import "@styles/pages/features.css";
 
 // check user session
-// const session = await auth.api.getSession({
-// 	headers: Astro.request.headers,
-// });
-
-// if (session) {
-// 	return Astro.redirect("/");
-// }
+const session = await auth.api.getSession({
+	headers: Astro.request.headers,
+});
 ---
 
 <Layout title="Features - Bookmark Landing Page | Force Close">
 	<main id="main">
-		<div class="features-page__wrapper">
-			<div class="features-page__features-group">
-				<h1 class="features-page__title">Features</h1>
-				<Features />
-			</div>
-			<FeaturesTableOfContent />
-		</div>
+		{null /* show forbidden if user don't have session */}
+		{!session 
+    ? <Forbidden />
+
+    : <div class="features-page__wrapper">
+			  <div class="features-page__features-group">
+			  	<h1 class="features-page__title">Features</h1>
+			  	<FeaturesContent />
+			  </div>
+			  <FeaturesTableOfContent />
+		  </div>}
 	</main>
 </Layout>

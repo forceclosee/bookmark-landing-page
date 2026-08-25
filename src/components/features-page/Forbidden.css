@@ -1,0 +1,32 @@
+.forbidden__wrapper {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	inline-size: 100%;
+	max-inline-size: 33rem;
+	min-block-size: 100%;
+	margin-inline: auto;
+	padding: 2rem;
+	border-radius: 1rem;
+	corner-shape: squircle;
+	text-align: center;
+}
+
+.forbidden__header {
+	color: var(--text);
+	font-size: var(--fs-2xl);
+	font-weight: 500;
+}
+
+.forbidden__title {
+	margin-block-start: 2rem;
+}
+
+.forbidden__text {
+	margin-block-start: 3rem;
+}
+
+.forbidden__link {
+	margin-block-start: 2rem;
+}

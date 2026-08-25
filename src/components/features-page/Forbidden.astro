@@ -1,0 +1,12 @@
+---
+import ButtonLink from "@components/shared/ButtonLink.astro";
+
+import "@components/features-page/Forbidden.css";
+---
+
+<div class="forbidden__wrapper">
+	<header class="forbidden__header">403</header>
+	<h1 class="forbidden__title">Access Denied</h1>
+	<p class="forbidden__text">To access this page you need to Login</p>
+	<ButtonLink href="?login=true" class="forbidden__link">Login</ButtonLink>
+</div>
