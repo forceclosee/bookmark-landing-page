@@ -10,29 +10,10 @@ import Loader from "@components/shared/Loader";
 import ToastMessage from "@components/shared/ToastMessage";
 
 import "@components/login/LoginModal.css";
+import { navigate } from "astro:transitions/client";
 
 export default function Login() {
-	// check user session
-	const { data: session, isPending } = authClient.useSession();
-
 	const dialogRef = useRef<HTMLDialogElement>(null);
-
-	// URL PARAMS
-	useEffect(() => {
-		if (isPending) return;
-
-		const params = new URLSearchParams(window.location.search);
-		const isLoginParam = params.get("login") === "true";
-
-		// Open modal if url has login=true params, and remove the url params
-		if (isLoginParam) {
-			dialogRef.current?.showModal();
-
-			const url = new URL(window.location.href);
-			url.searchParams.delete("login");
-			window.history.replaceState({}, "", url.pathname + url.search);
-		}
-	}, [isPending]);
 
 	// error message from server
 	const [serverErrorMessage, setServerErrorMessage] = useState<string | null>(
@@ -102,9 +83,10 @@ export default function Login() {
 
 					/* redirect to homepage if user at signup page */
 					const currentPath = window.location.pathname.replace(/\/$/, "");
-					if (currentPath === "/signup") {
-						window.location.replace("/");
-					}
+					const destination =
+						currentPath === "/signup" ? "/" : window.location.pathname;
+
+					navigate(destination, { history: "replace" });
 				}, 2000);
 			}
 		},
@@ -117,12 +99,6 @@ export default function Login() {
 		},
 	});
 
-	// return nothing and auto rediret to homepage if the user already have session
-	if ((session || isPending) && !successMessage) {
-		return null;
-	}
-
-	// if user didn't have session return login modal
 	return (
 		<dialog
 			ref={dialogRef}
@@ -135,7 +111,8 @@ export default function Login() {
 				className="login__close-button"
 				title="Close modal"
 				commandfor="login-modal"
-				command="close">
+				command="close"
+				aria-label="Close modal">
 				<svg
 					aria-hidden="true"
 					xmlns="http://www.w3.org/2000/svg"

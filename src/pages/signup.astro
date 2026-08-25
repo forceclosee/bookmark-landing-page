@@ -1,6 +1,4 @@
 ---
-export const prerender = false;
-
 import { auth } from "@lib/auth";
 
 import Layout from "@layouts/Layout.astro";
@@ -28,9 +26,14 @@ if (session) {
 			<p class="signup-page__text">
 				Already have an account?{' '}
 				{null /* Link to homepage and open login modal */}
-				<a class="hover-underline signup-page__login-link" href="/?login=true"
-					>Login</a
-				>
+				<button
+					type="button"
+					class="hover-underline signup-page__login-button"
+					commandfor="login-modal"
+					command="show-modal"
+					aria-haspopup="dialog">
+					Login
+				</button>
 			</p>
 		</div>
 	</main>
