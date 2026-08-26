@@ -36,6 +36,7 @@ This is a solution to the [Bookmark landing page challenge on Frontend Mentor](h
 - **Credential-Based Sign Up**: A dedicated Signup page to register new user accounts securely using Better Auth.
 - **Modal-Based Login**: An inline login dialog modal that opens from the header on any page for a smooth user sign-in experience.
 - **Reactive Session Control**: Instantly toggles the header button state between Login and Log Out when user session changes, leveraging React 19 `useTransition` to display active loading states during authentication actions.
+- **Server-Side Protected Routes**: The `/features` page is securely protected using Astro SSR and Better Auth, serving an accessible 403 Forbidden view with an instant login trigger for unauthorized visitors, while rendering protected content and table of contents once authenticated.
 
 #### Newsletter Subscription
 
@@ -265,14 +266,12 @@ In this project, I learned how to configure clean import path mappings in Astro,
 
 - **Server-Side Route Protection (Astro SSR + Better Auth)**
 
-  I learned how to secure dynamic routes in Astro by opting out of static prerendering (`export const prerender = false`) for Signup page. By checking the user's session status server-side using the Better Auth backend API, we can securely redirect logged-in users back to the homepage (`Astro.redirect("/")`).
+  I learned how to secure dynamic routes in Astro. By checking the user's session status server-side using the Better Auth backend API, we can securely redirect logged-in users back to the homepage (`Astro.redirect("/")`).
 
   ```ts
   // signup.astro
 
   ---
-  export const prerender = false;
-
   import { auth } from "@lib/auth";
 
   const session = await auth.api.getSession({
