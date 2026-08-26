@@ -28,6 +28,7 @@ export default function Features() {
 			/>
 			<FeatureContent
 				id={`panel-${features[selectedTab].id}`}
+				rawId={features[selectedTab].id}
 				ariaLabelledby={`tab-${features[selectedTab].id}`}
 				image={features[selectedTab].image.src}
 				title={features[selectedTab].title}

@@ -1,11 +1,13 @@
 .features-toc__wrapper {
-	scroll-target-group: auto;
-
 	position: sticky;
 	display: none;
 	inset-block-start: 7rem;
 	max-block-size: max-content;
 	padding-inline-start: 1rem;
+
+	@supports (scroll-target-group: auto) {
+		scroll-target-group: auto;
+	}
 
 	@media (width >= 64rem) {
 		display: block;
@@ -25,8 +27,10 @@
 
 	transition: all 0.2s ease;
 
-	&:target-current {
-		color: var(--primary-blue-600);
+	@supports (scroll-target-group: auto) {
+		&:target-current {
+			color: var(--primary-blue-600);
+		}
 	}
 
 	&:hover {

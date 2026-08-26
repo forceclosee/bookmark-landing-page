@@ -5,6 +5,7 @@ import "@components/features/FeatureContent.css";
 type Props = {
 	children: ReactNode;
 	id: string;
+	rawId: string;
 	ariaLabelledby: string;
 	image: string;
 	title: string;
@@ -14,6 +15,7 @@ type Props = {
 export default function FeatureContent({
 	children,
 	id,
+	rawId,
 	ariaLabelledby,
 	image,
 	title,
@@ -31,11 +33,20 @@ export default function FeatureContent({
 					alt=""
 					className="feature-content__image"
 					loading="lazy"
+					style={{ viewTransitionName: `${rawId}-image` }}
 				/>
 			</div>
 			<div className="feature-content__details flow">
-				<h2 className="feature-content__title">{title}</h2>
-				<p className="feature-content__text">{children}</p>
+				<h2
+					className="feature-content__title"
+					style={{ viewTransitionName: `${rawId}-title` }}>
+					{title}
+				</h2>
+				<p
+					className="feature-content__text"
+					style={{ viewTransitionName: `${rawId}-text` }}>
+					{children}
+				</p>
 				<a href={href} className="button-link button-link--primary">
 					More Info
 				</a>

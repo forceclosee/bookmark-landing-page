@@ -7,10 +7,12 @@ import "@components/features-page/FeaturesContent.css";
 <div class="features-content__wrapper">
 	{featuresPage.map((data)=>
     <article class="features-content__article flow">
-      <h2 id={data.id} class="feature-content__title">{data.title}</h2>
-      <data.image class="features-content__image"/>
-      <p>{data.content.paragraph1}</p>
-      <p>{data.content.paragraph2}</p>
+      <h2 transition:name={`${data.id}-title`} id={data.id} class="feature-content__title">{data.title}</h2>
+      <data.image transition:name={`${data.id}-image`} class="features-content__image" aria-hidden="true" />
+      <div transition:name={`${data.id}-text`} class="flow">
+        <p>{data.content.paragraph1}</p>
+        <p>{data.content.paragraph2}</p>
+      </div>
     </article>
   )}
 </div>
