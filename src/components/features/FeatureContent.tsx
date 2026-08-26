@@ -9,6 +9,7 @@ type Props = {
 	ariaLabelledby: string;
 	image: string;
 	title: string;
+	text: string;
 	href: string;
 };
 
@@ -19,6 +20,7 @@ export default function FeatureContent({
 	ariaLabelledby,
 	image,
 	title,
+	text,
 	href,
 }: Props) {
 	return (
@@ -28,6 +30,7 @@ export default function FeatureContent({
 			className="feature-content"
 			aria-labelledby={ariaLabelledby}>
 			<div className="feature-content__image-wrapper">
+				{children}
 				<img
 					src={image}
 					alt=""
@@ -45,7 +48,7 @@ export default function FeatureContent({
 				<p
 					className="feature-content__text"
 					style={{ viewTransitionName: `${rawId}-text` }}>
-					{children}
+					{text}
 				</p>
 				<a href={href} className="button-link button-link--primary">
 					More Info

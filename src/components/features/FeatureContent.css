@@ -19,15 +19,17 @@
 	display: grid;
 	align-items: center;
 	max-inline-size: 27rem;
+	min-block-size: 100%;
 	padding-block-end: clamp(2.3rem, 0.451rem + 7.889vw, 5.5rem);
 	z-index: calc(var(--z-base) + 1);
 }
 
 .feature-content__details {
+	align-self: start;
 	text-align: center;
 
 	@media (width >= 64rem) {
-		padding-block-end: 5.5rem;
+		margin-block-start: 5rem;
 		text-align: start;
 	}
 }

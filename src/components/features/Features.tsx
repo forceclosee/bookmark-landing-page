@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 
 import FeatureContent from "@components/features/FeatureContent";
 import FeatureTabButton from "@components/features/FeatureTabButton";
@@ -7,7 +7,10 @@ import { features } from "@data/data-features";
 
 import "@components/features/Features.css";
 
-export default function Features() {
+type Props = {
+	children: ReactNode;
+};
+export default function Features({ children }: Props) {
 	const [selectedTab, setSelectedTab] = useState<keyof typeof features>(
 		Object.keys(features)[0] as keyof typeof features,
 	);
@@ -32,8 +35,9 @@ export default function Features() {
 				ariaLabelledby={`tab-${features[selectedTab].id}`}
 				image={features[selectedTab].image.src}
 				title={features[selectedTab].title}
-				href={`/features#${features[selectedTab].id}`}>
-				{features[selectedTab].content}
+				href={`/features#${features[selectedTab].id}`}
+				text={features[selectedTab].content}>
+				{children}
 			</FeatureContent>
 		</section>
 	);
