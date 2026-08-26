@@ -3,7 +3,7 @@ import { test, expect, type Page } from "@playwright/test";
 test.describe("Signup Flow", () => {
 	// valid data object for base template
 	const getValidData = () => ({
-		signupName: "E2e Example",
+		signupName: `${Date.now()}`,
 		signupEmail: `e2e-signup-${Date.now()}@example.com`,
 		signupPassword: "Password123!",
 		signupConfirmPassword: "Password123!",

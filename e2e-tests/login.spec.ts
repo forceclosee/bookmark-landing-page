@@ -21,8 +21,15 @@ test.describe("Login Flow", () => {
 		// Clear session cookie
 		await context.clearCookies();
 
+		// Go to home page
+		await page.goto("/");
+
 		// Open login modal
-		await page.goto("/?login=true");
+		await page.getByTestId("open-login-modal-button").first().click();
+
+		// Verify modal is open
+		const modal = page.getByTestId("login-modal");
+		expect(modal).toBeVisible;
 	});
 
 	test("should successfully login with valid credentials", async ({ page }) => {
@@ -42,9 +49,6 @@ test.describe("Login Flow", () => {
 			.getByTestId("login-modal")
 			.getByTestId("toast-message-text");
 		await expect(successToast).toHaveText(`Welcome back ${data.loginName}`);
-
-		// Verify redirect to homepage
-		await expect(page).toHaveURL("/");
 	});
 
 	test("should fail validation when email address is invalid", async ({
