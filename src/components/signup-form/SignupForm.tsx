@@ -1,3 +1,4 @@
+import { navigate } from "astro:transitions/client";
 import { useEffect, useState } from "react";
 import { useForm } from "@tanstack/react-form";
 
@@ -91,7 +92,7 @@ export default function Signup() {
 				); /* set success message */
 				formApi.reset();
 				setTimeout(() => {
-					window.location.replace("/"); /* redirect to homepage */
+					navigate("/"); /* redirect to homepage */
 				}, 2000);
 			}
 		},
