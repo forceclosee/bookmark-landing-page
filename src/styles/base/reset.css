@@ -111,6 +111,7 @@ h6 {
 	outline-offset: 3px;
 	outline-style: dotted;
 	outline-width: 3px;
+	outline-color: var(--primary-red-400);
 }
 
 /* opt in to custom select rendering */
