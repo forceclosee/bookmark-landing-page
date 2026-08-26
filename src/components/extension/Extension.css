@@ -3,7 +3,7 @@
 	justify-items: center;
 	gap: 3rem;
 	max-inline-size: 30rem;
-	margin-block-start: clamp(7.3rem, 6.6066rem + 2.9583vw, 8.5rem);
+	margin-block-start: clamp(3rem, 1.8443rem + 4.9306vw, 5rem);
 	padding: 2rem;
 
 	@media (width >= 64rem) {
