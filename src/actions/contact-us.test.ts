@@ -1,11 +1,12 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 
 import { contactUs } from "./contact-us";
+import type { contactUsSchema } from "@lib/schema/contactUsSchema";
 
 // 1. Mock astro:actions
 vi.mock("astro:actions", () => ({
 	defineAction: vi.fn((config) => {
-		const actionFn = (input: any) => {
+		const actionFn = (input: contactUsSchema) => {
 			if (config.input) {
 				config.input.parse(input);
 			}
@@ -81,9 +82,10 @@ describe("contactUs Action", () => {
 			});
 
 			expect.fail("Expected ActionError to be thrown");
-		} catch (error: any) {
-			expect(error.code).toBe("CONFLICT");
-			expect(error.message).toBe("You have already subscribed!");
+		} catch (error) {
+			const actionError = error as { code: string; message: string };
+			expect(actionError.code).toBe("CONFLICT");
+			expect(actionError.message).toBe("You have already subscribed!");
 		}
 
 		expect(mockInsertValues).not.toHaveBeenCalled();

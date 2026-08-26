@@ -25,11 +25,18 @@ test.describe("Login Flow", () => {
 		await page.goto("/");
 
 		// Open login modal
-		await page.getByTestId("open-login-modal-button").first().click();
+		const openLoginModalButton = page
+			.getByTestId("open-login-modal-button")
+			.first();
+		await openLoginModalButton.waitFor({ state: "visible" });
+		await openLoginModalButton.click();
+
+		// Wait for modal to be visible
+		const modal = page.getByTestId("login-modal");
+		await modal.waitFor({ state: "visible" });
 
 		// Verify modal is open
-		const modal = page.getByTestId("login-modal");
-		expect(modal).toBeVisible;
+		await expect(modal).toBeVisible;
 	});
 
 	test("should successfully login with valid credentials", async ({ page }) => {
