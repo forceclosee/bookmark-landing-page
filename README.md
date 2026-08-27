@@ -18,6 +18,11 @@ This is a solution to the [Bookmark landing page challenge on Frontend Mentor](h
 
 ## Overview
 
+### **Test account**
+
+email: `e@e.example`
+password: `aaaaa1W!`
+
 ### Features
 
 #### Core Features
@@ -48,17 +53,16 @@ This is a solution to the [Bookmark landing page challenge on Frontend Mentor](h
 - **Scroll-State Sticky Header**: The navigation header automatically hides when scrolling down and reappears when scrolling up, using experimental CSS Container Queries (`scroll-state(scrolled: ...)`).
 - **Dynamic Stuck Box-Shadow**: The header applies a subtle box-shadow only when it is stuck to the top of the page, using stuck state container queries (`scroll-state(stuck: block-start)`).
 - **CSS Anchor Positioning**: Fluid background shapes are anchored directly to illustrations using the CSS Anchor Positioning API (`position-anchor`), keeping layouts intact without overflow.
+- **Pure CSS ScrollSpy Table of Contents**: The table of contents on the Features page dynamically highlights the active section in view using experimental CSS `:target-current` and `scroll-target-group: auto`, completely replacing JavaScript `IntersectionObserver` scroll listeners.
 
 ### Screenshot
 
-<!-- isi screenshot -->
-
-![](./screenshot.jpg)
+![](./public/screenshot.png)
 
 ### Links
 
 - Solution URL: [solution URL](https://your-solution-url.com) <!-- ganti link -->
-- Live Site URL: [live site URL](https://your-live-site-url.com) <!-- ganti link -->
+- Live Site URL: [live site URL](https://bookmark-landing-page.forceclose.workers.dev/)
 
 ## My process
 
