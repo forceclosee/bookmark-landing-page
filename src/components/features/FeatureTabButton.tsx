@@ -61,7 +61,11 @@ export default function FeaturesTabButton({
 				onClick={() => handleClick("simpleBookmarking")}
 				tabIndex={selectedTab === "simpleBookmarking" ? 0 : -1}
 				aria-selected={selectedTab === "simpleBookmarking"}
-				aria-controls="simple-bookmarking">
+				aria-controls={
+					selectedTab === "simpleBookmarking"
+						? "panel-simple-bookmarking"
+						: undefined
+				}>
 				Simple Bookmarking
 			</button>
 			<button
@@ -72,7 +76,11 @@ export default function FeaturesTabButton({
 				onClick={() => handleClick("speedySearching")}
 				tabIndex={selectedTab === "speedySearching" ? 0 : -1}
 				aria-selected={selectedTab === "speedySearching"}
-				aria-controls="speedy-searching">
+				aria-controls={
+					selectedTab === "speedySearching"
+						? "panel-speedy-searching"
+						: undefined
+				}>
 				Speedy Searching
 			</button>
 			<button
@@ -83,7 +91,9 @@ export default function FeaturesTabButton({
 				onClick={() => handleClick("easySharing")}
 				tabIndex={selectedTab === "easySharing" ? 0 : -1}
 				aria-selected={selectedTab === "easySharing"}
-				aria-controls="easy-sharing">
+				aria-controls={
+					selectedTab === "easySharing" ? "panel-easy-sharing" : undefined
+				}>
 				Easy Sharing
 			</button>
 		</div>
