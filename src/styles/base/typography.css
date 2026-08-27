@@ -32,7 +32,7 @@ h2 {
 
 h3 {
 	color: var(--text);
-	font-size: 21px;
+	font-size: 1.3125rem;
 	font-weight: 500;
 	text-wrap: balance;
 }
@@ -47,5 +47,3 @@ p {
 		line-height: 1.55;
 	}
 }
-
-/* pindahkan line height ke variable dengan nama leading- */
