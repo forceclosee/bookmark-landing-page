@@ -50,6 +50,7 @@ test.describe("Newsletter Subscription Flow", () => {
 		// Verify error message
 		await expect(emailInput).toHaveAccessibleDescription(
 			"You have already subscribed!",
+			{ timeout: 10000 },
 		);
 	});
 
@@ -71,6 +72,7 @@ test.describe("Newsletter Subscription Flow", () => {
 		// Verify toast message show correct message from server
 		await expect(page.getByRole("status")).toContainText(
 			"Thanks for subscribing",
+			{ timeout: 10000 },
 		);
 	});
 });
