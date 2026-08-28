@@ -47,7 +47,6 @@ export default function LoginButton({ isMobile, session }: Props) {
 		<ButtonClient
 			type="button"
 			className="login-button"
-			data-testid="open-login-modal-button"
 			variant={isMobile ? "basic-secondary" : "basic-primary"}
 			commandfor={!session ? "login-modal" : undefined}
 			command={!session ? "show-modal" : undefined}

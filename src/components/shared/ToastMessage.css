@@ -2,8 +2,11 @@
 	position: fixed;
 	inset-block-start: 2.5rem;
 	inset-inline: 1.5rem;
+
 	display: none;
 	opacity: 0;
+	translate: 0 -100%;
+
 	column-gap: 0.5rem;
 	row-gap: 1rem;
 	align-items: center;
@@ -18,10 +21,9 @@
 	margin-inline: auto;
 	padding-inline: 1.5rem;
 	padding-block: 1rem;
-	translate: 0 -100%;
 	transition: all 0.4s allow-discrete;
 
-	&[aria-hidden="false"] {
+	&:not([hidden]) {
 		display: grid;
 		opacity: 1;
 		translate: 0 0;

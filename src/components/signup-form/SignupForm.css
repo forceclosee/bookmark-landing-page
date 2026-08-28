@@ -112,6 +112,10 @@
 	}
 }
 
+.signup__server-error {
+	color: var(--primary-red-400);
+}
+
 /* show loader spinner when button disabled */
 .signup-form:has(button:disabled) .signup-form__loader {
 	display: inline;

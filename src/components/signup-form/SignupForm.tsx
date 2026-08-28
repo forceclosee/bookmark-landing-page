@@ -123,7 +123,6 @@ export default function Signup() {
 								variant="auth"
 								type="text"
 								label="Name"
-								inputDataTestid="signup-name"
 								fieldName={field.name}
 								placeholder="Enter your name"
 								value={field.state.value}
@@ -149,7 +148,6 @@ export default function Signup() {
 								variant="auth"
 								type="email"
 								label="Email"
-								inputDataTestid="signup-email"
 								fieldName={field.name}
 								autoComplete="email"
 								placeholder="Enter your email address"
@@ -176,7 +174,6 @@ export default function Signup() {
 								variant="auth"
 								type={passwordInputType}
 								label="Password"
-								inputDataTestid="signup-password"
 								fieldName={field.name}
 								placeholder="Create a password"
 								haveRevealButton
@@ -184,9 +181,6 @@ export default function Signup() {
 									passwordInputType === "password"
 										? "Show password"
 										: "Hide Password"
-								}
-								revealButtonAriaPressed={
-									passwordInputType === "password" ? "false" : "true"
 								}
 								value={field.state.value}
 								handleClick={() => handleClick("password")}
@@ -252,7 +246,6 @@ export default function Signup() {
 								variant="auth"
 								type={confirmInputType}
 								label="Confirm Password"
-								inputDataTestid="signup-confirm-password"
 								fieldName={field.name}
 								placeholder="Enter your password again"
 								haveRevealButton
@@ -260,9 +253,6 @@ export default function Signup() {
 									confirmInputType === "password"
 										? "Show password"
 										: "Hide Password"
-								}
-								revealButtonAriaPressed={
-									confirmInputType === "password" ? "false" : "true"
 								}
 								value={field.state.value}
 								handleClick={() => handleClick("confirm")}
@@ -279,7 +269,11 @@ export default function Signup() {
 					}}
 				</Field>
 
-				{serverErrorMessage && <span>{serverErrorMessage}</span>}
+				{serverErrorMessage && (
+					<span role="alert" className="signup__server-error">
+						{serverErrorMessage}
+					</span>
+				)}
 
 				<Subscribe selector={(state) => [state.isSubmitting]}>
 					{([isSubmitting]) => (
@@ -297,7 +291,7 @@ export default function Signup() {
 			<ToastMessage
 				header="Signup succesfully"
 				message={successMessage}
-				aria-hidden={showToast ? "false" : "true"}
+				hidden={!showToast}
 			/>
 		</>
 	);

@@ -8,11 +8,9 @@ type Props = ComponentProps<"input"> & {
 	label: string;
 	errorMessage?: string;
 	fieldName: string;
-	inputDataTestid?: string;
 	variant: "subscribe" | "auth";
 	haveRevealButton?: boolean;
 	revealButtonAriaLabel?: "Show password" | "Hide Password";
-	revealButtonAriaPressed?: "true" | "false";
 	onFieldChange?: (value: string) => void;
 	handleClick?: () => void;
 };
@@ -21,11 +19,9 @@ export default function FormInput({
 	label,
 	errorMessage = "",
 	fieldName,
-	inputDataTestid,
 	variant,
 	haveRevealButton,
 	revealButtonAriaLabel,
-	revealButtonAriaPressed,
 	children,
 	onFieldChange,
 	handleClick,
@@ -43,7 +39,6 @@ export default function FormInput({
 	return (
 		<div
 			className="field"
-			data-testid="form-field"
 			data-have-reveal-button={haveRevealButton ? "true" : "false"}>
 			<label
 				htmlFor={fieldName}
@@ -60,7 +55,7 @@ export default function FormInput({
 					ref={inputRef}
 					id={fieldName}
 					name={fieldName}
-					data-testid={inputDataTestid}
+					aria-describedby={`error-${fieldName}`}
 					{...props}
 					className={[
 						"field__input",
@@ -76,9 +71,9 @@ export default function FormInput({
 				/>
 
 				<span
+					id={`error-${fieldName}`}
 					className="field__error-message"
-					aria-live="polite"
-					data-testid="input-error-message">
+					aria-live="polite">
 					{errorMessage}
 				</span>
 
@@ -108,7 +103,6 @@ export default function FormInput({
 						className="field__reveal-button"
 						onClick={handleClick}
 						aria-label={revealButtonAriaLabel}
-						aria-pressed={revealButtonAriaPressed}
 						variant="reveal">
 						<span className="field__reveal-icon-wrapper">
 							<svg
