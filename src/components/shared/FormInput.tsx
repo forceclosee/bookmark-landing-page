@@ -1,17 +1,19 @@
-import { useRef, useEffect, type ComponentProps } from "react";
+import type { ComponentProps } from "react";
 
 import ButtonClient from "@components/shared/ButtonClient";
 
 import "@components/shared/FormInput.css";
 
-type Props = ComponentProps<"input"> & {
+type Props = RequireAttributes<
+	ComponentProps<"input">,
+	"aria-invalid" | "placeholder"
+> & {
 	label: string;
 	errorMessage?: string;
 	fieldName: string;
 	variant: "subscribe" | "auth";
 	haveRevealButton?: boolean;
 	revealButtonAriaLabel?: "Show password" | "Hide Password";
-	onFieldChange?: (value: string) => void;
 	handleClick?: () => void;
 };
 
@@ -23,19 +25,9 @@ export default function FormInput({
 	haveRevealButton,
 	revealButtonAriaLabel,
 	children,
-	onFieldChange,
 	handleClick,
 	...props
 }: Props) {
-	const inputRef = useRef<HTMLInputElement>(null);
-
-	// synchronize error state to browser native constraint validation api
-	useEffect(() => {
-		if (inputRef.current) {
-			inputRef.current.setCustomValidity(errorMessage);
-		}
-	}, [errorMessage]);
-
 	return (
 		<div
 			className="field"
@@ -52,7 +44,6 @@ export default function FormInput({
 			</label>
 			<div className="field__input-group">
 				<input
-					ref={inputRef}
 					id={fieldName}
 					name={fieldName}
 					aria-describedby={`error-${fieldName}`}
@@ -63,11 +54,6 @@ export default function FormInput({
 					]
 						.filter(Boolean)
 						.join(" ")}
-					onChange={(e) => {
-						const newValue = e.target.value;
-
-						onFieldChange?.(newValue);
-					}}
 				/>
 
 				<span

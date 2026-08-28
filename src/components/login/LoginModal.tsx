@@ -133,20 +133,23 @@ export default function Login() {
 				}}>
 				<Field name="loginEmail">
 					{(field) => {
-						const { errors } = field.state.meta;
+						const { errors, isBlurred, isValid, isDirty } = field.state.meta;
 
 						return (
 							<FormInput
 								variant="auth"
 								type="email"
 								label="Email"
-								fieldName={field.name}
-								autoComplete="email"
 								placeholder="Enter your email address"
-								errorMessage={errors[0]?.message}
+								autoComplete="email"
 								value={field.state.value}
-								onFieldChange={(value) => {
-									field.handleChange(value);
+								fieldName={field.name}
+								errorMessage={errors[0]?.message}
+								aria-invalid={!!errors.length && isBlurred}
+								data-isvalid={isValid && isDirty}
+								onBlur={field.handleBlur}
+								onChange={(e) => {
+									field.handleChange(e.target.value);
 
 									// clear server error message and success message on change
 									setServerErrorMessage(null);
@@ -159,26 +162,29 @@ export default function Login() {
 
 				<Field name="loginPassword">
 					{(field) => {
-						const { errors } = field.state.meta;
+						const { errors, isBlurred, isValid, isDirty } = field.state.meta;
 
 						return (
 							<FormInput
 								variant="auth"
 								type={passwordInputType}
 								label="Password"
-								fieldName={field.name}
 								placeholder="Enter your password"
+								value={field.state.value}
+								fieldName={field.name}
 								errorMessage={errors[0]?.message}
+								aria-invalid={!!errors.length && isBlurred}
+								data-isvalid={isValid && isDirty}
+								onBlur={field.handleBlur}
 								haveRevealButton
 								revealButtonAriaLabel={
 									passwordInputType === "password"
 										? "Show password"
 										: "Hide Password"
 								}
-								value={field.state.value}
 								handleClick={handleClick}
-								onFieldChange={(value) => {
-									field.handleChange(value);
+								onChange={(e) => {
+									field.handleChange(e.target.value);
 
 									// clear server error message and success message on change
 									setServerErrorMessage(null);
