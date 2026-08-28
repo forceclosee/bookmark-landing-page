@@ -12,9 +12,6 @@ import Loader from "@components/shared/Loader";
 import "@components/contact-us/ContactForm.css";
 
 export default function ContactForm() {
-	// track hidration status for testing
-	const [isHydrated, setIsHydrated] = useState<string>("form-not-hidrated");
-
 	// error message from server
 	const [serverError, setServerError] = useState<string | null>(null);
 
@@ -23,11 +20,6 @@ export default function ContactForm() {
 
 	// toast message visibility
 	const [showToast, setShowToast] = useState<boolean>(false);
-
-	// set data attribute value for testing purpose
-	useEffect(() => {
-		setIsHydrated("form-hidrated");
-	}, []);
 
 	// handle toast message visibility
 	useEffect(() => {
@@ -76,7 +68,6 @@ export default function ContactForm() {
 		<>
 			<form
 				noValidate
-				data-testid={isHydrated}
 				onSubmit={(e) => {
 					e.preventDefault();
 					handleSubmit();
@@ -131,7 +122,7 @@ export default function ContactForm() {
 			<ToastMessage
 				header="Subscribe Succesfully"
 				message={succesMessage}
-				aria-hidden={showToast ? "false" : "true"}
+				hidden={!showToast}
 			/>
 		</>
 	);

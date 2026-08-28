@@ -6,26 +6,27 @@ test.describe("Newsletter Subscription Flow", () => {
 		await page.goto("/");
 
 		// Scroll to the form element
-		await page.getByTestId("contact-us").scrollIntoViewIfNeeded();
+		await page
+			.getByRole("heading", { name: "Stay up-to-date with what we’re doing" })
+			.scrollIntoViewIfNeeded();
 
-		// Wait for the component to be hydrated
-		await page.getByTestId("form-hidrated").waitFor();
+		// Wait for the form component to be hydrated
+		await expect(page.getByLabel("Newsletter Email")).toBeEditable;
 	});
 
 	test("should display validation error for invalid email format", async ({
 		page,
 	}) => {
-		const emailInput = page.getByLabel("Newsletter Email");
-		await emailInput.fill("invalid@email");
+		// Fill form
+		await page.getByLabel("Newsletter Email").fill("invalid@email");
 
 		// Click submit button
 		await page.getByRole("button", { name: "Contact Us" }).click();
 
 		// Verify error message
-		const errorMessage = page
-			.getByTestId("contact-us")
-			.getByTestId("input-error-message");
-		await expect(errorMessage).toHaveText("Whoops, make sure it's an email");
+		await expect(
+			page.getByLabel("Newsletter Email"),
+		).toHaveAccessibleDescription("Whoops, make sure it's an email");
 	});
 
 	test("should display validation error for duplicate email", async ({
@@ -47,10 +48,9 @@ test.describe("Newsletter Subscription Flow", () => {
 		await submitButton.click();
 
 		// Verify error message
-		const errorMessage = page
-			.getByTestId("contact-us")
-			.getByTestId("input-error-message");
-		await expect(errorMessage).toHaveText("You have already subscribed!");
+		await expect(emailInput).toHaveAccessibleDescription(
+			"You have already subscribed!",
+		);
 	});
 
 	test("should successfully subscribe with a new email address", async ({
@@ -59,17 +59,18 @@ test.describe("Newsletter Subscription Flow", () => {
 		const uniqueEmail = `e2e-${Date.now()}@example.com`;
 		const emailInput = page.getByLabel("Newsletter Email");
 
+		// Fill form
 		await emailInput.fill(uniqueEmail);
 
+		// Click submit button
 		await page.getByRole("button", { name: "Contact Us" }).click();
 
 		// Verify form reset after submit succesfully
 		await expect(emailInput).toHaveValue("");
 
 		// Verify toast message show correct message from server
-		const successToast = page
-			.getByTestId("contact-us")
-			.getByTestId("toast-message-text");
-		await expect(successToast).toHaveText("Thanks for subscribing");
+		await expect(page.getByRole("status")).toContainText(
+			"Thanks for subscribing",
+		);
 	});
 });

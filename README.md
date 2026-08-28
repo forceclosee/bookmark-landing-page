@@ -15,6 +15,7 @@ This is a solution to the [Bookmark landing page challenge on Frontend Mentor](h
   - [Useful resources](#useful-resources)
   - [AI Collaboration](#ai-collaboration)
 - [Author](#author)
+- [Acknowledgments](#acknowledgments)
 
 ## Overview
 
@@ -321,3 +322,7 @@ This collaboration yielded a comprehensive test suite that guarantees future cod
 - GitHub - [Force Close](https://github.com/forceclosee)
 - Frontend Mentor - [@forceclosee](https://www.frontendmentor.io/profile/forceclosee)
 - X - [@forceclosee](https://x.com/forceclosee)
+
+## Acknowledgments
+
+Thanks [vick bake](https://www.frontendmentor.io/profile/vickbk) for helping catch security issuees

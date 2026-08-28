@@ -104,7 +104,7 @@ export default function Login() {
 			ref={dialogRef}
 			id="login-modal"
 			className="login__dialog"
-			data-testid="login-modal">
+			suppressHydrationWarning={true}>
 			<ButtonClient
 				type="button"
 				variant="icon"
@@ -140,10 +140,10 @@ export default function Login() {
 								variant="auth"
 								type="email"
 								label="Email"
-								inputDataTestid="login-email"
 								fieldName={field.name}
 								autoComplete="email"
 								placeholder="Enter your email address"
+								errorMessage={errors[0]?.message}
 								value={field.state.value}
 								onFieldChange={(value) => {
 									field.handleChange(value);
@@ -152,7 +152,6 @@ export default function Login() {
 									setServerErrorMessage(null);
 									setSuccessMessage(null);
 								}}
-								errorMessage={errors[0]?.message}
 							/>
 						);
 					}}
@@ -167,17 +166,14 @@ export default function Login() {
 								variant="auth"
 								type={passwordInputType}
 								label="Password"
-								inputDataTestid="login-password"
 								fieldName={field.name}
 								placeholder="Enter your password"
+								errorMessage={errors[0]?.message}
 								haveRevealButton
 								revealButtonAriaLabel={
 									passwordInputType === "password"
 										? "Show password"
 										: "Hide Password"
-								}
-								revealButtonAriaPressed={
-									passwordInputType === "password" ? "false" : "true"
 								}
 								value={field.state.value}
 								handleClick={handleClick}
@@ -188,14 +184,15 @@ export default function Login() {
 									setServerErrorMessage(null);
 									setSuccessMessage(null);
 								}}
-								errorMessage={errors[0]?.message}
 							/>
 						);
 					}}
 				</Field>
 
 				{serverErrorMessage && (
-					<span className="login__server-error">{serverErrorMessage}</span>
+					<span role="alert" className="login__server-error">
+						{serverErrorMessage}
+					</span>
 				)}
 
 				<Subscribe selector={(state) => [state.isSubmitting]}>
@@ -203,7 +200,6 @@ export default function Login() {
 						<ButtonClient
 							variant="primary"
 							type="submit"
-							data-testid="login-submit-button"
 							disabled={isSubmitting}>
 							<Loader className="login-form__loader-icon" />
 							<span>{isSubmitting ? "Logging in..." : "Login"}</span>
@@ -222,7 +218,7 @@ export default function Login() {
 			<ToastMessage
 				header="Login succesfully"
 				message={successMessage}
-				aria-hidden={showToast ? "false" : "true"}
+				hidden={!showToast}
 			/>
 		</dialog>
 	);

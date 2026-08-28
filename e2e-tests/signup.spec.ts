@@ -1,12 +1,22 @@
 import { test, expect, type Page } from "@playwright/test";
 
+const userName = process.env.TEST_USER_NAME;
+const userEmail = process.env.TEST_USER_EMAIL;
+const userPassword = process.env.TEST_USER_PASSWORD;
+
+if (!userName || !userEmail || !userPassword) {
+	throw new Error("Name, Email, and Password is missing");
+}
+
+const [name, domain] = userEmail.split("@");
+
 test.describe("Signup Flow", () => {
 	// valid data object for base template
 	const getValidData = () => ({
-		signupName: `${Date.now()}`,
-		signupEmail: `e2e-signup-${Date.now()}@example.com`,
-		signupPassword: "Password123!",
-		signupConfirmPassword: "Password123!",
+		signupName: `${userName}-${Date.now()}`,
+		signupEmail: `${name}-${Date.now()}@${domain}`,
+		signupPassword: userPassword,
+		signupConfirmPassword: userPassword,
 	});
 
 	// Helper function to fill form
@@ -14,11 +24,17 @@ test.describe("Signup Flow", () => {
 		page: Page,
 		data: ReturnType<typeof getValidData>,
 	) {
-		await page.getByTestId("signup-name").fill(data.signupName);
-		await page.getByTestId("signup-email").fill(data.signupEmail);
-		await page.getByTestId("signup-password").fill(data.signupPassword);
 		await page
-			.getByTestId("signup-confirm-password")
+			.getByLabel("Name")
+			.filter({ visible: true })
+			.fill(data.signupName);
+		await page
+			.getByLabel("Email")
+			.filter({ visible: true })
+			.fill(data.signupEmail);
+		await page.getByPlaceholder("Create a password").fill(data.signupPassword);
+		await page
+			.getByPlaceholder("Enter your password again")
 			.fill(data.signupConfirmPassword);
 	}
 
@@ -39,10 +55,7 @@ test.describe("Signup Flow", () => {
 		await page.getByRole("button", { name: "Sign up" }).click();
 
 		// Verify toast message
-		const successToast = page
-			.getByTestId("signup-page")
-			.getByTestId("toast-message-text");
-		await expect(successToast).toHaveText(
+		await expect(page.getByRole("status")).toContainText(
 			`Thanks for Signing up ${data.signupName}`,
 		);
 
@@ -73,11 +86,9 @@ test.describe("Signup Flow", () => {
 		await page.getByRole("button", { name: "Sign up" }).click();
 
 		// Verify error message
-		const ErrorName = page
-			.getByTestId("form-field")
-			.filter({ has: page.getByTestId("signup-name") })
-			.getByTestId("input-error-message");
-		await expect(ErrorName).toHaveText("Name must be at least 2 characters");
+		await expect(
+			page.getByLabel("Name").filter({ visible: true }),
+		).toHaveAccessibleDescription("Name must be at least 2 characters");
 	});
 
 	test("should fail validation when email address is invalid", async ({
@@ -93,11 +104,9 @@ test.describe("Signup Flow", () => {
 		await page.getByRole("button", { name: "Sign up" }).click();
 
 		// Verify error message
-		const ErrorEmail = page
-			.getByTestId("form-field")
-			.filter({ has: page.getByTestId("signup-email") })
-			.getByTestId("input-error-message");
-		await expect(ErrorEmail).toHaveText("Please enter a valid email address");
+		await expect(
+			page.getByLabel("Email").filter({ visible: true }),
+		).toHaveAccessibleDescription("Please enter a valid email address");
 	});
 
 	test("should fail validation when password didn't match schema", async ({
@@ -113,11 +122,9 @@ test.describe("Signup Flow", () => {
 		await page.getByRole("button", { name: "Sign up" }).click();
 
 		// Verify error message
-		const ErrorPassword = page
-			.getByTestId("form-field")
-			.filter({ has: page.getByTestId("signup-password") })
-			.getByTestId("input-error-message");
-		await expect(ErrorPassword).toHaveText(
+		await expect(
+			page.getByPlaceholder("Create a password"),
+		).toHaveAccessibleDescription(
 			"Password must contain at least one uppercase letter",
 		);
 	});
@@ -134,10 +141,8 @@ test.describe("Signup Flow", () => {
 		await page.getByRole("button", { name: "Sign up" }).click();
 
 		// Verify error message
-		const ErrorPassword = page
-			.getByTestId("form-field")
-			.filter({ has: page.getByTestId("signup-confirm-password") })
-			.getByTestId("input-error-message");
-		await expect(ErrorPassword).toHaveText("Password does not match");
+		await expect(
+			page.getByPlaceholder("Enter your password again"),
+		).toHaveAccessibleDescription("Password does not match");
 	});
 });

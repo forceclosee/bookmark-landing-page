@@ -161,7 +161,7 @@
 }
 
 /* hide show icon and show hide icon when input type text */
-.field__reveal-button[aria-pressed="true"] {
+.field__reveal-button[aria-label="Hide Password"] {
 	.field__reveal-icon-show {
 		display: none;
 		opacity: 0;
@@ -181,7 +181,7 @@
 	}
 }
 
-/* adjust input padding and error icon position */
+/* adjust input padding and error icon position for password input */
 .field[data-have-reveal-button="true"] {
 	.field__input {
 		padding-inline-end: 4rem;
