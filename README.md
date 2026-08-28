@@ -22,6 +22,7 @@ This is a solution to the [Bookmark landing page challenge on Frontend Mentor](h
 ### **Test account**
 
 email: `example@bookmark.com`
+
 password: `ExPass123!`
 
 ### Features
@@ -62,7 +63,7 @@ password: `ExPass123!`
 
 ### Links
 
-- Solution URL: [solution URL](https://your-solution-url.com) <!-- ganti link -->
+- Solution URL: [solution URL](https://www.frontendmentor.io/solutions/bookmark-landing-page-astro-react-better-auth-neon-drizzle-dyIi52ziib)
 - Live Site URL: [live site URL](https://bookmark-landing-page.forceclose.workers.dev/)
 
 ## My process
@@ -79,7 +80,7 @@ password: `ExPass123!`
 
 ### What I learned
 
-In this project, I learned how to configure clean import path mappings in Astro, implement fully accessible tabbed navigation, use CSS Anchor Positioning, leverage experimental CSS scroll-state Container Queries, build a hybrid validation form that integrates React state-driven schemas with native browser constraint APIs, set up a serverless PostgreSQL database with Drizzle ORM and Neon, and integrate secure user authentication (Sign Up and Login) using Better Auth.
+In this project, I learned how to configure clean import path mappings in Astro, implement fully accessible tabbed navigation, use CSS Anchor Positioning, leverage experimental CSS scroll-state Container Queries, build a state-driven validation form that integrates Zod schemas with TanStack Form and ARIA attributes, set up a serverless PostgreSQL database with Drizzle ORM and Neon, and integrate secure user authentication (Sign Up and Login) using Better Auth.
 
 - **Modern TypeScript Path Aliases**
 
@@ -198,30 +199,72 @@ In this project, I learned how to configure clean import path mappings in Astro,
   }
   ```
 
-- **Hybrid Form Validation (Zod + TanStack Form + Native Constraints API)**
+- **State-Driven Form Validation (Zod + TanStack Form + ARIA Attributes)**
 
-  I learned how to build a hybrid validation user experience that combines Zod schema validation and TanStack Form events with the browser's native `setCustomValidity()` API. By using a React `useEffect` hook to synchronize JavaScript state changes with the DOM element's constraint state, I achieve a highly polished UX where error boundaries are lazy (they only show after the first blur via `:user-invalid`) while success boundaries are eager (they validate and turn green immediately on keystroke via `:valid`).
+  I learned how to build a fully state-driven validation UX that decouples validation from the Browser Constraint Validation API. Instead of syncing errors via `setCustomValidity()` / `:user-invalid` / `:valid`, validation is owned by Zod schemas executed through TanStack Form validators, with UI state derived from TanStack field meta (`isBlurred`, `isDirty`, `isValid`) and exposed via ARIA/data attributes. This gives lazy error display (only after blur via `[aria-invalid="true"]`) while success is eager (immediately on valid + dirty via `[data-isvalid="true"]`), with consistent cross-browser behavior, no native popup, and full screen-reader support via `aria-invalid` + `aria-describedby`.
 
-  ```ts
-  // contactUsSchema.ts
+  ```tsx
+  // SignupForm.tsx - field wiring
 
-  import { z } from "astro/zod";
+  const { errors, isBlurred, isValid, isDirty } = field.state.meta;
 
-  export const contactUsSchema = z.object({
-    email: z.email("Whoops, make sure it's an email"),
-  });
+  <FormInput
+    placeholder="Enter your email address"
+    value={field.state.value}
+    fieldName={field.name}
+    errorMessage={errors[0]?.message}
+    aria-invalid={!!errors.length && isBlurred}
+    data-isvalid={isValid && isDirty}
+    onBlur={field.handleBlur}
+    onChange={(e) => field.handleChange(e.target.value)}
+  />;
   ```
 
   ```tsx
   // FormInput.tsx
 
-  const inputRef = useRef<HTMLInputElement>(null);
+  export default function FormInput({
+    label,
+    fieldName,
+    errorMessage,
+    ...props
+  }) {
+    return (
+      <div className="field">
+        <label htmlFor={fieldName}>{label}</label>
+        <input
+          id={fieldName}
+          name={fieldName}
+          aria-describedby={`error-${fieldName}`}
+          {...props} // aria-invalid, data-isvalid, onBlur, onChange passed directly
+        />
+        <span id={`error-${fieldName}`} aria-live="polite">
+          {errorMessage}
+        </span>
+      </div>
+    );
+  }
+  ```
 
-  useEffect(() => {
-    if (inputRef.current) {
-      inputRef.current.setCustomValidity(errorMessage);
-    }
-  }, [errorMessage]);
+  ```css
+  /* FormInput.css
+  
+  /* invalid: */
+  .field__input[aria-invalid="true"] {
+    background-color: var(--input-bg-invalid);
+    box-shadow: inset 0 0 0 1px var(--primary-red-400);
+  }
+
+  /* valid: */
+  .field__input[data-isvalid="true"] {
+    background-color: var(--input-bg-valid);
+    box-shadow: inset 0 0 0 1px var(--input-border-valid);
+  }
+
+  /* show icon/message when invalid */
+  .field:has([aria-invalid="true"]) .field__error-message {
+    display: block;
+  }
   ```
 
 - **Serverless PostgreSQL Database Setup (Drizzle ORM + Neon Database)**
@@ -312,7 +355,6 @@ I collaborated with **Antigravity AI (Google DeepMind)** to build a robust autom
 - **Vitest Environment & Path Aliases Setup**: Configured Vitest and resolved TypeScript path aliases from `tsconfig.json` natively using the built-in `resolve.tsconfigPaths` feature in Vite 8.
 - **Zod Schema Unit Testing**: Wrote unit tests to validate email format inputs (valid, invalid, empty, and missing properties) on the Zod schema.
 - **Astro Actions & Database Mocking**: Designed backend action unit tests with mock modules for `astro:actions` and method-chaining queries for Drizzle ORM to test successful registration and duplicate conflict errors.
-- **Playwright E2E Testing & Hydration Sync**: Designed cross-browser (Chromium, Firefox, WebKit) E2E testing scenarios and resolved lazy hydration (`client:visible`) race conditions dynamically using a `data-hydrated` state attribute.
 - **GitHub Actions CI/CD Pipeline**: Configured a Continuous Integration pipeline `ci.yml` to run fast code checks (Biome check and Vitest) first, and run Playwright E2E tests securely using encrypted environment secrets.
 
 This collaboration yielded a comprehensive test suite that guarantees future codebase refactors will not break the newsletter subscription feature.
@@ -325,4 +367,4 @@ This collaboration yielded a comprehensive test suite that guarantees future cod
 
 ## Acknowledgments
 
-Thanks [vick bake](https://www.frontendmentor.io/profile/vickbk) for helping catch security issuees
+Thanks [vick bake](https://www.frontendmentor.io/profile/vickbk) for helping catch security issues
