@@ -21,8 +21,8 @@ This is a solution to the [Bookmark landing page challenge on Frontend Mentor](h
 
 ### **Test account**
 
-email: `e@e.example`
-password: `aaaaa1W!`
+email: `example@bookmark.com`
+password: `ExPass123!`
 
 ### Features
 
