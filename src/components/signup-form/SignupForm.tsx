@@ -116,24 +116,28 @@ export default function Signup() {
 				}}>
 				<Field name="signupName">
 					{(field) => {
-						const { errors } = field.state.meta;
+						const { errors, isBlurred, isValid, isDirty } = field.state.meta;
 
 						return (
 							<FormInput
 								variant="auth"
 								type="text"
 								label="Name"
-								fieldName={field.name}
 								placeholder="Enter your name"
+								autoComplete="name"
 								value={field.state.value}
-								onFieldChange={(value) => {
-									field.handleChange(value);
+								fieldName={field.name}
+								errorMessage={errors[0]?.message}
+								aria-invalid={!!errors.length && isBlurred}
+								data-isvalid={isValid && isDirty}
+								onBlur={field.handleBlur}
+								onChange={(e) => {
+									field.handleChange(e.target.value);
 
 									// clear server error message and success message on change
 									setServerErrorMessage(null);
 									setSuccessMessage(null);
 								}}
-								errorMessage={errors[0]?.message}
 							/>
 						);
 					}}
@@ -141,25 +145,28 @@ export default function Signup() {
 
 				<Field name="signupEmail">
 					{(field) => {
-						const { errors } = field.state.meta;
+						const { errors, isBlurred, isValid, isDirty } = field.state.meta;
 
 						return (
 							<FormInput
 								variant="auth"
 								type="email"
 								label="Email"
-								fieldName={field.name}
-								autoComplete="email"
 								placeholder="Enter your email address"
+								autoComplete="email"
 								value={field.state.value}
-								onFieldChange={(value) => {
-									field.handleChange(value);
+								fieldName={field.name}
+								errorMessage={errors[0]?.message}
+								aria-invalid={!!errors.length && isBlurred}
+								data-isvalid={isValid && isDirty}
+								onBlur={field.handleBlur}
+								onChange={(e) => {
+									field.handleChange(e.target.value);
 
 									// clear server error message and success message on change
 									setServerErrorMessage(null);
 									setSuccessMessage(null);
 								}}
-								errorMessage={errors[0]?.message}
 							/>
 						);
 					}}
@@ -167,31 +174,34 @@ export default function Signup() {
 
 				<Field name="signupPassword">
 					{(field) => {
-						const { errors } = field.state.meta;
+						const { errors, isBlurred, isValid, isDirty } = field.state.meta;
 
 						return (
 							<FormInput
 								variant="auth"
 								type={passwordInputType}
 								label="Password"
-								fieldName={field.name}
 								placeholder="Create a password"
+								value={field.state.value}
+								fieldName={field.name}
 								haveRevealButton
+								errorMessage={errors[0]?.message}
+								aria-invalid={!!errors.length && isBlurred}
+								data-isvalid={isValid && isDirty}
 								revealButtonAriaLabel={
 									passwordInputType === "password"
 										? "Show password"
 										: "Hide Password"
 								}
-								value={field.state.value}
-								handleClick={() => handleClick("password")}
-								onFieldChange={(value) => {
-									field.handleChange(value);
+								onBlur={field.handleBlur}
+								onChange={(e) => {
+									field.handleChange(e.target.value);
 
 									// clear server error message and success message on change
 									setServerErrorMessage(null);
 									setSuccessMessage(null);
 								}}
-								errorMessage={errors[0]?.message}>
+								handleClick={() => handleClick("password")}>
 								{/* Password rules */}
 								<div className="password__rules">
 									<span className="password__rules-title">Password rules:</span>
@@ -239,31 +249,34 @@ export default function Signup() {
 
 				<Field name="signupConfirmPassword">
 					{(field) => {
-						const { errors } = field.state.meta;
+						const { errors, isBlurred, isValid, isDirty } = field.state.meta;
 
 						return (
 							<FormInput
 								variant="auth"
 								type={confirmInputType}
 								label="Confirm Password"
-								fieldName={field.name}
 								placeholder="Enter your password again"
+								value={field.state.value}
+								fieldName={field.name}
 								haveRevealButton
+								errorMessage={errors[0]?.message}
+								aria-invalid={!!errors.length && isBlurred}
+								data-isvalid={isValid && isDirty}
 								revealButtonAriaLabel={
 									confirmInputType === "password"
 										? "Show password"
 										: "Hide Password"
 								}
-								value={field.state.value}
-								handleClick={() => handleClick("confirm")}
-								onFieldChange={(value) => {
-									field.handleChange(value);
+								onBlur={field.handleBlur}
+								onChange={(e) => {
+									field.handleChange(e.target.value);
 
 									// clear server error message and success message on change
 									setServerErrorMessage(null);
 									setSuccessMessage(null);
 								}}
-								errorMessage={errors[0]?.message}
+								handleClick={() => handleClick("confirm")}
 							/>
 						);
 					}}

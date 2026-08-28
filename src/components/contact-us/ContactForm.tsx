@@ -75,25 +75,17 @@ export default function ContactForm() {
 				className="contact-form">
 				<Field name="contactUsEmail">
 					{(field) => {
-						const { errors } = field.state.meta;
+						const { errors, isBlurred, isValid, isDirty } = field.state.meta;
 
 						return (
 							<FormInput
 								variant="subscribe"
 								type="email"
 								label="Newsletter Email"
-								fieldName={field.name}
-								autoComplete="email"
 								placeholder="Enter your email address"
+								autoComplete="email"
 								value={field.state.value}
-								onFieldChange={(value) => {
-									field.handleChange(value);
-
-									/* clear server error message on input change */
-									setServerError(null);
-									/* clear success message on input change */
-									setSuccessMessage(null);
-								}}
+								fieldName={field.name}
 								errorMessage={
 									(typeof errors[0] === "string"
 										? errors[0]
@@ -101,6 +93,17 @@ export default function ContactForm() {
 									serverError ||
 									""
 								}
+								aria-invalid={!!errors.length && isBlurred}
+								data-isvalid={isValid && isDirty}
+								onBlur={field.handleBlur}
+								onChange={(e) => {
+									field.handleChange(e.target.value);
+
+									/* clear server error message on input change */
+									setServerError(null);
+									/* clear success message on input change */
+									setSuccessMessage(null);
+								}}
 							/>
 						);
 					}}
