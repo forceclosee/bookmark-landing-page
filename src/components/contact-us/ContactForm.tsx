@@ -13,7 +13,9 @@ import "@components/contact-us/ContactForm.css";
 
 export default function ContactForm() {
 	// error message from server
-	const [serverError, setServerError] = useState<string | null>(null);
+	const [serverErrorMessage, setServerErrorMessage] = useState<
+		string | undefined
+	>(undefined);
 
 	// succes message from server
 	const [succesMessage, setSuccessMessage] = useState<string | null>(null);
@@ -48,16 +50,20 @@ export default function ContactForm() {
 
 			if (error) {
 				setSuccessMessage(null); /* clear success message on error */
-				setServerError(error.message); /* show server error message */
+				setServerErrorMessage(error.message); /* show server error message */
 			} else {
-				setServerError(null); /* clear server error message on success */
-				setSuccessMessage(data.message); /* show succes message */
+				setServerErrorMessage(
+					undefined,
+				); /* clear server error message on success */
+				setSuccessMessage(
+					`${data.message} ${value.contactUsEmail}`,
+				); /* show succes message */
 				formApi.reset();
 			}
 		},
 		onSubmitInvalid() {
 			const InvalidInput = document.querySelector(
-				"input:invalid",
+				"[aria-invalid='true']",
 			) as HTMLInputElement;
 
 			InvalidInput?.focus();
@@ -73,41 +79,42 @@ export default function ContactForm() {
 					handleSubmit();
 				}}
 				className="contact-form">
-				<Field name="contactUsEmail">
-					{(field) => {
-						const { errors, isBlurred, isValid, isDirty } = field.state.meta;
+				<Subscribe selector={(state) => state.submissionAttempts}>
+					{(submissionAttempts) => (
+						<Field name="contactUsEmail">
+							{(field) => {
+								const { errors, isBlurred, isValid, isDirty } =
+									field.state.meta;
 
-						return (
-							<FormInput
-								variant="subscribe"
-								type="email"
-								label="Newsletter Email"
-								placeholder="Enter your email address"
-								autoComplete="email"
-								value={field.state.value}
-								fieldName={field.name}
-								errorMessage={
-									(typeof errors[0] === "string"
-										? errors[0]
-										: (errors[0] as { message?: string })?.message) ||
-									serverError ||
-									""
-								}
-								aria-invalid={!!errors.length && isBlurred}
-								data-isvalid={isValid && isDirty}
-								onBlur={field.handleBlur}
-								onChange={(e) => {
-									field.handleChange(e.target.value);
+								return (
+									<FormInput
+										variant="subscribe"
+										type="email"
+										label="Newsletter Email"
+										placeholder="Enter your email address"
+										autoComplete="email"
+										value={field.state.value}
+										fieldName={field.name}
+										errorMessage={
+											isBlurred || submissionAttempts > 0
+												? errors[0]?.message || serverErrorMessage
+												: undefined
+										}
+										data-isvalid={isValid && isDirty && !serverErrorMessage}
+										onBlur={field.handleBlur}
+										onChange={(e) => {
+											field.handleChange(e.target.value);
 
-									/* clear server error message on input change */
-									setServerError(null);
-									/* clear success message on input change */
-									setSuccessMessage(null);
-								}}
-							/>
-						);
-					}}
-				</Field>
+											// clear server error message and success message on change
+											setServerErrorMessage(undefined);
+											setSuccessMessage(null);
+										}}
+									/>
+								);
+							}}
+						</Field>
+					)}
+				</Subscribe>
 
 				<Subscribe selector={(state) => [state.isSubmitting]}>
 					{([isSubmitting]) => (
@@ -123,9 +130,9 @@ export default function ContactForm() {
 			</form>
 
 			<ToastMessage
+				showToast={showToast}
 				header="Subscribe Succesfully"
 				message={succesMessage}
-				hidden={!showToast}
 			/>
 		</>
 	);

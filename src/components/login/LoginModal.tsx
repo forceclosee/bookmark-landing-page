@@ -87,12 +87,12 @@ export default function Login() {
 						currentPath === "/signup" ? "/" : window.location.pathname;
 
 					navigate(destination, { history: "replace" });
-				}, 2000);
+				}, 4000);
 			}
 		},
 		onSubmitInvalid() {
 			const InvalidInput = document.querySelector(
-				"input:invalid",
+				"[aria-invalid='true']",
 			) as HTMLInputElement;
 
 			InvalidInput?.focus();
@@ -131,75 +131,92 @@ export default function Login() {
 					e.preventDefault();
 					handleSubmit();
 				}}>
-				<Field name="loginEmail">
-					{(field) => {
-						const { errors, isBlurred, isValid, isDirty } = field.state.meta;
+				<Subscribe selector={(state) => state.submissionAttempts}>
+					{(submissionAttempts) => (
+						<Field name="loginEmail">
+							{(field) => {
+								const { errors, isBlurred, isValid, isDirty } =
+									field.state.meta;
 
-						return (
-							<FormInput
-								variant="auth"
-								type="email"
-								label="Email"
-								placeholder="Enter your email address"
-								autoComplete="email"
-								value={field.state.value}
-								fieldName={field.name}
-								errorMessage={errors[0]?.message}
-								aria-invalid={!!errors.length && isBlurred}
-								data-isvalid={isValid && isDirty}
-								onBlur={field.handleBlur}
-								onChange={(e) => {
-									field.handleChange(e.target.value);
+								return (
+									<FormInput
+										variant="auth"
+										type="email"
+										label="Email"
+										placeholder="Enter your email address"
+										autoComplete="email"
+										value={field.state.value}
+										fieldName={field.name}
+										errorMessage={
+											isBlurred || submissionAttempts > 0
+												? errors[0]?.message
+												: undefined
+										}
+										data-isvalid={isValid && isDirty}
+										onBlur={field.handleBlur}
+										onChange={(e) => {
+											field.handleChange(e.target.value);
 
-									// clear server error message and success message on change
-									setServerErrorMessage(null);
-									setSuccessMessage(null);
-								}}
-							/>
-						);
-					}}
-				</Field>
+											// clear server error message and success message on change
+											setServerErrorMessage(null);
+											setSuccessMessage(null);
+										}}
+									/>
+								);
+							}}
+						</Field>
+					)}
+				</Subscribe>
 
-				<Field name="loginPassword">
-					{(field) => {
-						const { errors, isBlurred, isValid, isDirty } = field.state.meta;
+				<Subscribe selector={(state) => state.submissionAttempts}>
+					{(submissionAttempts) => (
+						<Field name="loginPassword">
+							{(field) => {
+								const { errors, isBlurred, isValid, isDirty } =
+									field.state.meta;
 
-						return (
-							<FormInput
-								variant="auth"
-								type={passwordInputType}
-								label="Password"
-								placeholder="Enter your password"
-								value={field.state.value}
-								fieldName={field.name}
-								errorMessage={errors[0]?.message}
-								aria-invalid={!!errors.length && isBlurred}
-								data-isvalid={isValid && isDirty}
-								onBlur={field.handleBlur}
-								haveRevealButton
-								revealButtonAriaLabel={
-									passwordInputType === "password"
-										? "Show password"
-										: "Hide Password"
-								}
-								handleClick={handleClick}
-								onChange={(e) => {
-									field.handleChange(e.target.value);
+								return (
+									<FormInput
+										variant="auth"
+										type={passwordInputType}
+										label="Password"
+										placeholder="Enter your password"
+										value={field.state.value}
+										fieldName={field.name}
+										errorMessage={
+											isBlurred || submissionAttempts > 0
+												? errors[0]?.message
+												: undefined
+										}
+										data-isvalid={isValid && isDirty}
+										onBlur={field.handleBlur}
+										haveRevealButton
+										revealButtonAriaLabel={
+											passwordInputType === "password"
+												? "Show password"
+												: "Hide Password"
+										}
+										handleClick={handleClick}
+										onChange={(e) => {
+											field.handleChange(e.target.value);
 
-									// clear server error message and success message on change
-									setServerErrorMessage(null);
-									setSuccessMessage(null);
-								}}
-							/>
-						);
-					}}
-				</Field>
+											// clear server error message and success message on change
+											setServerErrorMessage(null);
+											setSuccessMessage(null);
+										}}
+									/>
+								);
+							}}
+						</Field>
+					)}
+				</Subscribe>
 
-				{serverErrorMessage && (
-					<span role="alert" className="login__server-error">
-						{serverErrorMessage}
-					</span>
-				)}
+				<span
+					role="alert"
+					hidden={!serverErrorMessage}
+					className="login__server-error">
+					{serverErrorMessage}
+				</span>
 
 				<Subscribe selector={(state) => [state.isSubmitting]}>
 					{([isSubmitting]) => (
@@ -222,9 +239,9 @@ export default function Login() {
 			</p>
 
 			<ToastMessage
+				showToast={showToast}
 				header="Login succesfully"
 				message={successMessage}
-				hidden={!showToast}
 			/>
 		</dialog>
 	);

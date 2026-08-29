@@ -4,12 +4,9 @@ import ButtonClient from "@components/shared/ButtonClient";
 
 import "@components/shared/FormInput.css";
 
-type Props = RequireAttributes<
-	ComponentProps<"input">,
-	"aria-invalid" | "placeholder"
-> & {
+type Props = RequireAttributes<ComponentProps<"input">, "placeholder"> & {
 	label: string;
-	errorMessage?: string;
+	errorMessage: string | undefined;
 	fieldName: string;
 	variant: "subscribe" | "auth";
 	haveRevealButton?: boolean;
@@ -19,7 +16,7 @@ type Props = RequireAttributes<
 
 export default function FormInput({
 	label,
-	errorMessage = "",
+	errorMessage,
 	fieldName,
 	variant,
 	haveRevealButton,
@@ -47,10 +44,11 @@ export default function FormInput({
 					id={fieldName}
 					name={fieldName}
 					aria-describedby={`error-${fieldName}`}
+					aria-invalid={!!errorMessage}
 					{...props}
 					className={[
 						"field__input",
-						variant === "auth" ? "field__input--auth" : null,
+						variant === "auth" && "field__input--auth",
 					]
 						.filter(Boolean)
 						.join(" ")}
@@ -58,7 +56,11 @@ export default function FormInput({
 
 				<span
 					id={`error-${fieldName}`}
-					className="field__error-message"
+					className={[
+						fieldName === "signupPassword" ? "sr-only" : "field__error-message",
+					]
+						.filter(Boolean)
+						.join(" ")}
 					aria-live="polite">
 					{errorMessage}
 				</span>

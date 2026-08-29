@@ -18,11 +18,11 @@ export default function Signup() {
 		null,
 	);
 
-	// toast message visibility
-	const [showToast, setShowToast] = useState<boolean>(false);
-
 	// succes message
 	const [successMessage, setSuccessMessage] = useState<string | null>(null);
+
+	// toast message visibility
+	const [showToast, setShowToast] = useState<boolean>(false);
 
 	//  password input type
 	const [passwordInputType, setPasswordInputType] = useState<
@@ -93,15 +93,15 @@ export default function Signup() {
 				formApi.reset();
 				setTimeout(() => {
 					navigate("/"); /* redirect to homepage */
-				}, 2000);
+				}, 4000);
 			}
 		},
 		onSubmitInvalid() {
-			const InvalidInput = document.querySelector(
-				"input:invalid",
+			const invalidInput = document.querySelector(
+				"[aria-invalid='true']",
 			) as HTMLInputElement;
 
-			InvalidInput?.focus();
+			invalidInput?.focus();
 		},
 	});
 
@@ -114,182 +114,221 @@ export default function Signup() {
 					e.preventDefault();
 					handleSubmit();
 				}}>
-				<Field name="signupName">
-					{(field) => {
-						const { errors, isBlurred, isValid, isDirty } = field.state.meta;
+				<Subscribe selector={(state) => state.submissionAttempts}>
+					{(submissionAttempts) => (
+						<Field name="signupName">
+							{(field) => {
+								const { errors, isBlurred, isValid, isDirty } =
+									field.state.meta;
 
-						return (
-							<FormInput
-								variant="auth"
-								type="text"
-								label="Name"
-								placeholder="Enter your name"
-								autoComplete="name"
-								value={field.state.value}
-								fieldName={field.name}
-								errorMessage={errors[0]?.message}
-								aria-invalid={!!errors.length && isBlurred}
-								data-isvalid={isValid && isDirty}
-								onBlur={field.handleBlur}
-								onChange={(e) => {
-									field.handleChange(e.target.value);
+								return (
+									<FormInput
+										variant="auth"
+										type="text"
+										label="Name"
+										placeholder="Enter your name"
+										autoComplete="name"
+										value={field.state.value}
+										fieldName={field.name}
+										errorMessage={
+											isBlurred || submissionAttempts > 0
+												? errors[0]?.message
+												: undefined
+										}
+										data-isvalid={isValid && isDirty}
+										onBlur={field.handleBlur}
+										onChange={(e) => {
+											field.handleChange(e.target.value);
 
-									// clear server error message and success message on change
-									setServerErrorMessage(null);
-									setSuccessMessage(null);
-								}}
-							/>
-						);
-					}}
-				</Field>
+											// clear server error message and success message on change
+											setServerErrorMessage(null);
+											setSuccessMessage(null);
+										}}
+									/>
+								);
+							}}
+						</Field>
+					)}
+				</Subscribe>
 
-				<Field name="signupEmail">
-					{(field) => {
-						const { errors, isBlurred, isValid, isDirty } = field.state.meta;
+				<Subscribe selector={(state) => state.submissionAttempts}>
+					{(submissionAttempts) => (
+						<Field name="signupEmail">
+							{(field) => {
+								const { errors, isBlurred, isValid, isDirty } =
+									field.state.meta;
 
-						return (
-							<FormInput
-								variant="auth"
-								type="email"
-								label="Email"
-								placeholder="Enter your email address"
-								autoComplete="email"
-								value={field.state.value}
-								fieldName={field.name}
-								errorMessage={errors[0]?.message}
-								aria-invalid={!!errors.length && isBlurred}
-								data-isvalid={isValid && isDirty}
-								onBlur={field.handleBlur}
-								onChange={(e) => {
-									field.handleChange(e.target.value);
+								return (
+									<FormInput
+										variant="auth"
+										type="email"
+										label="Email"
+										placeholder="Enter your email address"
+										autoComplete="email"
+										value={field.state.value}
+										fieldName={field.name}
+										errorMessage={
+											isBlurred || submissionAttempts > 0
+												? errors[0]?.message
+												: undefined
+										}
+										data-isvalid={isValid && isDirty}
+										onBlur={field.handleBlur}
+										onChange={(e) => {
+											field.handleChange(e.target.value);
 
-									// clear server error message and success message on change
-									setServerErrorMessage(null);
-									setSuccessMessage(null);
-								}}
-							/>
-						);
-					}}
-				</Field>
+											// clear server error message and success message on change
+											setServerErrorMessage(null);
+											setSuccessMessage(null);
+										}}
+									/>
+								);
+							}}
+						</Field>
+					)}
+				</Subscribe>
 
-				<Field name="signupPassword">
-					{(field) => {
-						const { errors, isBlurred, isValid, isDirty } = field.state.meta;
+				<Subscribe selector={(state) => state.submissionAttempts}>
+					{(submissionAttempts) => (
+						<Field name="signupPassword">
+							{(field) => {
+								const { errors, isBlurred, isValid, isDirty } =
+									field.state.meta;
 
-						return (
-							<FormInput
-								variant="auth"
-								type={passwordInputType}
-								label="Password"
-								placeholder="Create a password"
-								value={field.state.value}
-								fieldName={field.name}
-								haveRevealButton
-								errorMessage={errors[0]?.message}
-								aria-invalid={!!errors.length && isBlurred}
-								data-isvalid={isValid && isDirty}
-								revealButtonAriaLabel={
-									passwordInputType === "password"
-										? "Show password"
-										: "Hide Password"
-								}
-								onBlur={field.handleBlur}
-								onChange={(e) => {
-									field.handleChange(e.target.value);
+								return (
+									<FormInput
+										variant="auth"
+										type={passwordInputType}
+										label="Password"
+										placeholder="Create a password"
+										value={field.state.value}
+										fieldName={field.name}
+										haveRevealButton
+										errorMessage={
+											isBlurred || submissionAttempts > 0
+												? errors[0]?.message
+												: undefined
+											// only for screen reader, visually replaced with password rules
+										}
+										data-isvalid={isValid && isDirty}
+										revealButtonAriaLabel={
+											passwordInputType === "password"
+												? "Show password"
+												: "Hide Password"
+										}
+										onBlur={field.handleBlur}
+										onChange={(e) => {
+											field.handleChange(e.target.value);
 
-									// clear server error message and success message on change
-									setServerErrorMessage(null);
-									setSuccessMessage(null);
-								}}
-								handleClick={() => handleClick("password")}>
-								{/* Password rules */}
-								<div className="password__rules">
-									<span className="password__rules-title">Password rules:</span>
-									<ul className="password-rules__list">
-										{passwordRules.map((rule) => {
-											const isPassed = rule.test(field.state.value || "");
+											// clear server error message and success message on change
+											setServerErrorMessage(null);
+											setSuccessMessage(null);
+										}}
+										handleClick={() => handleClick("password")}>
+										{/* Password rules */}
+										<div className="password__rules">
+											<span className="password__rules-title">
+												Password rules:
+											</span>
+											<ul className="password-rules__list">
+												{passwordRules.map((rule) => {
+													const isPassed = rule.test(field.state.value || "");
 
-											return (
-												<li
-													key={rule.id}
-													data-passed={isPassed ? "true" : "false"}
-													className="password-rules__rule">
-													<div className="password-rules__icon-wrapper">
-														<svg
-															className="password-rules__icon password-rules__check-icon"
-															aria-hidden="true"
-															xmlns="http://www.w3.org/2000/svg"
-															viewBox="0 0 640 640"
-															fill="currentColor">
-															<path d="M530.8 134.1C545.1 144.5 548.3 164.5 537.9 178.8L281.9 530.8C276.4 538.4 267.9 543.1 258.5 543.9C249.1 544.7 240 541.2 233.4 534.6L105.4 406.6C92.9 394.1 92.9 373.8 105.4 361.3C117.9 348.8 138.2 348.8 150.7 361.3L252.2 462.8L486.2 141.1C496.6 126.8 516.6 123.6 530.9 134z" />
-														</svg>
+													return (
+														<li
+															key={rule.id}
+															data-passed={isPassed ? "true" : "false"}
+															className="password-rules__rule">
+															<div className="password-rules__icon-wrapper">
+																<svg
+																	className="password-rules__icon password-rules__check-icon"
+																	aria-hidden="true"
+																	xmlns="http://www.w3.org/2000/svg"
+																	viewBox="0 0 640 640"
+																	fill="currentColor">
+																	<path d="M530.8 134.1C545.1 144.5 548.3 164.5 537.9 178.8L281.9 530.8C276.4 538.4 267.9 543.1 258.5 543.9C249.1 544.7 240 541.2 233.4 534.6L105.4 406.6C92.9 394.1 92.9 373.8 105.4 361.3C117.9 348.8 138.2 348.8 150.7 361.3L252.2 462.8L486.2 141.1C496.6 126.8 516.6 123.6 530.9 134z" />
+																</svg>
 
-														<svg
-															className="password-rules__icon password-rules__xmark-icon"
-															aria-hidden="true"
-															xmlns="http://www.w3.org/2000/svg"
-															viewBox="0 0 640 640"
-															fill="currentColor">
-															<path d="M183.1 137.4C170.6 124.9 150.3 124.9 137.8 137.4C125.3 149.9 125.3 170.2 137.8 182.7L275.2 320L137.9 457.4C125.4 469.9 125.4 490.2 137.9 502.7C150.4 515.2 170.7 515.2 183.2 502.7L320.5 365.3L457.9 502.6C470.4 515.1 490.7 515.1 503.2 502.6C515.7 490.1 515.7 469.8 503.2 457.3L365.8 320L503.1 182.6C515.6 170.1 515.6 149.8 503.1 137.3C490.6 124.8 470.3 124.8 457.8 137.3L320.5 274.7L183.1 137.4z" />
-														</svg>
-													</div>
+																<svg
+																	className="password-rules__icon password-rules__xmark-icon"
+																	aria-hidden="true"
+																	xmlns="http://www.w3.org/2000/svg"
+																	viewBox="0 0 640 640"
+																	fill="currentColor">
+																	<path d="M183.1 137.4C170.6 124.9 150.3 124.9 137.8 137.4C125.3 149.9 125.3 170.2 137.8 182.7L275.2 320L137.9 457.4C125.4 469.9 125.4 490.2 137.9 502.7C150.4 515.2 170.7 515.2 183.2 502.7L320.5 365.3L457.9 502.6C470.4 515.1 490.7 515.1 503.2 502.6C515.7 490.1 515.7 469.8 503.2 457.3L365.8 320L503.1 182.6C515.6 170.1 515.6 149.8 503.1 137.3C490.6 124.8 470.3 124.8 457.8 137.3L320.5 274.7L183.1 137.4z" />
+																</svg>
+															</div>
 
-													<span className="password-rules__label">
-														{rule.label}
-													</span>
-												</li>
-											);
-										})}
-									</ul>
-								</div>
-							</FormInput>
-						);
-					}}
-				</Field>
+															<span className="password-rules__label">
+																{rule.label}
+															</span>
+														</li>
+													);
+												})}
+											</ul>
+										</div>
+									</FormInput>
+								);
+							}}
+						</Field>
+					)}
+				</Subscribe>
 
-				<Field name="signupConfirmPassword">
-					{(field) => {
-						const { errors, isBlurred, isValid, isDirty } = field.state.meta;
+				<Subscribe selector={(state) => state.submissionAttempts}>
+					{(submissionAttempts) => (
+						<Field name="signupConfirmPassword">
+							{(field) => {
+								const { errors, isBlurred, isValid, isDirty } =
+									field.state.meta;
 
-						return (
-							<FormInput
-								variant="auth"
-								type={confirmInputType}
-								label="Confirm Password"
-								placeholder="Enter your password again"
-								value={field.state.value}
-								fieldName={field.name}
-								haveRevealButton
-								errorMessage={errors[0]?.message}
-								aria-invalid={!!errors.length && isBlurred}
-								data-isvalid={isValid && isDirty}
-								revealButtonAriaLabel={
-									confirmInputType === "password"
-										? "Show password"
-										: "Hide Password"
-								}
-								onBlur={field.handleBlur}
-								onChange={(e) => {
-									field.handleChange(e.target.value);
+								return (
+									<FormInput
+										variant="auth"
+										type={confirmInputType}
+										label="Confirm Password"
+										placeholder="Enter your password again"
+										value={field.state.value}
+										fieldName={field.name}
+										haveRevealButton
+										errorMessage={
+											isBlurred || submissionAttempts > 0
+												? errors[0]?.message
+												: undefined
+										}
+										aria-invalid={
+											!isValid && (isBlurred || submissionAttempts > 0)
+										}
+										data-isvalid={isValid && isDirty}
+										revealButtonAriaLabel={
+											confirmInputType === "password"
+												? "Show password"
+												: "Hide Password"
+										}
+										onBlur={field.handleBlur}
+										onChange={(e) => {
+											field.handleChange(e.target.value);
 
-									// clear server error message and success message on change
-									setServerErrorMessage(null);
-									setSuccessMessage(null);
-								}}
-								handleClick={() => handleClick("confirm")}
-							/>
-						);
-					}}
-				</Field>
+											// clear server error message and success message on change
+											setServerErrorMessage(null);
+											setSuccessMessage(null);
+										}}
+										handleClick={() => handleClick("confirm")}
+									/>
+								);
+							}}
+						</Field>
+					)}
+				</Subscribe>
 
-				{serverErrorMessage && (
-					<span role="alert" className="signup__server-error">
-						{serverErrorMessage}
-					</span>
-				)}
+				<span
+					role="alert"
+					hidden={!serverErrorMessage}
+					className="signup__server-error">
+					{serverErrorMessage}
+				</span>
 
-				<Subscribe selector={(state) => [state.isSubmitting]}>
-					{([isSubmitting]) => (
+				<Subscribe selector={(state) => state.isSubmitting}>
+					{(isSubmitting) => (
 						<ButtonClient
 							variant="primary"
 							type="submit"
@@ -302,12 +341,10 @@ export default function Signup() {
 			</form>
 
 			<ToastMessage
+				showToast={showToast}
 				header="Signup succesfully"
 				message={successMessage}
-				hidden={!showToast}
 			/>
 		</>
 	);
 }
-
-// benerin toast message agar flexibel

@@ -9,7 +9,7 @@
 	color: var(--text);
 
 	&::after {
-		content: "*";
+		content: "*" / "";
 		color: var(--primary-red-400);
 	}
 }
@@ -86,8 +86,6 @@
 }
 
 .field__input--auth {
-	border-radius: 0.5rem;
-	corner-shape: squircle;
 	box-shadow: inset 0 0 0 1px var(--border-input);
 }
 
@@ -211,7 +209,7 @@
 	transition: all 0.2s ease allow-discrete;
 }
 
-/* show error icon and message on invalid input after blur */
+/* show error icon and message on invalid input when aria-invalid is true */
 .field:has([aria-invalid="true"]) {
 	.field__error-icon {
 		display: block;
@@ -232,13 +230,7 @@
 	}
 }
 
-/* hide error message for password field on signup form */
-.field:has(.field__input[name="signupPassword"]) {
-	.field__error-message {
-		display: none;
-	}
-
-	.field__input {
-		border-radius: 0.5em;
-	}
+/* all corner have border radius on signup form */
+.field:has(.field__input[name="signupPassword"]) .field__input {
+	border-radius: 0.5em;
 }
