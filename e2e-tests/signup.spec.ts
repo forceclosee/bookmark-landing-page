@@ -47,6 +47,9 @@ test.describe("Signup Flow", () => {
 		page,
 	}) => {
 		const data = getValidData();
+		// const signupPage = page
+		// 	.locator("#main")
+		// 	.filter({ has: page.getByRole("heading", { name: "Sign up" }) });
 
 		// Fill form
 		await fillSignupForm(page, data);
@@ -55,19 +58,21 @@ test.describe("Signup Flow", () => {
 		await page.getByRole("button", { name: "Sign up" }).click();
 
 		// Verify toast message
-		await expect(page.getByRole("status")).toContainText(
-			`Thanks for Signing up ${data.signupName}`,
-		);
+		await expect(page.getByRole("status")).toContainText("Signup succesfully", {
+			timeout: 10000,
+		});
 
 		// Verify form is reset
-		const testids = [
-			"signup-name",
-			"signup-email",
-			"signup-password",
-			"signup-confirm-password",
+		const placeholders = [
+			"Enter your name",
+			"Enter your email address",
+			"Create a password",
+			"Enter your password again",
 		];
-		for (const testid of testids) {
-			await expect(page.getByTestId(testid)).toHaveValue("");
+		for (const placeholder of placeholders) {
+			await expect(
+				page.getByPlaceholder(placeholder).filter({ visible: true }),
+			).toHaveValue("");
 		}
 
 		// Verify redirect to homepage

@@ -10,11 +10,9 @@ type Props = ComponentProps<"div"> & {
 
 export default function ToastMessage({ showToast, message, header }: Props) {
 	return (
-		<div>
+		<div role="status">
 			{/* for screen reader only */}
-			<div role="status" className="sr-only">
-				{showToast && `${header}. ${message}`}
-			</div>
+			<div className="sr-only">{showToast && `${header}. ${message}`}</div>
 
 			{/* for visual only */}
 			<div
