@@ -48,8 +48,23 @@ export default function Login() {
 	}, [successMessage]);
 
 	// change input type on click
-	const handleClick = () => {
+	const handleRevealButtonClick = () => {
 		setPasswordInputType((prev) => (prev === "password" ? "text" : "password"));
+	};
+
+	// fallback for browser didn't support invoker commands api
+	const handleCloseButtonClick = () => {
+		// early return for supported invoker commands api browser
+		if ("commandForElement" in HTMLButtonElement.prototype) {
+			return;
+		}
+
+		// close login modal for non-supported invoker commands api browser
+		const loginModal =
+			document.querySelector<HTMLDialogElement>("#login-modal");
+		if (loginModal?.open) {
+			loginModal.close();
+		}
 	};
 
 	const { Field, handleSubmit, Subscribe } = useForm({
@@ -112,7 +127,8 @@ export default function Login() {
 				title="Close modal"
 				commandfor="login-modal"
 				command="close"
-				aria-label="Close modal">
+				aria-label="Close modal"
+				onClick={handleCloseButtonClick}>
 				<svg
 					aria-hidden="true"
 					xmlns="http://www.w3.org/2000/svg"
@@ -196,7 +212,7 @@ export default function Login() {
 												? "Show password"
 												: "Hide Password"
 										}
-										handleClick={handleClick}
+										handleClick={handleRevealButtonClick}
 										onChange={(e) => {
 											field.handleChange(e.target.value);
 

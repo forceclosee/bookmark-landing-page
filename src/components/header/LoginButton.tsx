@@ -35,11 +35,25 @@ export default function LoginButton({ isMobile, session }: Props) {
 	};
 
 	const handleClick = () => {
+		// session: logout
 		if (session) {
 			startTransition(async () => {
 				await authClient.signOut();
 				navigate(window.location.pathname, { history: "replace" });
 			});
+			return;
+		}
+
+		// no session: early return for supported invoker commands api browser
+		if ("commandForElement" in HTMLButtonElement.prototype) {
+			return;
+		}
+
+		// no session: open login modal for non-supported invoker commands api browser
+		const loginModal =
+			document.querySelector<HTMLDialogElement>("#login-modal");
+		if (loginModal && !loginModal.open) {
+			loginModal.showModal();
 		}
 	};
 
