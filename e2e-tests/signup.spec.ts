@@ -47,9 +47,6 @@ test.describe("Signup Flow", () => {
 		page,
 	}) => {
 		const data = getValidData();
-		// const signupPage = page
-		// 	.locator("#main")
-		// 	.filter({ has: page.getByRole("heading", { name: "Sign up" }) });
 
 		// Fill form
 		await fillSignupForm(page, data);

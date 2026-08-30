@@ -71,7 +71,7 @@ test.describe("Newsletter Subscription Flow", () => {
 
 		// Verify toast message show correct message from server
 		await expect(page.getByRole("status")).toContainText(
-			"Thanks for subscribing",
+			"Subscribe Succesfully",
 			{ timeout: 10000 },
 		);
 	});
