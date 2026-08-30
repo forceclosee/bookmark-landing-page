@@ -9,7 +9,6 @@ export const extension = [
 		minVersion: "Minimum version 62",
 		width: 102,
 		height: 100,
-		href: "/download/?bowser=chrome",
 	},
 	{
 		image: firefoxLogo,
@@ -17,7 +16,6 @@ export const extension = [
 		minVersion: "Minimum version 55",
 		width: 105,
 		height: 100,
-		href: "/download/?bowser=firefox",
 	},
 	{
 		image: operaLogo,
@@ -25,6 +23,5 @@ export const extension = [
 		minVersion: "Minimum version 46",
 		width: 96,
 		height: 100,
-		href: "/download/?bowser=opera",
 	},
 ];
