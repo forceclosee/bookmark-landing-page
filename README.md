@@ -212,8 +212,9 @@ In this project, I learned how to configure clean import path mappings in Astro,
     placeholder="Enter your email address"
     value={field.state.value}
     fieldName={field.name}
-    errorMessage={errors[0]?.message}
-    aria-invalid={!!errors.length && isBlurred}
+    errorMessage={
+      isBlurred || submissionAttempts > 0 ? errors[0]?.message : undefined
+    }
     data-isvalid={isValid && isDirty}
     onBlur={field.handleBlur}
     onChange={(e) => field.handleChange(e.target.value)}
@@ -223,27 +224,19 @@ In this project, I learned how to configure clean import path mappings in Astro,
   ```tsx
   // FormInput.tsx
 
-  export default function FormInput({
-    label,
-    fieldName,
-    errorMessage,
-    ...props
-  }) {
-    return (
-      <div className="field">
-        <label htmlFor={fieldName}>{label}</label>
-        <input
-          id={fieldName}
-          name={fieldName}
-          aria-describedby={`error-${fieldName}`}
-          {...props} // aria-invalid, data-isvalid, onBlur, onChange passed directly
-        />
-        <span id={`error-${fieldName}`} aria-live="polite">
-          {errorMessage}
-        </span>
-      </div>
-    );
-  }
+  <div className="field">
+    <label htmlFor={fieldName}>{label}</label>
+    <input
+      id={fieldName}
+      name={fieldName}
+      aria-describedby={`error-${fieldName}`}
+      aria-invalid={!!errorMessage}
+      {...props} // data-isvalid, onBlur, onChange passed directly
+    />
+    <span id={`error-${fieldName}`} aria-live="polite">
+      {errorMessage}
+    </span>
+  </div>
   ```
 
   ```css
@@ -262,8 +255,14 @@ In this project, I learned how to configure clean import path mappings in Astro,
   }
 
   /* show icon/message when invalid */
-  .field:has([aria-invalid="true"]) .field__error-message {
-    display: block;
+  .field:has([aria-invalid="true"]) {
+    .field__error-icon {
+      display: block;
+    }
+
+    .field__error-message {
+      display: block;
+    }
   }
   ```
 
@@ -367,4 +366,5 @@ This collaboration yielded a comprehensive test suite that guarantees future cod
 
 ## Acknowledgments
 
-Thanks [vick bake](https://www.frontendmentor.io/profile/vickbk) for helping catch security issues
+- Thanks [vick bake](https://www.frontendmentor.io/profile/vickbk) for helping catch security issues
+- Thanks [Abdelrhman Abdelaal](https://www.frontendmentor.io/profile/MrBlackvanta) for helping catch accessibility issues
